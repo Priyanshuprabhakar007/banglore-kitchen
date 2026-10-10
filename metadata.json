@@ -1,0 +1,8 @@
+{
+  "name": "The Bangalore Kitchen",
+  "description": "Comprehensive restaurant management system and customer platform for The Bangalore Kitchen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

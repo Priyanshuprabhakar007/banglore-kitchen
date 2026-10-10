@@ -1,0 +1,150 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // Phase 3: Primitive Definition
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function emailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+    
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    
+    function incoming() {
+      return request.resource.data;
+    }
+    
+    function existing() {
+      return resource.data;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == "dilseinvite@gmail.com" || 
+        request.auth.token.email == "caffy@gmail.com" || 
+        request.auth.token.email == "admin@basant.com" ||
+        request.auth.token.email == "admin@gmail.com" ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'super_admin')
+      );
+    }
+    
+    function isAdminOrStaff() {
+      return isSignedIn() && (
+        isSuperAdmin() ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['manager', 'branch_admin', 'super_admin']) ||
+        (exists(/databases/$(database)/documents/staffMembers/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/staffMembers/$(request.auth.uid)).data.status == 'active')
+      );
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Public Collections
+    match /menuItems/{itemId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /banners/{bannerId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /offers/{offerId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /branches/{branchId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /appAnnouncements/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /deliveryZones/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /reviews/{id} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    
+    match /settings/branding {
+      allow read: if true;
+      allow write: if true;
+    }
+    
+    match /settings/homeBanner {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // User data
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdminOrStaff();
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isOwner(userId) || isAdminOrStaff();
+    }
+
+    // Orders
+    match /orders/{orderId} {
+      allow read: if isAdminOrStaff() || (isSignedIn() && (resource.data.userId == request.auth.uid || resource.data.riderId == request.auth.uid));
+      allow create: if true;
+      allow update: if isAdminOrStaff() || (isSignedIn() && resource.data.riderId == request.auth.uid);
+      allow delete: if isSuperAdmin();
+    }
+
+    // Bookings
+    match /bookings/{id} {
+      allow read: if isAdminOrStaff() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if true;
+      allow update: if isAdminOrStaff();
+      allow delete: if isSuperAdmin();
+    }
+
+    // Riders
+    match /riders/{id} {
+      allow read: if isAdminOrStaff() || (isSignedIn() && (resource.data.userId == request.auth.uid || id == request.auth.uid));
+      allow create, delete: if isSuperAdmin();
+      allow update: if isAdminOrStaff() || (isSignedIn() && (resource.data.userId == request.auth.uid || id == request.auth.uid));
+    }
+
+    // Restricted Collections
+    match /staffMembers/{id} { allow read, write: if isSuperAdmin(); }
+    match /payments/{id} { allow read, write: if isSuperAdmin(); }
+    match /reports/{id} { allow read, write: if isSuperAdmin(); }
+    match /staff/{id} { allow read, write: if isSuperAdmin(); }
+    match /settings/{id} { allow read, write: if isAdminOrStaff(); }
+    match /deliveryPersonnel/{id} { allow read, write: if isAdminOrStaff(); }
+    match /activityLogs/{id} { allow read, write: if isAdminOrStaff(); }
+    match /roles/{id} { allow read, write: if isSuperAdmin(); }
+    match /notifications/{id} { allow read: if true; allow write: if true; }
+    match /announcements/{id} { allow read: if true; allow write: if true; }
+  }
+}

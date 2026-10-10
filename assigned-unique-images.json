@@ -1,0 +1,668 @@
+[
+  {
+    "id": "01oAN9PRmdO8tDWwopVn",
+    "name": "Veg Schezuan Noodles",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "0KRzoRbLdxwwbIgx9Ubm",
+    "name": "Chilly Crispy Baby Corn",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "0ezpdkLMPL2DJwvPwXml",
+    "name": "Chicken Momos",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "3DrdN5zSlfwwbRvpO3J3",
+    "name": "Jeera Rice",
+    "categoryId": "rice",
+    "imageUrl": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "4S1Qdw5ufIPIr5Z2fMXU",
+    "name": "Chili Paneer Gravy",
+    "categoryId": "indo-chinese-veg-gravy",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Chilly_Paneer_01.jpg"
+  },
+  {
+    "id": "56juMrRTVcsGAEgm11zF",
+    "name": "Tomato Onion Chilli Uttapam",
+    "categoryId": "uttapam-special",
+    "imageUrl": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "5UINe5gtkdwwL1ZTn1L4",
+    "name": "Goat Paya Soup",
+    "categoryId": "soups",
+    "imageUrl": "https://images.unsplash.com/photo-1610057099443-f63a1188d79f?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "5fZ8PDTDjbVpsHrubMPp",
+    "name": "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath",
+    "categoryId": "mini-tiffin",
+    "imageUrl": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "5hVoHVfTXsRrQkF8rp5K",
+    "name": "Chapati",
+    "categoryId": "breads",
+    "imageUrl": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "5tJmPsCi14v2pqe0Lm0K",
+    "name": "Butter Roti",
+    "categoryId": "breads",
+    "imageUrl": "https://images.unsplash.com/photo-1626074353765-517a681e40be?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "6H6D2CBmtkEX97E7VXeS",
+    "name": "Chicken Curry (Bangalore style)",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "6XuLxzM52RrJ74401OAk",
+    "name": "Onion Rava Masala Dosa",
+    "categoryId": "rava-dosa-specials",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Masala_dosa_01.jpg"
+  },
+  {
+    "id": "7KXApIewkNt9NXnPv0rN",
+    "name": "Onion Mysore Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "7OubKUDzdo4tqvMTlSzy",
+    "name": "Plain Rava Dosa",
+    "categoryId": "rava-dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=14"
+  },
+  {
+    "id": "7qp0wQu8o46cAS1CF4Mh",
+    "name": "Idli",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=15"
+  },
+  {
+    "id": "972vyJ3ZgBmFigXydWDj",
+    "name": "Bisibele Bath",
+    "categoryId": "rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=16"
+  },
+  {
+    "id": "9WuqDHxhX1E7TVKiZqrQ",
+    "name": "Pappu (Nagarjuna style)",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=17"
+  },
+  {
+    "id": "9rN8CLdAk8UQyiWH9Ip6",
+    "name": "Idli with Chicken Gravy",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=18"
+  },
+  {
+    "id": "AKvxhGIKqdyiynGrtH9g",
+    "name": "Veg Hakka Noodles",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "AZ5PXwSjdfK9RFKjxYbc",
+    "name": "Bangalore Mutton Donne Biryani",
+    "categoryId": "biryani",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=20"
+  },
+  {
+    "id": "B2R9mAuZOV4m6Ac5XGW9",
+    "name": "Sparkling Water",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=21"
+  },
+  {
+    "id": "BbhLtZwISTNsibAOY0o2",
+    "name": "Prawn Pepper Fry",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=22"
+  },
+  {
+    "id": "Bl4xoDsHHCgHCDKCXo5e",
+    "name": "Mango Lassi",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "CSIAK3Dz5zj2WVtOZkqD",
+    "name": "Soda",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=24"
+  },
+  {
+    "id": "CZ79qUpFJSfgun0oHA2J",
+    "name": "Navaratan Vegetable Korma",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "D3PWAvKesY88UOAzwsW9",
+    "name": "Cochin Prawn/Shrimp Curry",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=26"
+  },
+  {
+    "id": "EiuGblmc6B10wrBipmn2",
+    "name": "Chicken Manchurian Gravy",
+    "categoryId": "indo-chinese-non-veg-gravy",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=27"
+  },
+  {
+    "id": "ElMkubNXJ2hLhHTFxfXh",
+    "name": "Bottled Water",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=28"
+  },
+  {
+    "id": "GXP36qQBrQ79GQD93yjZ",
+    "name": "Egg Curry",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=29"
+  },
+  {
+    "id": "GvqF4CS7s2GlL0zmrzdp",
+    "name": "Vada in Sambar",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=30"
+  },
+  {
+    "id": "HS3G82KIBhYxKfr08Dxy",
+    "name": "Onion Rava Dosa",
+    "categoryId": "rava-dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=31"
+  },
+  {
+    "id": "IM2paxMBXt7gBIXwLMKn",
+    "name": "Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=32"
+  },
+  {
+    "id": "ISoTXuXRKEEaIbNzCLS1",
+    "name": "Tandoori Chicken Full",
+    "categoryId": "grill-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=33"
+  },
+  {
+    "id": "J0e6lAz4Alc80g0wr8ME",
+    "name": "Moong Dal Halwa",
+    "categoryId": "dessert",
+    "imageUrl": "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "KXFYTyspv5deqAgDbJ1a",
+    "name": "Bhindi Masala",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=35"
+  },
+  {
+    "id": "L1ETh9rDngSzv1eKiqWM",
+    "name": "Set Dosa with Chicken Gravy",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=36"
+  },
+  {
+    "id": "Lq4HBRyxA96Crk9qVHTK",
+    "name": "Cheese Mysore Masala Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=37"
+  },
+  {
+    "id": "MYUzyQPuCQSIVNUg7qMN",
+    "name": "Tomato Onion Uttapam",
+    "categoryId": "uttapam-special",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=38"
+  },
+  {
+    "id": "MfZ30OgzT8R6gjeL4oD1",
+    "name": "Masala Peanut",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=39"
+  },
+  {
+    "id": "NMw5M8DmYtlfez5hZP89",
+    "name": "Payasa",
+    "categoryId": "dessert",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=40"
+  },
+  {
+    "id": "NkV23dZrg33OZeEeupfA",
+    "name": "Rasmalai",
+    "categoryId": "dessert",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=41"
+  },
+  {
+    "id": "PoffPrdRprkR4Y3yBpqh",
+    "name": "Chilli Paneer",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=42"
+  },
+  {
+    "id": "Q49XycXO8SW3g1OpGsvC",
+    "name": "Tandoori Chicken Half",
+    "categoryId": "grill-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=43"
+  },
+  {
+    "id": "QftQKkaC2waQb9GYsWqo",
+    "name": "Gobi Manchurian Gravy",
+    "categoryId": "indo-chinese-veg-gravy",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=44"
+  },
+  {
+    "id": "R6eEMDljDUZ2xUfgmcEu",
+    "name": "Set Dosa with Mutton Gravy",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=45"
+  },
+  {
+    "id": "Rk3oa2NTDW2n4jFmdHff",
+    "name": "Ice Cream",
+    "categoryId": "dessert",
+    "imageUrl": "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "S8R45GozAASza4OPWwGU",
+    "name": "Cheese Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=47"
+  },
+  {
+    "id": "SEZjEdemROKee32qw2Y1",
+    "name": "Lamb Korma",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=48"
+  },
+  {
+    "id": "SUFXHbvfxW7FNSZycg7d",
+    "name": "Mangalore Fish Curry",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=49"
+  },
+  {
+    "id": "TAT7TqWSUC6h0agDBySS",
+    "name": "Gajar Halwa",
+    "categoryId": "dessert",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=50"
+  },
+  {
+    "id": "UoLwnm2y1Vpq8ZylsKvs",
+    "name": "Punjabi Thali",
+    "categoryId": "S7QLqDKtIwo3puYtRLdG",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=51"
+  },
+  {
+    "id": "Uphu1DINO1GzKob75yGs",
+    "name": "Chocolate Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=52"
+  },
+  {
+    "id": "XNFiArpMqrBhFvy9TVIr",
+    "name": "Chicken 65",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=53"
+  },
+  {
+    "id": "XfdsUeOY1ImCUYroJtva",
+    "name": "Mutton curry (Bangalore style)",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=54"
+  },
+  {
+    "id": "Y9jRXNsFIht2GhoKpY0A",
+    "name": "Masala Puri",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=55"
+  },
+  {
+    "id": "YirhCMv2HqJufSZKukld",
+    "name": "Rose Milk",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "ZkF9ZSg3F3lxtok3c5tS",
+    "name": "Idli in Sambar",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=57"
+  },
+  {
+    "id": "aggcGSq4LoqAf1GDHbmi",
+    "name": "Chicken Hot and Sour Soup",
+    "categoryId": "soups",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=58"
+  },
+  {
+    "id": "ai01oRqNSqNrGAumcqxz",
+    "name": "Mild Gujrati Thali",
+    "categoryId": "S7QLqDKtIwo3puYtRLdG",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=59"
+  },
+  {
+    "id": "ckr4J960a4tJbIQjS6iv",
+    "name": "Saag Paneer",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=60"
+  },
+  {
+    "id": "dAUKfUgqvyXJqJUUVI46",
+    "name": "Medu Vada",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=61"
+  },
+  {
+    "id": "dmDWtX3EdTUDRqx58FBm",
+    "name": "Chicken Lollipop",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=62"
+  },
+  {
+    "id": "eDha0k5qxkGCULVgfaWQ",
+    "name": "Badam Milk",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "eUv4OBqyVQ68PVYMpSsi",
+    "name": "Chana Masala",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=64"
+  },
+  {
+    "id": "h2q0qrKF57swceYvsYAq",
+    "name": "Samosa",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=65"
+  },
+  {
+    "id": "i4AuZXzGWDsRzbdGUwAf",
+    "name": "Veg Hot and Sour Soup",
+    "categoryId": "soups",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=66"
+  },
+  {
+    "id": "iGyzBxk4OqiKyj9o0LHb",
+    "name": "Garlic Chilli Naan",
+    "categoryId": "breads",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=67"
+  },
+  {
+    "id": "ijig94ebeR0yLJ8bKGTS",
+    "name": "Masala Chai",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=68"
+  },
+  {
+    "id": "k1nDUf6kOvVlGinb96G0",
+    "name": "Veg Momos",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=69"
+  },
+  {
+    "id": "k6lpo7cmfgIcpEBd7PRz",
+    "name": "Veg Fried Rice",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=70"
+  },
+  {
+    "id": "kUkPyCAt1SRXRTCLmUAU",
+    "name": "Laccha Paratha",
+    "categoryId": "breads",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=71"
+  },
+  {
+    "id": "kmIr6RSg0TBlOv27Hf5Q",
+    "name": "Ghee Open Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=72"
+  },
+  {
+    "id": "l6ctzwsYcZM71hZgpnpC",
+    "name": "Bhagara Baingan",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=73"
+  },
+  {
+    "id": "lGVf8BCQSgHjoLsjcSCg",
+    "name": "Chef Special Chicken 65 Biryani",
+    "categoryId": "biryani",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=74"
+  },
+  {
+    "id": "lkcFtSHuWvfwBhc3x7tF",
+    "name": "Garlic Naan",
+    "categoryId": "breads",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=75"
+  },
+  {
+    "id": "luE0Pf0OmF4ikB7cCIrS",
+    "name": "Chicken Tikka Masala",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=76"
+  },
+  {
+    "id": "m3Gq6M0cdUqVQFzxJnuh",
+    "name": "Veg Schezuan Rice",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=77"
+  },
+  {
+    "id": "nCZw72stSsjaxobtTDfK",
+    "name": "Benne Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=78"
+  },
+  {
+    "id": "oG00dJzcYZKWjjSDHT1a",
+    "name": "Gobi Manchurian",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Gobi_manchurian.jpg"
+  },
+  {
+    "id": "oGpve56LpHbwLHk8hnHy",
+    "name": "Cheese Naan",
+    "categoryId": "breads",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=80"
+  },
+  {
+    "id": "ok9iB1RCqdEV9HJ8K7Sy",
+    "name": "Chilli Chicken",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=81"
+  },
+  {
+    "id": "opBEgUMKLYx6fCiiXmOw",
+    "name": "Thatte Idli with Ghee Pudi",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=82"
+  },
+  {
+    "id": "p3baFlGEmw5R5if8X6yh",
+    "name": "Chicken Fried Rice",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=83"
+  },
+  {
+    "id": "pNeRF6sUhklme8iYp4u9",
+    "name": "Paneer Butter Masala",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=84"
+  },
+  {
+    "id": "pYskmHafpd5ORca2eWwX",
+    "name": "Butter Chicken",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=85"
+  },
+  {
+    "id": "q3rkl2BP1D7E7HR10gmL",
+    "name": "Tiffin 1 - Mini Masala Dosa, Idli & Vada",
+    "categoryId": "mini-tiffin",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=86"
+  },
+  {
+    "id": "qRqJbslPhA9xWRHi40y6",
+    "name": "Dosa Sambar",
+    "categoryId": "south-indian",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=87"
+  },
+  {
+    "id": "qSeTghIDhtYCEUsgwAJO",
+    "name": "Plain Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=88"
+  },
+  {
+    "id": "qaxjgCrE9cPHERtXxREP",
+    "name": "Rasam Soup",
+    "categoryId": "soups",
+    "imageUrl": "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "qpj1sTedu8WySFmsBOMv",
+    "name": "Paneer Mysore Masala Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=90"
+  },
+  {
+    "id": "sSZ3O7meEVDadPfQjsT6",
+    "name": "Chicken Schezwan Noodles",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=91"
+  },
+  {
+    "id": "siYr9EbGHZxjn0iYGLVN",
+    "name": "Onion Chilli Uttapam",
+    "categoryId": "uttapam-special",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=92"
+  },
+  {
+    "id": "t8cr8fo3WojchkBu5fpO",
+    "name": "Gulab Jamun",
+    "categoryId": "dessert",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=93"
+  },
+  {
+    "id": "te04ILCNfyoBgA72t0wg",
+    "name": "Filter Coffee",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=94"
+  },
+  {
+    "id": "tistQUZYN2oqvCjmapKx",
+    "name": "7 Family Combo Meals ",
+    "categoryId": "ZdEJN8qfHD1skLooJsQZ",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=95"
+  },
+  {
+    "id": "twITFIn5Sk0gglIXlkiL",
+    "name": "Idli with Mutton Gravy",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=96"
+  },
+  {
+    "id": "uAYvYFs6waTSfTKygdC2",
+    "name": "Palak Chaat",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=97"
+  },
+  {
+    "id": "uHiE3WG5B8HoAIx4bYpY",
+    "name": "Masala Papad",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=98"
+  },
+  {
+    "id": "uNMecqv1K6Rf9hzh22jy",
+    "name": "Buttermilk",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=99"
+  },
+  {
+    "id": "uZW2gSYdkCgNEdEKLqGM",
+    "name": "Mysore Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=100"
+  },
+  {
+    "id": "vPn8qJwDJdQ71LRE2wLr",
+    "name": "Idli/Vada Combo",
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=101"
+  },
+  {
+    "id": "w0c6VbEJQI6csH90GrFu",
+    "name": "Sweet Corn Soup",
+    "categoryId": "soups",
+    "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "wIWaTndbsFFZudJdCV7L",
+    "name": "Hyderabadi Goat Sukka",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=103"
+  },
+  {
+    "id": "wxP3E3HwHvSDXnJREP6y",
+    "name": "Tandoor Paneer Tikka Grill",
+    "categoryId": "grill-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=104"
+  },
+  {
+    "id": "xKbuWgUPriG9YULmNmeW",
+    "name": "Malai Kofta",
+    "categoryId": "north-indian",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=105"
+  },
+  {
+    "id": "yHB2tdZlQuUjoeIcStB7",
+    "name": "Veg Biryani",
+    "categoryId": "biryani",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=106"
+  },
+  {
+    "id": "yP9nly009nj8OAmJ2sHx",
+    "name": "Chicken Schezwan Rice",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=107"
+  },
+  {
+    "id": "yTrg7l7jtLSPrK0HEYkM",
+    "name": "Chicken Hakka Noodles",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=108"
+  },
+  {
+    "id": "zOdmJ4Vf5KI9OBEJXHsN",
+    "name": "Steamed Rice",
+    "categoryId": "rice",
+    "imageUrl": "https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=800&auto=format&fit=crop&q=80"
+  },
+  {
+    "id": "zOkboX86h6evd4CHYq2h",
+    "name": "Onion Pakoda",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=110"
+  },
+  {
+    "id": "zUQTbNi4d9DGOXJvdEXL",
+    "name": "Fish Fry (Golden Pompano)",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&auto=format&fit=crop&q=80&sig=111"
+  }
+]

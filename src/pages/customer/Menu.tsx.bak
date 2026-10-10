@@ -1,0 +1,300 @@
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { motion } from 'motion/react';
+import { Helmet } from 'react-helmet-async';
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import { db } from '../../lib/firebase';
+import { Search, Filter, ShoppingBag } from 'lucide-react';
+import { useCart } from '../../lib/CartContext';
+import { ProductImage } from '../../components/ProductImage';
+
+export function CustomerMenu() {
+  const [items, setItems] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const searchSuggestions = useMemo(() => {
+    if (!searchTerm.trim()) return [];
+    const term = searchTerm.toLowerCase();
+    
+    return items.filter(item => {
+      const catName = categories.find(c => c.id === item.categoryId)?.name || '';
+      return (
+        item.name?.toLowerCase().includes(term) ||
+        item.description?.toLowerCase().includes(term) ||
+        catName.toLowerCase().includes(term)
+      );
+    }).slice(0, 8);
+  }, [searchTerm, items, categories]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!showSuggestions) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setHighlightedIndex(prev => Math.min(prev + 1, searchSuggestions.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setHighlightedIndex(prev => Math.max(prev - 1, 0));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (highlightedIndex >= 0 && highlightedIndex < searchSuggestions.length) {
+        handleSelectSuggestion(searchSuggestions[highlightedIndex]);
+      } else {
+        setShowSuggestions(false);
+      }
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSelectSuggestion = (item: any) => {
+    setSearchTerm(item.name);
+    setActiveCategory('all');
+    setShowSuggestions(false);
+    setHighlightedIndex(-1);
+  };
+
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    const fetchMenuAndCategories = async () => {
+      setLoading(true);
+      try {
+        const qItems = query(collection(db, 'menuItems'), where('isAvailable', '==', true));
+        const itemsSnapshot = await getDocs(qItems);
+        const menuData = itemsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setItems(menuData);
+
+        const qCats = query(collection(db, 'categories'), orderBy('order', 'asc'));
+        const catsSnapshot = await getDocs(qCats);
+        const catData = catsSnapshot.docs
+          .map(doc => ({ id: doc.id, ...doc.data() }))
+          .filter((c: any) => c.isActive !== false);
+
+        setCategories([{ id: 'all', name: 'All Items' }, ...catData]);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuAndCategories();
+  }, []);
+
+  const schemaOrgJSONLD = useMemo(() => {
+    if (!items.length || !categories.length) return null;
+    return {
+      "@context": "https://schema.org",
+      "@type": "Menu",
+      "name": "The Bangalore Kitchen Menu",
+      "hasMenuSection": categories.filter(c => c.id !== 'all').map(cat => ({
+        "@type": "MenuSection",
+        "name": cat.name,
+        "hasMenuItem": items.filter(item => item.categoryId === cat.id).map(item => ({
+          "@type": "MenuItem",
+          "name": item.name,
+          "description": item.description || `Authentic ${item.name}`,
+          "offers": {
+            "@type": "Offer",
+            "price": item.price,
+            "priceCurrency": "USD"
+          },
+          "image": item.imageUrl || undefined
+        }))
+      }))
+    };
+  }, [items, categories]);
+
+  const filteredItems = items.filter(item => {
+    const matchesCategory = activeCategory === 'all' || item.categoryId === activeCategory;
+    const matchesSearch = !searchTerm || 
+      item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      item.description?.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  return (
+    <div className="min-h-screen bg-bangalore-ivory pb-20">
+      <Helmet>
+        <title>Our Menu | The Bangalore Kitchen</title>
+        <meta name="description" content="Explore our wide selection of authentic vegetarian and non-vegetarian dishes, prepared fresh with premium ingredients." />
+        {schemaOrgJSONLD && (
+          <script type="application/ld+json">
+            {JSON.stringify(schemaOrgJSONLD)}
+          </script>
+        )}
+      </Helmet>
+      {/* Menu Header */}
+      <div className="bg-gradient-to-r from-bangalore-primary to-[#543b24] text-white py-16 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Our Menu</h1>
+          <p className="text-white/90 max-w-2xl mx-auto">Explore authentic Indian flavours, South Indian classics, biryanis, dosas, and coastal specialties made fresh.</p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8">
+        {/* Category Filters */}
+        <div className="bg-white rounded-2xl shadow-sm p-4 mb-6 border border-gray-100">
+          <div className="flex gap-2 overflow-x-auto w-full pb-2 md:pb-0 hide-scrollbar">
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  setActiveCategory(cat.id);
+                  setSearchTerm('');
+                }}
+                className={`px-5 py-2.5 rounded-xl font-medium whitespace-nowrap transition-all text-sm ${
+                  activeCategory === cat.id 
+                    ? 'bg-bangalore-primary text-white shadow-md' 
+                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Search Bar with Autocomplete */}
+        <div className="relative mb-12" ref={searchRef}>
+          <div className="relative w-full">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            <input 
+              type="text" 
+              placeholder="Search for dishes..." 
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setShowSuggestions(true);
+                setHighlightedIndex(-1);
+              }}
+              onFocus={() => {
+                if (searchTerm.trim()) setShowSuggestions(true);
+              }}
+              onKeyDown={handleKeyDown}
+              className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-2xl focus:ring-2 focus:ring-bangalore-primary outline-none transition-all shadow-sm text-gray-800 text-lg"
+            />
+          </div>
+          
+          {/* Autocomplete Dropdown */}
+          {showSuggestions && searchTerm.trim() && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+              {searchSuggestions.length > 0 ? (
+                <ul className="max-h-[400px] overflow-y-auto">
+                  {searchSuggestions.map((item, index) => {
+                    const catName = categories.find(c => c.id === item.categoryId)?.name || '';
+                    return (
+                      <li 
+                        key={item.id}
+                        onClick={() => handleSelectSuggestion(item)}
+                        onMouseEnter={() => setHighlightedIndex(index)}
+                        className={`p-4 cursor-pointer flex items-center gap-4 border-b border-gray-50 last:border-0 transition-colors ${
+                          highlightedIndex === index ? 'bg-orange-50' : 'hover:bg-gray-50'
+                        }`}
+                      >
+                        <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-gray-100">
+                          <ProductImage src={item.imageUrl} alt={item.description ? `${item.name} - ${item.description}` : `Authentic ${item.name}`} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-bold text-gray-900 truncate">{item.name}</h4>
+                          <p className="text-sm text-gray-500 truncate">{catName}</p>
+                        </div>
+                        <div className="font-bold text-bangalore-primary whitespace-nowrap">
+                          ${item.price}
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <div className="p-8 text-center text-gray-500">
+                  <p>No dishes found</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Menu Grid */}
+        {loading ? (
+          <div className="flex justify-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bangalore-primary"></div>
+          </div>
+        ) : filteredItems.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+            <p className="text-xl text-gray-500 font-medium">No dishes found matching your selection.</p>
+            <p className="text-sm text-gray-400 mt-2">Try selecting another category or clearing your search term.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredItems.map((item, idx) => (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(idx * 0.03, 0.3) }}
+                key={item.id} 
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col border border-gray-100"
+              >
+                <div className="relative h-48 overflow-hidden bg-gray-100">
+                  <ProductImage 
+                    src={item.imageUrl} 
+                    alt={item.description ? `${item.name} - ${item.description}` : `Authentic ${item.name} dish`} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    {item.isVegetarian ? (
+                      <div className="bg-white/95 backdrop-blur-sm p-1 rounded shadow-sm">
+                        <div className="w-4 h-4 border-2 border-green-600 flex items-center justify-center rounded-sm">
+                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="bg-white/95 backdrop-blur-sm p-1 rounded shadow-sm">
+                        <div className="w-4 h-4 border-2 border-red-600 flex items-center justify-center rounded-sm">
+                          <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+                        </div>
+                      </div>
+                    )}
+                    {item.isJain && (
+                      <span className="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded shadow-sm">JAIN</span>
+                    )}
+                  </div>
+                </div>
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-serif font-bold text-lg text-gray-900 line-clamp-1">{item.name}</h3>
+                    <span className="font-bold text-bangalore-primary text-lg shrink-0 ml-2">${item.price}</span>
+                  </div>
+                  <p className="text-gray-500 text-sm line-clamp-2 mb-4 flex-1">{item.description}</p>
+                  <button 
+                    onClick={() => addToCart(item)}
+                    className="w-full py-2.5 rounded-xl border-2 border-bangalore-primary text-bangalore-primary font-bold hover:bg-bangalore-primary hover:text-white transition-colors flex items-center justify-center gap-2 group/btn"
+                  >
+                    <ShoppingBag size={18} className="text-bangalore-accent group-hover/btn:text-white transition-colors" /> Add to Cart
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
