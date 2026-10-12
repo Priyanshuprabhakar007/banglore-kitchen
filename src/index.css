@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600;1,6..96,700&family=Caveat:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&family=Italiana&family=Mrs+Saint+Delafield&family=Alex+Brush&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Montserrat", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: "Cormorant Garamond", "Bodoni Moda", ui-serif, Georgia, serif;
+  --font-bodoni: "Bodoni Moda", "Cormorant Garamond", serif;
 
   --color-bangalore-primary: #0B1120; /* Deep Midnight */
   --color-bangalore-accent: #D4AF37; /* Premium Gold */

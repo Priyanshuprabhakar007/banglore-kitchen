@@ -5,7 +5,6 @@ import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestor
 import { db } from '../../lib/firebase';
 import { 
   Search, 
-  Filter, 
   ShoppingBag, 
   Plus, 
   Minus, 
@@ -19,18 +18,250 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../lib/CartContext';
 import { ProductImage } from '../../components/ProductImage';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+
+/* =========================================================================
+   ROBUST HOMEPAGE CUISINE GROUP TO DISH MAPPING
+   Maps the 6 broad homepage cuisine groups to actual menu data.
+   Guarantees zero overlap and accurate culinary classification.
+   ========================================================================= */
+
+const SOUTH_INDIAN_CAT_IDS = new Set([
+  'dosa-specials',
+  'rava-dosa-specials',
+  'specialty-dosa',
+  'idli-vada',
+  'uttapam-special',
+  'mini-tiffin',
+  'south-indian',
+]);
+
+const INDO_CHINESE_CAT_IDS = new Set([
+  'veg-noodles-rice',
+  'non-veg-noodles-rice',
+  'indo-chinese-veg-gravy',
+  'indo-chinese-non-veg-gravy',
+  'indo-chinese',
+]);
+
+const INDO_CHINESE_NAMES = [
+  'noodles',
+  'fried rice',
+  'manchurian',
+  'chilli paneer',
+  'chilly paneer',
+  'chilli chicken',
+  'chilly chicken',
+  'chilly crispy baby corn',
+  'chilli crispy baby corn',
+  'momos',
+  'hot and sour',
+  'sweet corn soup',
+  'spring roll',
+  'schezwan',
+  'hakka',
+];
+
+const BIRYANI_CAT_IDS = new Set(['biryani']);
+const DESSERT_BEVERAGES_CAT_IDS = new Set(['dessert', 'beverages']);
+
+const INDIAN_VEG_CAT_IDS = new Set([
+  'main-course-veg',
+  'breads',
+  'north-indian',
+  'S7QLqDKtIwo3puYtRLdG', // Vegetarian Thali
+]);
+
+const INDIAN_NON_VEG_CAT_IDS = new Set([
+  'main-course-non-veg',
+]);
+
+const isIndoChinese = (item: any): boolean => {
+  const cid = (item.categoryId || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+  if (INDO_CHINESE_CAT_IDS.has(cid)) return true;
+  return INDO_CHINESE_NAMES.some(term => name.includes(term));
+};
+
+const isSouthIndian = (item: any): boolean => {
+  const cid = (item.categoryId || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+  if (SOUTH_INDIAN_CAT_IDS.has(cid)) return true;
+  if (
+    name.includes('dosa') ||
+    name.includes('idli') ||
+    name.includes('vada') ||
+    name.includes('uttapam') ||
+    name.includes('pongal') ||
+    name.includes('bisibele') ||
+    name.includes('rasam') ||
+    name.includes('curd rice')
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const isBiryani = (item: any): boolean => {
+  const cid = (item.categoryId || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+  return BIRYANI_CAT_IDS.has(cid) || name.includes('biryani');
+};
+
+const isDessertOrBeverage = (item: any): boolean => {
+  const cid = (item.categoryId || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+  if (DESSERT_BEVERAGES_CAT_IDS.has(cid)) return true;
+  return (
+    name.includes('jamun') ||
+    name.includes('rasmalai') ||
+    name.includes('halwa') ||
+    name.includes('kulfi') ||
+    name.includes('lassi') ||
+    name.includes('chai') ||
+    name.includes('coffee') ||
+    name.includes('water') ||
+    name.includes('soda') ||
+    name.includes('milk') ||
+    name.includes('buttermilk') ||
+    name.includes('payasa') ||
+    name.includes('ice cream')
+  );
+};
+
+const isIndianNonVeg = (item: any): boolean => {
+  if (isIndoChinese(item) || isBiryani(item) || isDessertOrBeverage(item) || isSouthIndian(item)) {
+    return false;
+  }
+  const cid = (item.categoryId || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+  if (name.includes('paneer')) return false;
+
+  if (INDIAN_NON_VEG_CAT_IDS.has(cid)) return true;
+  if (cid === 'non-veg-appetizers' || cid === 'grill-specials') {
+    return true;
+  }
+  if (
+    name.includes('chicken') ||
+    name.includes('mutton') ||
+    name.includes('goat') ||
+    name.includes('lamb') ||
+    name.includes('fish') ||
+    name.includes('prawn') ||
+    name.includes('egg curry') ||
+    name.includes('paya') ||
+    (item.isVegetarian === false && (
+      name.includes('tandoori') || 
+      name.includes('sukka') || 
+      name.includes('kebab') || 
+      name.includes('tikka')
+    ))
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const isIndianVeg = (item: any): boolean => {
+  if (isIndoChinese(item) || isSouthIndian(item) || isBiryani(item) || isDessertOrBeverage(item)) {
+    return false;
+  }
+  const cid = (item.categoryId || '').toLowerCase();
+  const name = (item.name || '').toLowerCase();
+  if (
+    name.includes('chicken') || 
+    name.includes('mutton') || 
+    name.includes('goat') || 
+    name.includes('lamb') || 
+    name.includes('fish') || 
+    name.includes('prawn') || 
+    name.includes('egg') || 
+    name.includes('paya')
+  ) {
+    return false;
+  }
+  if (INDIAN_VEG_CAT_IDS.has(cid)) return true;
+  if (cid === 'veg-appetizers' || cid === 'starters') return true;
+  if (item.isVegetarian === true) return true;
+  if (
+    name.includes('paneer') ||
+    name.includes('dal') ||
+    name.includes('pappu') ||
+    name.includes('baingan') ||
+    name.includes('kofta') ||
+    name.includes('naan') ||
+    name.includes('roti') ||
+    name.includes('chapati') ||
+    name.includes('paratha') ||
+    name.includes('kulcha') ||
+    name.includes('poori') ||
+    name.includes('samosa') ||
+    name.includes('pakoda') ||
+    name.includes('chaat') ||
+    name.includes('papad') ||
+    name.includes('jeera rice') ||
+    name.includes('steamed rice') ||
+    name.includes('thali')
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const SHOWCASE_CATEGORY_GROUPS: Record<string, { name: string; match: (item: any) => boolean }> = {
+  'south-indian': {
+    name: 'South Indian',
+    match: isSouthIndian,
+  },
+  'indian-veg': {
+    name: 'Indian Veg',
+    match: isIndianVeg,
+  },
+  'indian-non-veg': {
+    name: 'Indian Non-Veg',
+    match: isIndianNonVeg,
+  },
+  'indian-nonveg': {
+    name: 'Indian Non-Veg',
+    match: isIndianNonVeg,
+  },
+  'indo-chinese': {
+    name: 'Indo-Chinese',
+    match: isIndoChinese,
+  },
+  'biryani': {
+    name: 'Biryani',
+    match: isBiryani,
+  },
+  'desserts-beverages': {
+    name: 'Desserts & Beverages',
+    match: isDessertOrBeverage,
+  },
+};
 
 export function CustomerMenu() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const rawCategoryParam = searchParams.get('category');
+  const normalizedParam = rawCategoryParam === 'indian-nonveg' ? 'indian-non-veg' : rawCategoryParam;
+
+  // Initialize activeCategory directly from URL param so there is no flash of "all dishes"
+  const [activeCategory, setActiveCategory] = useState<string>(() => {
+    return normalizedParam || 'all';
+  });
+
   const [items, setItems] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState('all');
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'veg' | 'non-veg' | 'spicy' | 'price-low' | 'price-high'>('all');
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  
   const searchRef = useRef<HTMLDivElement>(null);
+  const menuFilterRef = useRef<HTMLDivElement>(null);
+  const activePillRef = useRef<HTMLButtonElement | null>(null);
+  const hasScrolledForCategory = useRef<string | null>(null);
 
   const { items: cartItems, addToCart, updateQuantity, totalPrice, totalItems } = useCart();
 
@@ -43,6 +274,52 @@ export function CustomerMenu() {
     return map;
   }, [cartItems]);
 
+  // Synchronize URL search params with active category state
+  useEffect(() => {
+    if (normalizedParam) {
+      // Validate that requested category exists
+      if (SHOWCASE_CATEGORY_GROUPS[normalizedParam] || categories.some(c => c.id === normalizedParam)) {
+        setActiveCategory(normalizedParam);
+      } else if (categories.length > 0) {
+        // Fallback gracefully to 'all' if category is invalid
+        setActiveCategory('all');
+      }
+    } else {
+      setActiveCategory('all');
+    }
+  }, [normalizedParam, categories]);
+
+  // Smooth scroll to menu filters area when navigating from homepage with category query
+  useEffect(() => {
+    if (normalizedParam && hasScrolledForCategory.current !== normalizedParam) {
+      hasScrolledForCategory.current = normalizedParam;
+      setSearchTerm('');
+      setSelectedFilter('all');
+
+      const timer = setTimeout(() => {
+        if (menuFilterRef.current) {
+          const yOffset = -90; // Accounts for floating capsule navbar height
+          const y = menuFilterRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+        }
+      }, 150);
+
+      return () => clearTimeout(timer);
+    }
+  }, [normalizedParam]);
+
+  // Ensure active category pill is always visible in the horizontal scroll container
+  useEffect(() => {
+    if (activePillRef.current) {
+      activePillRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center',
+      });
+    }
+  }, [activeCategory, categories]);
+
+  // Dismiss autocomplete on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -74,7 +351,22 @@ export function CustomerMenu() {
         .map(doc => ({ id: doc.id, ...doc.data() }))
         .filter((c: any) => c.isActive !== false);
 
-      setCategories([{ id: 'all', name: 'All Items' }, { id: 'bestseller', name: 'Bestsellers' }, { id: 'chefs', name: "Chef's Specials" }, ...catData]);
+      const showcaseCategories = [
+        { id: 'south-indian', name: 'South Indian' },
+        { id: 'indian-veg', name: 'Indian Veg' },
+        { id: 'indian-non-veg', name: 'Indian Non-Veg' },
+        { id: 'indo-chinese', name: 'Indo-Chinese' },
+        { id: 'biryani', name: 'Biryani' },
+        { id: 'desserts-beverages', name: 'Desserts & Beverages' },
+      ];
+
+      setCategories([
+        { id: 'all', name: 'All Items' },
+        ...showcaseCategories,
+        { id: 'bestseller', name: 'Bestsellers' },
+        { id: 'chefs', name: "Chef's Specials" },
+        ...catData.filter((c: any) => !['biryani', 'dessert', 'beverages', 'south-indian'].includes(c.id))
+      ]);
     }, (error) => {
       console.error("Error fetching categories:", error);
     });
@@ -84,6 +376,20 @@ export function CustomerMenu() {
       unsubscribeCats();
     };
   }, []);
+
+  const handleCategorySelect = (catId: string) => {
+    setActiveCategory(catId);
+    setSearchTerm('');
+    setSelectedFilter('all');
+
+    if (catId === 'all') {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete('category');
+      setSearchParams(newParams, { replace: false });
+    } else {
+      setSearchParams({ category: catId }, { replace: false });
+    }
+  };
 
   // Autocomplete search suggestions
   const searchSuggestions = useMemo(() => {
@@ -122,7 +428,7 @@ export function CustomerMenu() {
 
   const handleSelectSuggestion = (item: any) => {
     setSearchTerm(item.name);
-    setActiveCategory('all');
+    handleCategorySelect('all');
     setShowSuggestions(false);
     setHighlightedIndex(-1);
   };
@@ -155,11 +461,21 @@ export function CustomerMenu() {
   // Filtering & Sorting Logic
   const filteredItems = useMemo(() => {
     let result = items.filter(item => {
-      const matchesCategory = 
-        activeCategory === 'all' ? true :
-        activeCategory === 'bestseller' ? (item.isBestseller === true) :
-        activeCategory === 'chefs' ? (item.isChefsSpecial === true) :
-        item.categoryId === activeCategory;
+      if (item.isAvailable === false) return false;
+
+      let matchesCategory = false;
+      if (activeCategory === 'all') {
+        matchesCategory = true;
+      } else if (activeCategory === 'bestseller') {
+        matchesCategory = item.isBestseller === true;
+      } else if (activeCategory === 'chefs') {
+        matchesCategory = item.isChefsSpecial === true;
+      } else if (SHOWCASE_CATEGORY_GROUPS[activeCategory]) {
+        matchesCategory = SHOWCASE_CATEGORY_GROUPS[activeCategory].match(item);
+      } else {
+        matchesCategory = item.categoryId === activeCategory;
+      }
+
       const matchesSearch = !searchTerm || 
         item.name?.toLowerCase().includes(searchTerm.toLowerCase()) || 
         item.description?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -182,7 +498,7 @@ export function CustomerMenu() {
   }, [items, activeCategory, searchTerm, selectedFilter]);
 
   return (
-    <div className="min-h-screen bg-[#FBF9F5] text-stone-900 pb-28">
+    <div className="min-h-screen bg-[#FBF9F5] text-stone-900 pb-36 sm:pb-32">
       <Helmet>
         <title>South Indian Restaurant Menu in Jersey City | The Bangalore Kitchen</title>
         <meta name="description" content="Explore authentic South Indian dishes, dosas, biryanis, curries, appetizers and chef specials at The Bangalore Kitchen in Jersey City. Order online or reserve your table today." />
@@ -193,8 +509,8 @@ export function CustomerMenu() {
         )}
       </Helmet>
 
-      {/* Luxury Hero Banner (Approx 320px) */}
-      <section className="relative h-[320px] md:h-[360px] flex items-center justify-center overflow-hidden">
+      {/* Luxury Hero Banner */}
+      <section className="relative h-[340px] md:h-[380px] flex items-center justify-center overflow-hidden pt-20 sm:pt-24">
         <div className="absolute inset-0 z-0">
           <img 
             src="/images/home/hero-banner.webp" 
@@ -226,8 +542,12 @@ export function CustomerMenu() {
         </div>
       </section>
 
-      {/* Sticky Category Navigation */}
-      <div className="sticky top-16 z-30 bg-[#FBF9F5]/90 backdrop-blur-md border-b border-amber-900/10 py-3 shadow-xs">
+      {/* Sticky Category Navigation & Anchor Target */}
+      <div 
+        ref={menuFilterRef}
+        id="menu-filter-section" 
+        className="sticky top-16 md:top-20 z-30 bg-[#FBF9F5]/92 backdrop-blur-md border-b border-amber-900/10 py-3 shadow-xs"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2.5 overflow-x-auto hide-scrollbar py-1 scroll-smooth">
             {categories.map(cat => {
@@ -235,10 +555,8 @@ export function CustomerMenu() {
               return (
                 <button
                   key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setSearchTerm('');
-                  }}
+                  ref={isActive ? activePillRef : null}
+                  onClick={() => handleCategorySelect(cat.id)}
                   className={`px-5 py-2.5 rounded-full font-medium whitespace-nowrap transition-all duration-200 text-sm flex items-center gap-2 cursor-pointer shrink-0 ${
                     isActive 
                       ? 'bg-[#0B1120] text-amber-400 font-semibold shadow-md ring-1 ring-amber-400/40 scale-102' 
@@ -246,9 +564,14 @@ export function CustomerMenu() {
                   }`}
                 >
                   {cat.id === 'all' && <Sparkles size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
-                  {cat.name.toLowerCase().includes('dosa') && <Flame size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
-                  {cat.name.toLowerCase().includes('biryani') && <Star size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
-                  {cat.name.toLowerCase().includes('south') && <Utensils size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
+                  {cat.id === 'south-indian' && <Utensils size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
+                  {cat.id === 'indian-veg' && <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block shrink-0" />}
+                  {cat.id === 'indian-non-veg' && <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block shrink-0" />}
+                  {cat.id === 'indo-chinese' && <Flame size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
+                  {cat.id === 'biryani' && <Star size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
+                  {cat.id === 'desserts-beverages' && <Sparkles size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
+                  {cat.id === 'bestseller' && <Star size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
+                  {cat.id === 'chefs' && <Sparkles size={15} className={isActive ? 'text-amber-400' : 'text-amber-600'} />}
                   <span>{cat.name}</span>
                 </button>
               );
@@ -376,11 +699,11 @@ export function CustomerMenu() {
             <p className="text-stone-500 text-sm mb-6">Try searching another dish name or clearing your active filters.</p>
             <button
               onClick={() => {
-                setActiveCategory('all');
+                handleCategorySelect('all');
                 setSearchTerm('');
                 setSelectedFilter('all');
               }}
-              className="px-6 py-2.5 bg-[#0B1120] text-amber-400 rounded-full font-medium text-sm hover:bg-stone-800 transition-colors shadow-md"
+              className="px-6 py-2.5 bg-[#0B1120] text-amber-400 rounded-full font-medium text-sm hover:bg-stone-800 transition-colors shadow-md cursor-pointer"
             >
               Reset Search & Filters
             </button>
@@ -468,7 +791,7 @@ export function CustomerMenu() {
                         <div className="flex items-center justify-between bg-[#0B1120] text-white rounded-xl p-1 shadow-md">
                           <button
                             onClick={() => updateQuantity(item.id, qtyInCart - 1)}
-                            className="w-8 h-8 rounded-lg bg-stone-800 text-amber-400 flex items-center justify-center hover:bg-stone-700 transition-colors"
+                            className="w-8 h-8 rounded-lg bg-stone-800 text-amber-400 flex items-center justify-center hover:bg-stone-700 transition-colors cursor-pointer"
                           >
                             <Minus size={16} />
                           </button>
@@ -477,7 +800,7 @@ export function CustomerMenu() {
                           </span>
                           <button
                             onClick={() => addToCart(item)}
-                            className="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center hover:bg-amber-400 transition-colors"
+                            className="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center hover:bg-amber-400 transition-colors cursor-pointer"
                           >
                             <Plus size={16} />
                           </button>
@@ -485,7 +808,7 @@ export function CustomerMenu() {
                       ) : (
                         <button 
                           onClick={() => addToCart(item)}
-                          className="w-full py-2.5 rounded-xl border border-stone-900 bg-white text-stone-900 font-bold hover:bg-[#0B1120] hover:text-white hover:border-[#0B1120] transition-all duration-200 flex items-center justify-center gap-2 group/btn text-sm shadow-xs"
+                          className="w-full py-2.5 rounded-xl border border-stone-900 bg-white text-stone-900 font-bold hover:bg-[#0B1120] hover:text-white hover:border-[#0B1120] transition-all duration-200 flex items-center justify-center gap-2 group/btn text-sm shadow-xs cursor-pointer"
                         >
                           <ShoppingBag size={16} className="text-amber-600 group-hover/btn:text-amber-400 transition-colors" />
                           Add to Cart
@@ -528,28 +851,28 @@ export function CustomerMenu() {
         )}
       </AnimatePresence>
 
-      {/* Sticky Mobile Cart Bar */}
+      {/* Sticky Mobile Cart Bar - elevated above floating bottom navigation dock */}
       <AnimatePresence>
         {totalItems > 0 && (
           <motion.div
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
-            className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-[#0B1120] border-t border-amber-400/30 p-3 px-4 shadow-2xl"
+            className="fixed bottom-[calc(76px+env(safe-area-inset-bottom,0px))] left-3.5 right-3.5 z-40 md:hidden bg-[#0B1120]/95 backdrop-blur-md border border-amber-400/40 p-2.5 px-4 rounded-2xl shadow-2xl"
           >
             <Link
               to="/checkout"
-              className="flex items-center justify-between bg-amber-500 text-stone-950 p-3 px-5 rounded-xl font-bold text-base shadow-lg active:scale-98 transition-transform"
+              className="flex items-center justify-between bg-amber-500 text-stone-950 p-2.5 px-4 rounded-xl font-bold text-sm shadow-lg active:scale-98 transition-transform"
             >
               <div className="flex items-center gap-2">
-                <span className="bg-stone-950 text-amber-400 px-2.5 py-0.5 rounded-md text-xs">
+                <span className="bg-stone-950 text-amber-400 px-2 py-0.5 rounded-md text-xs">
                   {totalItems} {totalItems === 1 ? 'Item' : 'Items'}
                 </span>
                 <span>View Cart</span>
               </div>
               <div className="flex items-center gap-2">
                 <span>${totalPrice.toFixed(2)}</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </div>
             </Link>
           </motion.div>
@@ -558,4 +881,3 @@ export function CustomerMenu() {
     </div>
   );
 }
-

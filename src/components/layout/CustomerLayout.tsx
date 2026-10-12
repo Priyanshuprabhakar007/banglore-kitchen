@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Outlet, Link } from 'react-router-dom';
+import { NavLink, Outlet, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { ShoppingBag, User, Menu, X, MapPin, Phone, Bell } from 'lucide-react';
+import { ShoppingBag, User, MapPin, Phone, Bell, ArrowRight, Home, UtensilsCrossed, Tag, CalendarDays } from 'lucide-react';
 import { doc, onSnapshot, collection, query, orderBy, limit, where } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useAuth } from '../../lib/auth';
@@ -9,14 +9,38 @@ import { cn } from '../../lib/utils';
 import { useCart } from '../../lib/CartContext';
 import { AnnouncementBanner } from '../AnnouncementBanner';
 import { NotificationToast } from '../NotificationToast';
+import { Footer } from './Footer';
 
 export function CustomerLayout() {
   const { user, isAdmin, staffData, loading } = useAuth();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
   const [branding, setBranding] = useState<any>(null);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
+  const location = useLocation();
+
+  // Reduced motion preference
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
+
+  // Scroll listener for sticky floating capsule morph
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Listen to branding settings
   useEffect(() => {
     const unsubscribe = onSnapshot(doc(db, 'settings', 'branding'), (docSnap) => {
       if (docSnap.exists()) {
@@ -26,9 +50,8 @@ export function CustomerLayout() {
     return () => unsubscribe();
   }, []);
 
+  // Unread notifications count
   useEffect(() => {
-    // For simplicity, we'll just show a badge if there are any notifications in the last 24 hours
-    // In a real app, we'd track per-user read status
     const oneDayAgo = new Date();
     oneDayAgo.setDate(oneDayAgo.getDate() - 1);
     
@@ -52,259 +75,475 @@ export function CustomerLayout() {
     { name: 'Reserve Table', path: '/reserve' },
   ];
 
+  const mobileDockItems = [
+    { name: 'Home', path: '/', icon: Home },
+    { name: 'Menu', path: '/menu', icon: UtensilsCrossed },
+    { name: 'Offers', path: '/offers', icon: Tag },
+    { name: 'Reserve', path: '/reserve', icon: CalendarDays },
+    { name: 'Notifications', path: '/notifications', icon: Bell },
+  ];
+
+  // Determine active route based on React Router location
+  const getActiveLinkPath = () => {
+    const current = location.pathname;
+    if (current === '/') return '/';
+    if (current.startsWith('/menu')) return '/menu';
+    if (current.startsWith('/offers')) return '/offers';
+    if (current.startsWith('/notifications')) return '/notifications';
+    if (current.startsWith('/reserve')) return '/reserve';
+    return null;
+  };
+
+  const activePath = getActiveLinkPath();
+  const highlightedPath = hoveredPath !== null ? hoveredPath : activePath;
+
   return (
     <div className="min-h-screen bg-bangalore-ivory flex flex-col font-sans">
       <AnnouncementBanner />
       <NotificationToast />
-      {/* Top Bar */}
-      <div className="bg-bangalore-text text-white/80 text-xs py-2 px-4 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1"><Phone size={12} /> (201) 300-4080</span>
-            <span className="flex items-center gap-1"><MapPin size={12} /> 126 River Dr S, Jersey City, NJ</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link to="/about" className="hover:text-white transition-colors">About Us</Link>
-            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
-          </div>
-        </div>
-      </div>
 
-      {/* Main Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 md:px-4 h-24 md:h-20 flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+      {/* =========================================================================
+          DESKTOP: LARGE FLOATING CAPSULE NAVBAR OVERLAY (76px–84px)
+          (Positioned floating directly above the hero, glassmorphism, gliding indicator)
+          ========================================================================= */}
+      <header
+        className={cn(
+          "hidden lg:block fixed z-50 inset-x-0 mx-auto pointer-events-none transition-all duration-300 px-4 sm:px-6 w-full max-w-[1340px]",
+          isScrolled ? "top-3 sm:top-4" : "top-4 sm:top-5"
+        )}
+      >
+        <div
+          className={cn(
+            "pointer-events-auto w-full rounded-full transition-all duration-300 flex items-center justify-between border",
+            isScrolled
+              ? "bg-white/92 py-2.5 px-7 border-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.14)]"
+              : "bg-white/78 py-3.5 px-8 border-white/45 shadow-[0_10px_32px_rgba(0,0,0,0.10)]"
+          )}
+          style={{
+            backdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "blur(20px) saturate(170%)",
+            WebkitBackdropFilter: isScrolled ? "blur(24px) saturate(180%)" : "blur(20px) saturate(170%)",
+            boxShadow: isScrolled
+              ? "0 14px 40px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.85)"
+              : "0 10px 32px rgba(0, 0, 0, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.45)",
+          }}
+        >
+          {/* SECTION 1: LEFT — Branding & Logo (Substantial & Luxurious) */}
+          <Link to="/" className="flex items-center gap-3.5 group focus:outline-none shrink-0">
             {branding?.websiteLogo ? (
-              <img src={branding.websiteLogo} alt="Logo" className="w-10 h-10 object-contain shrink-0" />
+              <img
+                src={branding.websiteLogo}
+                alt="Logo"
+                className="w-11 h-11 sm:w-12 sm:h-12 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
+              />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-bangalore-primary flex items-center justify-center shrink-0 shadow-md">
-                <span className="font-serif font-bold text-bangalore-accent text-xl">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#252D28] flex items-center justify-center shrink-0 shadow-md transition-transform duration-300 group-hover:scale-105">
+                <span className="font-serif font-bold text-[#C5A46B] text-xl sm:text-2xl">
                   {branding?.restaurantName?.charAt(0) || 'B'}
                 </span>
               </div>
             )}
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-xl leading-tight text-bangalore-primary">
+              <span className="font-serif font-bold text-xl sm:text-2xl leading-tight text-[#252D28] tracking-tight">
                 {branding?.restaurantName || 'The Bangalore Kitchen'}
               </span>
-              <span className="text-[10px] text-bangalore-accent uppercase tracking-widest font-bold">South Indian Bar & Restaurant</span>
+              <span className="text-[10px] sm:text-[10.5px] text-[#C5A46B] uppercase tracking-[0.18em] font-bold mt-0.5">
+                South Indian Bar & Restaurant
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map(link => (
-              <NavLink 
-                key={link.name} 
-                to={link.path}
-                className={({isActive}) => cn(
-                  "text-sm font-medium transition-colors hover:text-bangalore-primary",
-                  isActive ? "text-bangalore-primary" : "text-gray-600"
-                )}
-              >
-                {link.name}
-              </NavLink>
-            ))}
+          {/* SECTION 2: CENTER — Larger Floating Capsule Navigation with Sliding Indicator */}
+          <nav
+            aria-label="Main Navigation"
+            onMouseLeave={() => setHoveredPath(null)}
+            className="flex items-center bg-[#F4F1EC]/90 p-1.5 rounded-full border border-stone-200/70 shadow-inner"
+          >
+            {navLinks.map((link) => {
+              const isHighlighted = highlightedPath === link.path;
+              const isActive = activePath === link.path;
+
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onMouseEnter={() => setHoveredPath(link.path)}
+                  onFocus={() => setHoveredPath(link.path)}
+                  onBlur={() => setHoveredPath(null)}
+                  className={cn(
+                    "relative px-5 sm:px-6 py-2.5 text-xs sm:text-[13px] font-semibold rounded-full transition-colors duration-200 z-10 focus:outline-none select-none tracking-wide",
+                    isHighlighted ? "text-white" : "text-[#464642] hover:text-[#111827]"
+                  )}
+                >
+                  {isHighlighted && (
+                    <motion.div
+                      layoutId="navbar-large-pill"
+                      className="absolute inset-0 bg-[#252D28] rounded-full -z-10 shadow-sm"
+                      transition={
+                        prefersReducedMotion
+                          ? { duration: 0 }
+                          : {
+                              type: "spring",
+                              stiffness: 350,
+                              damping: 30,
+                            }
+                      }
+                    />
+                  )}
+                  <span className="relative z-10 whitespace-nowrap">
+                    {link.name}
+                  </span>
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            <Link to="/notifications" className="relative p-2 text-gray-600 hover:text-bangalore-primary transition-colors">
-              <Bell size={24} />
+          {/* SECTION 3: RIGHT — Premium Interactive Actions */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Notification Bell */}
+            <Link
+              to="/notifications"
+              aria-label="Notifications"
+              className="relative w-11 h-11 rounded-full flex items-center justify-center text-[#464642] hover:text-[#252D28] hover:bg-[#F4F1EC] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 focus:outline-none"
+            >
+              <Bell size={21} strokeWidth={1.8} className="transition-colors" />
               {unreadNotifications > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white">
+                <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white animate-pulse">
                   {unreadNotifications}
                 </span>
               )}
             </Link>
 
-            <Link to="/cart" className="relative p-2 text-gray-600 hover:text-bangalore-primary transition-colors">
-              <ShoppingBag size={24} />
+            {/* Shopping Cart */}
+            <Link
+              to="/cart"
+              aria-label="Shopping Cart"
+              className="relative w-11 h-11 rounded-full flex items-center justify-center text-[#464642] hover:text-[#252D28] hover:bg-[#F4F1EC] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 focus:outline-none"
+            >
+              <ShoppingBag size={21} strokeWidth={1.8} className="transition-colors" />
               {totalItems > 0 && (
-                <span className="absolute top-0 right-0 w-4 h-4 bg-bangalore-accent text-white text-[10px] font-bold flex items-center justify-center rounded-full">
+                <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#C5A46B] text-white text-[10px] font-bold flex items-center justify-center rounded-full shadow-sm border border-white">
                   {totalItems}
                 </span>
               )}
             </Link>
-            
-            <div className="hidden md:flex items-center gap-4">
+
+            {/* User Account Controls or Dark Capsule Sign In Button */}
+            <div className="flex items-center gap-2.5">
               {loading ? (
-                <div className="w-20 h-8 bg-gray-100 animate-pulse rounded-full"></div>
+                <div className="w-24 h-10 bg-stone-200/60 animate-pulse rounded-full" />
               ) : user ? (
                 <>
-                  <Link to="/account" className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-bangalore-primary transition-colors">
-                    <div className="w-8 h-8 rounded-full bg-gray-100 border border-gray-200 overflow-hidden">
+                  <Link
+                    to="/account"
+                    className="flex items-center gap-2.5 p-1.5 pl-2.5 pr-4 rounded-full hover:bg-[#F4F1EC] transition-all duration-200 hover:-translate-y-0.5 border border-stone-200/60"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-stone-100 border border-stone-300/60 overflow-hidden shrink-0">
                       {user.photoURL ? (
-                        <img src={user.photoURL} alt={user.displayName || 'User'} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                        <img
+                          src={user.photoURL}
+                          alt={user.displayName || 'User'}
+                          className="w-full h-full object-cover"
+                          referrerPolicy="no-referrer"
+                        />
                       ) : (
-                        <User size={20} className="m-1.5 text-gray-400" />
+                        <User size={18} className="m-1.5 text-stone-500" />
                       )}
                     </div>
-                    <span>{user.displayName?.split(' ')[0] || 'Account'}</span>
+                    <span className="text-xs sm:text-sm font-medium text-stone-800">
+                      {user.displayName?.split(' ')[0] || 'Account'}
+                    </span>
                   </Link>
                   {isAdmin && (
-                    <Link to={staffData?.isSuperAdmin ? "/admin" : "/staff"} className="text-xs bg-gray-800 text-white px-3 py-1.5 rounded-full hover:bg-gray-700 transition-colors whitespace-nowrap">
+                    <Link
+                      to={staffData?.isSuperAdmin ? "/admin" : "/staff"}
+                      className="text-xs sm:text-sm bg-[#252D28] text-white px-4 py-2.5 rounded-full hover:bg-[#343D37] transition-all duration-200 hover:-translate-y-0.5 shadow-sm whitespace-nowrap font-medium"
+                    >
                       {staffData?.isSuperAdmin ? "Admin Panel" : "Staff Panel"}
                     </Link>
                   )}
                 </>
               ) : (
-                <Link to="/login" className="bg-bangalore-primary text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-bangalore-primary transition-colors shadow-sm">
-                  Sign In
+                <Link
+                  to="/login"
+                  className="group flex items-center gap-2 bg-[#252D28] hover:bg-[#343D37] text-white px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wider uppercase transition-all duration-200 hover:-translate-y-0.5 shadow-md shadow-stone-900/15 hover:shadow-lg active:translate-y-0 focus:outline-none"
+                >
+                  <span>Sign In</span>
+                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
                 </Link>
               )}
             </div>
-
-            <button 
-              className="md:hidden p-2 text-gray-600"
-              onClick={() => setMobileMenuOpen(true)}
-            >
-              <Menu size={24} />
-            </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-50 md:hidden"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            <motion.div 
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white z-50 shadow-2xl flex flex-col md:hidden"
-            >
-              <div className="p-4 flex justify-end border-b border-gray-100">
-                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-gray-500">
-                  <X size={24} />
-                </button>
-              </div>
-              
-              <div className="p-6 flex-1 overflow-y-auto">
-                <nav className="flex flex-col gap-6">
-                  {navLinks.map(link => (
-                    <NavLink 
-                      key={link.name} 
-                      to={link.path}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={({isActive}) => cn(
-                        "text-lg font-serif font-medium transition-colors",
-                        isActive ? "text-bangalore-primary" : "text-gray-800"
-                      )}
-                    >
-                      {link.name}
-                    </NavLink>
-                  ))}
-                  {isAdmin && (
-                    <NavLink 
-                      to={staffData?.isSuperAdmin ? "/admin" : "/staff"}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-lg font-serif font-medium text-bangalore-primary/80 transition-colors"
-                    >
-                      {staffData?.isSuperAdmin ? "Admin Panel" : "Staff Panel"}
-                    </NavLink>
-                  )}
-                </nav>
-              </div>
-              
-              <div className="p-6 border-t border-gray-100 bg-gray-50">
-                {loading ? (
-                  <div className="w-full h-12 bg-gray-200 animate-pulse rounded-xl"></div>
-                ) : user ? (
-                  <Link to="/account" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 w-full p-3 bg-white rounded-xl shadow-sm border border-gray-200">
-                    <div className="w-10 h-10 rounded-full bg-gray-100 overflow-hidden">
-                      {user.photoURL ? (
-                        <img src={user.photoURL} alt={user.displayName || 'User'} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-                      ) : (
-                        <User size={24} className="m-2 text-gray-400" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">{user.displayName || 'My Account'}</p>
-                      <p className="text-xs text-gray-500">View profile & orders</p>
-                    </div>
-                  </Link>
-                ) : (
-                  <Link to="/login" onClick={() => setMobileMenuOpen(false)} className="block w-full text-center bg-bangalore-primary text-white py-3 rounded-xl font-medium shadow-sm">
-                    Sign In / Sign Up
-                  </Link>
-                )}
-              </div>
-            </motion.div>
-          </>
+      {/* =========================================================================
+          MOBILE: APPLE-INSPIRED LIQUID GLASS TOP HEADER
+          (Floating translucent glass capsule over hero, logo, cart, and account/sign-in)
+          ========================================================================= */}
+      <header
+        className={cn(
+          "lg:hidden fixed z-50 inset-x-0 pointer-events-none transition-all duration-300",
+          "top-3 sm:top-4 px-3.5 sm:px-5"
         )}
-      </AnimatePresence>
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
+          }
+          className={cn(
+            "pointer-events-auto w-full rounded-full transition-all duration-300 flex items-center justify-between",
+            "py-2 sm:py-2.5 px-3.5 sm:px-4.5 border",
+            isScrolled
+              ? "bg-white/88 text-[#252D28] border-white/80 shadow-[0_12px_36px_rgba(0,0,0,0.12)]"
+              : "bg-white/[0.14] text-white border-white/[0.30] shadow-[0_10px_34px_rgba(0,0,0,0.18)]"
+          )}
+          style={{
+            backdropFilter: isScrolled
+              ? "blur(24px) saturate(180%)"
+              : "blur(22px) saturate(180%)",
+            WebkitBackdropFilter: isScrolled
+              ? "blur(24px) saturate(180%)"
+              : "blur(22px) saturate(180%)",
+            boxShadow: isScrolled
+              ? "0 12px 36px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.75)"
+              : "0 10px 34px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.40)",
+          }}
+        >
+          {/* Mobile LEFT: Branding & Logo */}
+          <Link to="/" className="flex items-center gap-2 group focus:outline-none shrink-0 min-w-0">
+            {branding?.websiteLogo ? (
+              <img
+                src={branding.websiteLogo}
+                alt="Logo"
+                className="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0 transition-transform duration-200 active:scale-95"
+              />
+            ) : (
+              <div
+                className={cn(
+                  "w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 active:scale-95",
+                  isScrolled
+                    ? "bg-[#252D28] text-[#C5A46B]"
+                    : "bg-white/20 text-white border border-white/30 backdrop-blur-md"
+                )}
+              >
+                <span className="font-serif font-bold text-sm sm:text-base">
+                  {branding?.restaurantName?.charAt(0) || 'B'}
+                </span>
+              </div>
+            )}
+            <div className="flex flex-col min-w-0">
+              <span
+                className={cn(
+                  "font-serif font-bold text-[14.5px] sm:text-[16px] leading-tight tracking-tight truncate transition-colors duration-300",
+                  isScrolled
+                    ? "text-[#252D28]"
+                    : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
+                )}
+              >
+                {branding?.restaurantName || 'The Bangalore Kitchen'}
+              </span>
+              <span
+                className={cn(
+                  "text-[8px] sm:text-[9px] uppercase tracking-[0.14em] font-semibold transition-colors duration-300",
+                  isScrolled
+                    ? "text-[#C5A46B]"
+                    : "text-amber-200/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
+                )}
+              >
+                South Indian Bar & Restaurant
+              </span>
+            </div>
+          </Link>
+
+          {/* Mobile RIGHT: Action Controls (Cart + Account/Sign-In) */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Shopping Cart */}
+            <Link
+              to="/cart"
+              aria-label="Shopping Cart"
+              className={cn(
+                "relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 active:scale-90 focus:outline-none",
+                isScrolled
+                  ? "text-[#252D28] hover:bg-black/5 active:bg-black/10"
+                  : "text-white/95 hover:bg-white/15 active:bg-white/20"
+              )}
+            >
+              <ShoppingBag size={19} strokeWidth={1.8} />
+              {totalItems > 0 && (
+                <span className="absolute top-1 right-1 w-3.5 h-3.5 bg-[#C5A46B] text-white text-[9px] font-bold flex items-center justify-center rounded-full shadow-sm border border-white/60">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+
+            {/* Account / Sign-In Control */}
+            {loading ? (
+              <div className="w-8 h-8 rounded-full bg-white/20 animate-pulse" />
+            ) : user ? (
+              <Link
+                to="/account"
+                aria-label="My Account"
+                className={cn(
+                  "flex items-center gap-1.5 p-1 rounded-full transition-all duration-200 active:scale-95 focus:outline-none border",
+                  isScrolled
+                    ? "border-stone-200/90 bg-stone-100/80 text-stone-800"
+                    : "border-white/35 bg-white/15 text-white backdrop-blur-sm"
+                )}
+              >
+                <div className="w-7 h-7 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-stone-200/60">
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName || 'User'}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <User size={15} className="text-current" />
+                  )}
+                </div>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                aria-label="Sign In"
+                className={cn(
+                  "flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 active:scale-95 focus:outline-none shadow-xs",
+                  isScrolled
+                    ? "bg-[#252D28] text-white hover:bg-[#343D37]"
+                    : "bg-white/25 text-white hover:bg-white/35 border border-white/40 backdrop-blur-sm"
+                )}
+              >
+                <User size={13} strokeWidth={2} />
+                <span>Sign In</span>
+              </Link>
+            )}
+          </div>
+        </motion.div>
+      </header>
+
+      {/* =========================================================================
+          MOBILE: FLOATING LIQUID GLASS BOTTOM NAVIGATION DOCK
+          (Apple-inspired translucent capsule, sliding active tab, safe-area inset)
+          ========================================================================= */}
+      <nav
+        aria-label="Mobile Navigation Dock"
+        className="lg:hidden fixed z-50 left-1/2 -translate-x-1/2 bottom-[calc(12px+env(safe-area-inset-bottom,0px))] w-[calc(100%-1.75rem)] max-w-[420px] pointer-events-none"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.35, ease: [0.16, 1, 0.3, 1] }
+          }
+          className={cn(
+            "pointer-events-auto w-full rounded-full p-1.5 flex items-center justify-between border transition-all duration-300",
+            isScrolled
+              ? "bg-white/88 text-[#252D28] border-white/80 shadow-[0_14px_40px_rgba(0,0,0,0.14)]"
+              : "bg-[#1A211D]/82 text-white border-white/20 shadow-[0_18px_44px_rgba(0,0,0,0.42)]"
+          )}
+          style={{
+            backdropFilter: isScrolled
+              ? "blur(24px) saturate(180%)"
+              : "blur(22px) saturate(180%)",
+            WebkitBackdropFilter: isScrolled
+              ? "blur(24px) saturate(180%)"
+              : "blur(22px) saturate(180%)",
+            boxShadow: isScrolled
+              ? "0 14px 40px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.85)"
+              : "0 18px 44px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.25)",
+          }}
+        >
+          {mobileDockItems.map((item) => {
+            const IconComponent = item.icon;
+            const isActive = activePath === item.path;
+
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                aria-label={item.name}
+                aria-current={isActive ? 'page' : undefined}
+                className={cn(
+                  "relative flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-full text-center transition-colors duration-200 focus:outline-none select-none group min-w-0",
+                  isActive
+                    ? isScrolled
+                      ? "text-white"
+                      : "text-[#1A211D]"
+                    : isScrolled
+                    ? "text-stone-500 hover:text-stone-900"
+                    : "text-stone-300/80 hover:text-white"
+                )}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="mobile-dock-active-pill"
+                    className={cn(
+                      "absolute inset-0 rounded-full -z-10 shadow-sm",
+                      isScrolled ? "bg-[#252D28]" : "bg-[#C5A46B]"
+                    )}
+                    transition={
+                      prefersReducedMotion
+                        ? { duration: 0 }
+                        : {
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 32,
+                            mass: 0.8,
+                          }
+                    }
+                  />
+                )}
+
+                <motion.div
+                  whileTap={prefersReducedMotion ? undefined : { scale: 0.88 }}
+                  className="relative flex flex-col items-center justify-center gap-0.5"
+                >
+                  <div className="relative">
+                    <IconComponent
+                      size={19}
+                      strokeWidth={isActive ? 2.2 : 1.75}
+                      className="transition-transform duration-200"
+                    />
+                    {item.name === 'Notifications' && unreadNotifications > 0 && (
+                      <span className="absolute -top-1 -right-1.5 w-3.5 h-3.5 bg-red-500 text-white text-[9px] font-bold flex items-center justify-center rounded-full border border-white animate-pulse">
+                        {unreadNotifications}
+                      </span>
+                    )}
+                  </div>
+                  <span
+                    className={cn(
+                      "text-[10px] leading-none tracking-tight truncate max-w-full px-0.5",
+                      isActive ? "font-bold" : "font-medium"
+                    )}
+                  >
+                    {item.name}
+                  </span>
+                </motion.div>
+              </Link>
+            );
+          })}
+        </motion.div>
+      </nav>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col">
+      <main
+        className={cn(
+          "flex-1 flex flex-col pb-24 lg:pb-0",
+          location.pathname !== '/' && location.pathname !== '/menu' && "pt-24 sm:pt-28 md:pt-32"
+        )}
+      >
         <Outlet />
       </main>
 
-      {/* Footer */}
-      <footer className="bg-bangalore-text text-white/80 pt-16 pb-8">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div className="col-span-1 md:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              {branding?.websiteLogo ? (
-                <img src={branding.websiteLogo} alt="Logo" className="w-10 h-10 object-contain shrink-0" />
-              ) : (
-                <div className="w-10 h-10 rounded-full bg-bangalore-primary flex items-center justify-center shrink-0">
-                  <span className="font-serif font-bold text-bangalore-accent text-xl">
-                    {branding?.restaurantName?.charAt(0) || 'B'}
-                  </span>
-                </div>
-              )}
-              <div className="flex flex-col">
-                <span className="font-serif font-bold text-xl leading-tight text-white">
-                  {branding?.restaurantName || 'The Bangalore Kitchen'}
-                </span>
-                <span className="text-[10px] text-bangalore-accent uppercase tracking-widest font-bold">South Indian Bar & Restaurant</span>
-              </div>
-            </div>
-            <p className="text-sm text-gray-400 mb-6">A premium dining experience bringing authentic Indian flavours, Dosas, and Biryanis to Jersey City.</p>
-          </div>
-          
-          <div>
-            <h4 className="font-serif font-bold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/menu" className="hover:text-bangalore-accent transition-colors">Our Menu</Link></li>
-              <li><Link to="/reserve" className="hover:text-bangalore-accent transition-colors">Book a Table</Link></li>
-              <li><Link to="/offers" className="hover:text-bangalore-accent transition-colors">Special Offers</Link></li>
-              <li><Link to="/about" className="hover:text-bangalore-accent transition-colors">About Us</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-serif font-bold text-white mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link to="/terms" className="hover:text-bangalore-accent transition-colors">Terms & Conditions</Link></li>
-              <li><Link to="/privacy" className="hover:text-bangalore-accent transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/refunds" className="hover:text-bangalore-accent transition-colors">Refund Policy</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-serif font-bold text-white mb-4">Contact</h4>
-            <ul className="space-y-2 text-sm">
-              <li className="flex items-start gap-2"><MapPin size={16} className="mt-0.5 shrink-0 text-bangalore-accent" /> <span>126 River Dr S, Jersey City, NJ 07310</span></li>
-              <li className="flex items-center gap-2"><Phone size={16} className="shrink-0 text-bangalore-accent" /> <span>(201) 300-4080</span></li>
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 pt-8 border-t border-white/10 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} {branding?.restaurantName || 'The Bangalore Kitchen'}. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* Luxury Editorial Footer */}
+      <Footer branding={branding} />
     </div>
   );
 }
