@@ -632,7 +632,7 @@ export function CustomerMenu() {
                           }`}
                         >
                           <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-stone-100">
-                            <ProductImage src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
+                            <ProductImage id={item.id} src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <h4 className="font-serif font-bold text-stone-900 truncate">{item.name}</h4>
@@ -727,6 +727,7 @@ export function CustomerMenu() {
                   {/* Food Image Area (4:3 ratio) */}
                   <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
                     <ProductImage 
+                      id={item.id}
                       src={item.imageUrl} 
                       alt={item.name} 
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

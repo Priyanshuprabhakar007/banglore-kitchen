@@ -44,6 +44,7 @@ import { Account } from './pages/customer/Account';
 import { Reserve } from './pages/customer/Reserve';
 import { Offers } from './pages/customer/Offers';
 import { Notifications } from './pages/customer/Notifications';
+import { ImageAuditGallery } from './pages/ImageAuditGallery';
 
 function ProtectedSuperAdminRoute({ children }: { children: React.ReactNode }) {
   const { user, loading, isAdmin } = useAuth();
@@ -146,6 +147,7 @@ function AppRoutes() {
       </Route>
 
       {/* Standalone Views */}
+      <Route path="/audit-gallery" element={<ImageAuditGallery />} />
       <Route path="/kitchen" element={<KitchenDisplay />} />
       <Route path="/riders" element={<RiderApp />} />
       <Route path="/queue-display/:branchId" element={<QueueDisplay />} />

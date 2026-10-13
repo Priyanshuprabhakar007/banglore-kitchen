@@ -359,6 +359,7 @@ export function MenuManagement() {
                     <td className="p-4">
                       <div className="relative">
                         <ProductImage 
+                          id={item.id}
                           src={item.imageUrl} 
                           alt={item.name} 
                           className="w-12 h-12 rounded-lg object-cover border border-gray-200 shrink-0" 

@@ -41,7 +41,7 @@ export function Cart() {
                 className="bg-white rounded-2xl p-4 flex gap-4 shadow-sm items-center"
               >
                 <div className="w-24 h-24 bg-gray-100 rounded-xl overflow-hidden shrink-0">
-                  <ProductImage src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
+                  <ProductImage id={item.id} src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 
                 <div className="flex-1">

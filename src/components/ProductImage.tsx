@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Utensils } from 'lucide-react';
-import { getDishImageUrl } from '../services/menuSyncService';
+import { getDishImageUrl, getApprovedAiImageUrl } from '../services/menuSyncService';
 
 interface ProductImageProps {
+  id?: string;
   src?: string;
   alt?: string;
   className?: string;
@@ -10,6 +11,7 @@ interface ProductImageProps {
 }
 
 export function ProductImage({
+  id,
   src,
   alt = 'Food Item',
   className = 'w-full h-full object-cover',
@@ -21,20 +23,53 @@ export function ProductImage({
 
   useEffect(() => {
     let target = src?.trim();
-    const fallback = getDishImageUrl(alt);
 
-    if (!target || target === 'undefined' || target === 'null' || target === '' || target.startsWith('/images/dishes/')) {
-      target = fallback || target;
+    // 1. Priority: Approved AI Menu image for this exact dish ID or name
+    const approvedAi = getApprovedAiImageUrl(id, alt);
+    if (approvedAi) {
+      setCurrentSrc(approvedAi);
+      setHasError(false);
+      setIsLoading(true);
+      return;
     }
-    setCurrentSrc(target || fallback);
-    setHasError(false);
-    setIsLoading(true);
-  }, [src, alt]);
+
+    // 2. Custom admin uploaded image (local uploads or Firebase Storage)
+    const isCustomUpload = target && (
+      target.startsWith('/uploads/') ||
+      target.startsWith('data:image/') ||
+      target.includes('firebasestorage.googleapis.com')
+    );
+    if (isCustomUpload) {
+      setCurrentSrc(target);
+      setHasError(false);
+      setIsLoading(true);
+      return;
+    }
+
+    // Disregard external generic Unsplash URLs entirely for customer-facing rendering
+    if (target && target.includes('images.unsplash.com')) {
+      target = '';
+    }
+
+    // 3. Fallback to verified local dish image if authentic
+    const verifiedLocal = getDishImageUrl(alt);
+    if (verifiedLocal) {
+      setCurrentSrc(verifiedLocal);
+      setHasError(false);
+      setIsLoading(true);
+      return;
+    }
+
+    // 4. Neutral branded placeholder
+    setCurrentSrc('');
+    setHasError(true);
+    setIsLoading(false);
+  }, [id, src, alt]);
 
   const handleImageError = () => {
-    const fallback = getDishImageUrl(alt);
-    if (currentSrc !== fallback && fallback) {
-      setCurrentSrc(fallback);
+    const verifiedLocal = getDishImageUrl(alt);
+    if (currentSrc !== verifiedLocal && verifiedLocal) {
+      setCurrentSrc(verifiedLocal);
       setHasError(false);
     } else {
       setHasError(true);
