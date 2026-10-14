@@ -7,12 +7,12 @@
     "description": "Traditional Indian almond-based drink made with milk, ground almonds, sugar, and aromatic spices like cardamom and saffron",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "eDha0k5qxkGCULVgfaWQ-1200.webp",
+    "matchedImagePath": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp",
     "originalImageUrl": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "ElMkubNXJ2hLhHTFxfXh",
@@ -22,12 +22,12 @@
     "description": "",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "ElMkubNXJ2hLhHTFxfXh-1200.webp",
+    "matchedImagePath": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp",
     "originalImageUrl": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "uNMecqv1K6Rf9hzh22jy",
@@ -37,12 +37,12 @@
     "description": "Refreshing yogurt-based drink blended with water, cilantro, and a hint of salt",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "uNMecqv1K6Rf9hzh22jy-1200.webp",
+    "matchedImagePath": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp",
     "originalImageUrl": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "te04ILCNfyoBgA72t0wg",
@@ -52,12 +52,12 @@
     "description": "Traditional South Indian filter coffee is brewed strongly and served with hot milk and rich foam",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "te04ILCNfyoBgA72t0wg-1200.webp",
+    "matchedImagePath": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp",
     "originalImageUrl": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "Bl4xoDsHHCgHCDKCXo5e",
@@ -67,12 +67,12 @@
     "description": "Creamy yogurt smoothie blended with sweet ripe mangoes",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "Bl4xoDsHHCgHCDKCXo5e-1200.webp",
+    "matchedImagePath": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp",
     "originalImageUrl": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "ijig94ebeR0yLJ8bKGTS",
@@ -82,12 +82,12 @@
     "description": "Traditional Indian milk tea brewed with aromatic spices and fresh ginger",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "ijig94ebeR0yLJ8bKGTS-1200.webp",
+    "matchedImagePath": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp",
     "originalImageUrl": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "YirhCMv2HqJufSZKukld",
@@ -97,12 +97,12 @@
     "description": "Chilled milk infused with fragrant rose syrup, served refreshing and lightly sweet",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "YirhCMv2HqJufSZKukld-1200.webp",
+    "matchedImagePath": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp",
     "originalImageUrl": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "CSIAK3Dz5zj2WVtOZkqD",
@@ -112,12 +112,12 @@
     "description": "Coke, diet coke, coke zero, sunkist, ginger ale",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "CSIAK3Dz5zj2WVtOZkqD-1200.webp",
+    "matchedImagePath": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp",
     "originalImageUrl": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "B2R9mAuZOV4m6Ac5XGW9",
@@ -127,12 +127,12 @@
     "description": "",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "B2R9mAuZOV4m6Ac5XGW9-1200.webp",
+    "matchedImagePath": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp",
     "originalImageUrl": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "AZ5PXwSjdfK9RFKjxYbc",
@@ -142,13 +142,12 @@
     "description": "Fragrant short-grain rice cooked with tender mutton, fresh herbs, and a signature green masala",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "NEEDS_REVIEW",
-    "localFilename": "054-goat-biryani.webp",
-    "matchedImagePath": "/images/ai-menu/054-goat-biryani.webp",
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "AZ5PXwSjdfK9RFKjxYbc-1200.webp",
+    "matchedImagePath": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp",
     "originalImageUrl": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp?v=ai-1",
-    "reviewReason": "Ambiguous match: local filename \"054-goat-biryani.webp\" vs menu item \"Bangalore Mutton Donne Biryani\"",
-    "confidence": "MEDIUM"
+    "confidence": "HIGH"
   },
   {
     "dishId": "lGVf8BCQSgHjoLsjcSCg",
@@ -158,13 +157,12 @@
     "description": "Fragrant biryani layered with crispy, spicy Chicken 65, tossed in bold South Indian flavors—rich, fiery, and chef's signature twist",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "NEEDS_REVIEW",
-    "localFilename": "052-chicken-biryani.webp",
-    "matchedImagePath": "/images/ai-menu/052-chicken-biryani.webp",
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "lGVf8BCQSgHjoLsjcSCg-1200.webp",
+    "matchedImagePath": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp",
     "originalImageUrl": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp?v=ai-1",
-    "reviewReason": "Ambiguous match: local filename \"052-chicken-biryani.webp\" vs menu item \"Chef Special Chicken 65 Biryani\"",
-    "confidence": "MEDIUM"
+    "confidence": "HIGH"
   },
   {
     "dishId": "yHB2tdZlQuUjoeIcStB7",
@@ -189,12 +187,12 @@
     "description": "Whole wheat bread cooked in a clay oven and smeared with butter",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "5tJmPsCi14v2pqe0Lm0K-1200.webp",
+    "matchedImagePath": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp",
     "originalImageUrl": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "5hVoHVfTXsRrQkF8rp5K",
@@ -234,12 +232,12 @@
     "description": "Flavorful twist on traditional naan, infused with garlic butter and spicy chilies for an extra kick",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "iGyzBxk4OqiKyj9o0LHb-1200.webp",
+    "matchedImagePath": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp",
     "originalImageUrl": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "lkcFtSHuWvfwBhc3x7tF",
@@ -279,12 +277,12 @@
     "description": "Carrot pudding cooked with milk and nuts",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "TAT7TqWSUC6h0agDBySS-1200.webp",
+    "matchedImagePath": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp",
     "originalImageUrl": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "t8cr8fo3WojchkBu5fpO",
@@ -339,12 +337,12 @@
     "description": "Traditional South Indian dessert made with milk, jaggery, and vermicelli or lentils",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "NMw5M8DmYtlfez5hZP89-1200.webp",
+    "matchedImagePath": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp",
+    "finalWebsiteUrl": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp",
     "originalImageUrl": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp?v=ai-1",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "NkV23dZrg33OZeEeupfA",
@@ -369,12 +367,12 @@
     "description": "Crispy crepe generously roasted in butter (benne) and filled with a spiced potato masala",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "benne-masala-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/benne-masala-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/benne-masala-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "kmIr6RSg0TBlOv27Hf5Q",
@@ -399,12 +397,12 @@
     "description": "Crepe with potato masala",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "masala-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/masala-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/masala-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "uZW2gSYdkCgNEdEKLqGM",
@@ -459,12 +457,12 @@
     "description": "3 small soft, light, and spongy dosas served with chicken gravy",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "set-dosa-with-chicken-gravy-1200.webp",
+    "matchedImagePath": "/images/ai-menu/set-dosa-with-chicken-gravy.webp",
+    "finalWebsiteUrl": "/images/ai-menu/set-dosa-with-chicken-gravy.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "R6eEMDljDUZ2xUfgmcEu",
@@ -534,12 +532,12 @@
     "description": "Steamed rice cake, 3 pieces",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "idli-1200.webp",
+    "matchedImagePath": "/images/ai-menu/idli.webp",
+    "finalWebsiteUrl": "/images/ai-menu/idli.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "ZkF9ZSg3F3lxtok3c5tS",
@@ -564,12 +562,12 @@
     "description": "3 pieces",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "idli-with-chicken-gravy-1200.webp",
+    "matchedImagePath": "/images/ai-menu/idli-with-chicken-gravy.webp",
+    "finalWebsiteUrl": "/images/ai-menu/idli-with-chicken-gravy.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "twITFIn5Sk0gglIXlkiL",
@@ -579,12 +577,12 @@
     "description": "3 pieces Idli served with bone in Mutton (Goat) gravy",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "idli-with-mutton-gravy-1200.webp",
+    "matchedImagePath": "/images/ai-menu/idli-with-mutton-gravy.webp",
+    "finalWebsiteUrl": "/images/ai-menu/idli-with-mutton-gravy.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "vPn8qJwDJdQ71LRE2wLr",
@@ -594,12 +592,12 @@
     "description": "2 idlis & 1 medu vada",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "idli-vada-combo-1200.webp",
+    "matchedImagePath": "/images/ai-menu/idli-vada-combo.webp",
+    "finalWebsiteUrl": "/images/ai-menu/idli-vada-combo.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "dAUKfUgqvyXJqJUUVI46",
@@ -609,12 +607,12 @@
     "description": "Crisp and fried doughnut made from black grams, 2 pieces",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "medu-vada-1200.webp",
+    "matchedImagePath": "/images/ai-menu/medu-vada.webp",
+    "finalWebsiteUrl": "/images/ai-menu/medu-vada.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "opBEgUMKLYx6fCiiXmOw",
@@ -654,12 +652,12 @@
     "description": "Juicy chicken dumplings simmered in a savory garlic, soy, and chili sauce",
     "isVegetarian": false,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "chicken-manchurian-gravy-1200.webp",
+    "matchedImagePath": "/images/ai-menu/chicken-manchurian-gravy.webp",
+    "finalWebsiteUrl": "/images/ai-menu/chicken-manchurian-gravy.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "4S1Qdw5ufIPIr5Z2fMXU",
@@ -669,12 +667,12 @@
     "description": "Soft paneer cubes cooked in a spicy soy, garlic, and chili gravy with bell peppers and onions",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "chili-paneer-gravy-1200.webp",
+    "matchedImagePath": "/images/ai-menu/chili-paneer-gravy.webp",
+    "finalWebsiteUrl": "/images/ai-menu/chili-paneer-gravy.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "QftQKkaC2waQb9GYsWqo",
@@ -924,12 +922,12 @@
     "description": "A combination of one steamed rice cake, one lentil doughnut & mini masala dosa",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "tiffin-1-mini-masala-dosa-idli-vada-1200.webp",
+    "matchedImagePath": "/images/ai-menu/tiffin-1-mini-masala-dosa-idli-vada.webp",
+    "finalWebsiteUrl": "/images/ai-menu/tiffin-1-mini-masala-dosa-idli-vada.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "5fZ8PDTDjbVpsHrubMPp",
@@ -1135,12 +1133,12 @@
     "description": "Crisp crepe made with semolina sprinkled and roasted with finely chopped onions and cilantro",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "onion-rava-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/onion-rava-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/onion-rava-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "6XuLxzM52RrJ74401OAk",
@@ -1150,12 +1148,12 @@
     "description": "Crisp crepe made with semolina, sprinkled and roasted with finely chopped onions, cilantro, and mild-spiced potato masala",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "onion-rava-masala-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/onion-rava-masala-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/onion-rava-masala-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "7OubKUDzdo4tqvMTlSzy",
@@ -1165,12 +1163,12 @@
     "description": "Crisp crepe made with semolina",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "plain-rava-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/plain-rava-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/plain-rava-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "972vyJ3ZgBmFigXydWDj",
@@ -1180,12 +1178,12 @@
     "description": "Rice, lentils and vegetables in a spiced Karnataka style blend",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "bisibele-bath-1200.webp",
+    "matchedImagePath": "/images/ai-menu/bisibele-bath.webp",
+    "finalWebsiteUrl": "/images/ai-menu/bisibele-bath.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "3DrdN5zSlfwwbRvpO3J3",
@@ -1225,12 +1223,12 @@
     "description": "A mild Gujarati Thali is a balanced, vegetarian meal known for its subtle sweetness and, generally, low spice levels. Key components include delicate Dhokla or Khandvi (farsan), a sweet-and-sour dal, seasonal veggie shaak, soft rotli, and sweetened yogurt (shrikhand), often served with chaas (buttermilk). It represents a gentle, traditional home-cooked style.",
     "isVegetarian": true,
     "isAvailable": false,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "mild-gujrati-thali-1200.webp",
+    "matchedImagePath": "/images/ai-menu/mild-gujrati-thali.webp",
+    "finalWebsiteUrl": "/images/ai-menu/mild-gujrati-thali.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "UoLwnm2y1Vpq8ZylsKvs",
@@ -1240,12 +1238,12 @@
     "description": "A Punjabi Thali is a hearty,, traditional North Indian platter known for rich flavors,, generous use of ghee, and buttery dishes. It typically includes Dal Makhani, Paneer (Paneer Makhani/Shahi Paneer), Pindi Chole, and diverse breads like Amritsari Kulcha or Lachha Parantha. Served with rice, lassi, and accompaniments, it offers a complete, indulgent culinary experience.",
     "isVegetarian": true,
     "isAvailable": false,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "punjabi-thali-1200.webp",
+    "matchedImagePath": "/images/ai-menu/punjabi-thali.webp",
+    "finalWebsiteUrl": "/images/ai-menu/punjabi-thali.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "aggcGSq4LoqAf1GDHbmi",
@@ -1255,12 +1253,12 @@
     "description": "A bold Indo-Chinese soup with tender chicken, mushrooms, and vegetables in a tangy, spicy broth",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "chicken-hot-and-sour-soup-1200.webp",
+    "matchedImagePath": "/images/ai-menu/chicken-hot-and-sour-soup.webp",
+    "finalWebsiteUrl": "/images/ai-menu/chicken-hot-and-sour-soup.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "5UINe5gtkdwwL1ZTn1L4",
@@ -1330,12 +1328,12 @@
     "description": "Dosa and Sambar form a quintessential South Indian breakfast pairing, combining crispy, fermented rice-and-lentil crepes (dosa) with a savory, tangy, and spiced lentil-vegetable stew (sambar). This high-protein, nutritious, and high-carb combination is commonly paired with coconut chutney and is a cornerstone of Indian cuisine, often served fermented.",
     "isVegetarian": true,
     "isAvailable": false,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "dosa-sambar-1200.webp",
+    "matchedImagePath": "/images/ai-menu/dosa-sambar.webp",
+    "finalWebsiteUrl": "/images/ai-menu/dosa-sambar.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "S8R45GozAASza4OPWwGU",
@@ -1345,12 +1343,12 @@
     "description": "Crepe sprinkled with grated cheese",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "cheese-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/cheese-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/cheese-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "Lq4HBRyxA96Crk9qVHTK",
@@ -1360,12 +1358,12 @@
     "description": "Crepe smeared with mild spiced red chutney, sprinkled with cheese & stuffed with potato masala",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "cheese-mysore-masala-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/cheese-mysore-masala-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/cheese-mysore-masala-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "Uphu1DINO1GzKob75yGs",
@@ -1390,12 +1388,12 @@
     "description": "Crepe sprinkled with grated paneer and smeared with red chutney and stuffed with potato masala",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "paneer-mysore-masala-dosa-1200.webp",
+    "matchedImagePath": "/images/ai-menu/paneer-mysore-masala-dosa.webp",
+    "finalWebsiteUrl": "/images/ai-menu/paneer-mysore-masala-dosa.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "siYr9EbGHZxjn0iYGLVN",
@@ -1405,12 +1403,12 @@
     "description": "Thick crepe sprinkled and roasted with finely chopped onion, green chilli & cilantro",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "onion-chilli-uttapam-1200.webp",
+    "matchedImagePath": "/images/ai-menu/onion-chilli-uttapam.webp",
+    "finalWebsiteUrl": "/images/ai-menu/onion-chilli-uttapam.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "56juMrRTVcsGAEgm11zF",
@@ -1420,12 +1418,12 @@
     "description": "Thick crepe sprinkled and roasted with finely chopped onion, chilli and topped with tomato & cilantro",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "tomato-onion-chilli-uttapam-1200.webp",
+    "matchedImagePath": "/images/ai-menu/tomato-onion-chilli-uttapam.webp",
+    "finalWebsiteUrl": "/images/ai-menu/tomato-onion-chilli-uttapam.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "MYUzyQPuCQSIVNUg7qMN",
@@ -1631,12 +1629,12 @@
     "description": "Stir-fried noodles with vegetables in a spicy and tangy Szechuan sauce",
     "isVegetarian": true,
     "isAvailable": true,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "veg-schezuan-noodles-1200.webp",
+    "matchedImagePath": "/images/ai-menu/veg-schezuan-noodles.webp",
+    "finalWebsiteUrl": "/images/ai-menu/veg-schezuan-noodles.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "m3Gq6M0cdUqVQFzxJnuh",
@@ -1661,12 +1659,12 @@
     "description": "Enjoy with Family\n",
     "isVegetarian": true,
     "isAvailable": false,
-    "status": "IMAGE_MISSING",
-    "localFilename": null,
-    "matchedImagePath": null,
-    "finalWebsiteUrl": null,
+    "status": "MATCHED",
+    "localFilename": "7-family-combo-meals-1200.webp",
+    "matchedImagePath": "/images/ai-menu/7-family-combo-meals.webp",
+    "finalWebsiteUrl": "/images/ai-menu/7-family-combo-meals.webp",
     "originalImageUrl": "",
-    "confidence": "NONE"
+    "confidence": "HIGH"
   },
   {
     "dishId": "extra-041-goat-curry-bangalore-style",
@@ -1785,6 +1783,36 @@
     "localFilename": "051-mushroom-fried-rice.webp",
     "matchedImagePath": "/images/ai-menu/051-mushroom-fried-rice.webp",
     "finalWebsiteUrl": "/images/ai-menu/051-mushroom-fried-rice.webp",
+    "originalImageUrl": "",
+    "confidence": "EXTRA"
+  },
+  {
+    "dishId": "extra-052-chicken-biryani",
+    "dishName": "CHICKEN BIRYANI",
+    "category": "extra-local-assets",
+    "price": 0,
+    "description": "Photograph present in local directory (\"052-chicken-biryani.webp\"), but does not correspond to an active menu item.",
+    "isVegetarian": true,
+    "isAvailable": false,
+    "status": "EXTRA_LOCAL_IMAGE",
+    "localFilename": "052-chicken-biryani.webp",
+    "matchedImagePath": "/images/ai-menu/052-chicken-biryani.webp",
+    "finalWebsiteUrl": "/images/ai-menu/052-chicken-biryani.webp",
+    "originalImageUrl": "",
+    "confidence": "EXTRA"
+  },
+  {
+    "dishId": "extra-054-goat-biryani",
+    "dishName": "GOAT BIRYANI",
+    "category": "extra-local-assets",
+    "price": 0,
+    "description": "Photograph present in local directory (\"054-goat-biryani.webp\"), but does not correspond to an active menu item.",
+    "isVegetarian": true,
+    "isAvailable": false,
+    "status": "EXTRA_LOCAL_IMAGE",
+    "localFilename": "054-goat-biryani.webp",
+    "matchedImagePath": "/images/ai-menu/054-goat-biryani.webp",
+    "finalWebsiteUrl": "/images/ai-menu/054-goat-biryani.webp",
     "originalImageUrl": "",
     "confidence": "EXTRA"
   },
