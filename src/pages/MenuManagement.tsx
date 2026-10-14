@@ -523,8 +523,8 @@ export function MenuManagement() {
                   <label className="text-sm font-medium text-gray-700">Image</label>
                   <div className="mt-1 flex items-center gap-4">
                     {formData.imageUrl && (
-                      <div className="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden shrink-0">
-                        <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
+                      <div className="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden shrink-0 border border-gray-200">
+                        <ProductImage id={editingItem?.id || undefined} src={formData.imageUrl} alt={formData.name || 'Preview'} className="w-full h-full object-cover" />
                       </div>
                     )}
                     <div className="flex-1">

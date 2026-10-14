@@ -1,0 +1,890 @@
+[
+  {
+    "id": "eDha0k5qxkGCULVgfaWQ",
+    "name": "Badam Milk",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "ElMkubNXJ2hLhHTFxfXh",
+    "name": "Bottled Water",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "uNMecqv1K6Rf9hzh22jy",
+    "name": "Buttermilk",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "te04ILCNfyoBgA72t0wg",
+    "name": "Filter Coffee",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "Bl4xoDsHHCgHCDKCXo5e",
+    "name": "Mango Lassi",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "ijig94ebeR0yLJ8bKGTS",
+    "name": "Masala Chai",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "YirhCMv2HqJufSZKukld",
+    "name": "Rose Milk",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "CSIAK3Dz5zj2WVtOZkqD",
+    "name": "Soda",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "B2R9mAuZOV4m6Ac5XGW9",
+    "name": "Sparkling Water",
+    "categoryId": "beverages",
+    "imageUrl": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "AZ5PXwSjdfK9RFKjxYbc",
+    "name": "Bangalore Mutton Donne Biryani",
+    "categoryId": "biryani",
+    "imageUrl": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "lGVf8BCQSgHjoLsjcSCg",
+    "name": "Chef Special Chicken 65 Biryani",
+    "categoryId": "biryani",
+    "imageUrl": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "yHB2tdZlQuUjoeIcStB7",
+    "name": "Veg Biryani",
+    "categoryId": "biryani",
+    "imageUrl": "/images/ai-menu/yHB2tdZlQuUjoeIcStB7-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "5tJmPsCi14v2pqe0Lm0K",
+    "name": "Butter Roti",
+    "categoryId": "breads",
+    "imageUrl": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "5hVoHVfTXsRrQkF8rp5K",
+    "name": "Chapati",
+    "categoryId": "breads",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "oGpve56LpHbwLHk8hnHy",
+    "name": "Cheese Naan",
+    "categoryId": "breads",
+    "imageUrl": "/images/ai-menu/oGpve56LpHbwLHk8hnHy-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "iGyzBxk4OqiKyj9o0LHb",
+    "name": "Garlic Chilli Naan",
+    "categoryId": "breads",
+    "imageUrl": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "lkcFtSHuWvfwBhc3x7tF",
+    "name": "Garlic Naan",
+    "categoryId": "breads",
+    "imageUrl": "/images/ai-menu/lkcFtSHuWvfwBhc3x7tF-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "kUkPyCAt1SRXRTCLmUAU",
+    "name": "Laccha Paratha",
+    "categoryId": "breads",
+    "imageUrl": "/images/ai-menu/kUkPyCAt1SRXRTCLmUAU-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "TAT7TqWSUC6h0agDBySS",
+    "name": "Gajar Halwa",
+    "categoryId": "dessert",
+    "imageUrl": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "t8cr8fo3WojchkBu5fpO",
+    "name": "Gulab Jamun",
+    "categoryId": "dessert",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "Rk3oa2NTDW2n4jFmdHff",
+    "name": "Ice Cream",
+    "categoryId": "dessert",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "J0e6lAz4Alc80g0wr8ME",
+    "name": "Moong Dal Halwa",
+    "categoryId": "dessert",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "NMw5M8DmYtlfez5hZP89",
+    "name": "Payasa",
+    "categoryId": "dessert",
+    "imageUrl": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "NkV23dZrg33OZeEeupfA",
+    "name": "Rasmalai",
+    "categoryId": "dessert",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "nCZw72stSsjaxobtTDfK",
+    "name": "Benne Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "kmIr6RSg0TBlOv27Hf5Q",
+    "name": "Ghee Open Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "IM2paxMBXt7gBIXwLMKn",
+    "name": "Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "uZW2gSYdkCgNEdEKLqGM",
+    "name": "Mysore Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "7KXApIewkNt9NXnPv0rN",
+    "name": "Onion Mysore Masala Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "qSeTghIDhtYCEUsgwAJO",
+    "name": "Plain Dosa",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "L1ETh9rDngSzv1eKiqWM",
+    "name": "Set Dosa with Chicken Gravy",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "R6eEMDljDUZ2xUfgmcEu",
+    "name": "Set Dosa with Mutton Gravy",
+    "categoryId": "dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "wxP3E3HwHvSDXnJREP6y",
+    "name": "Tandoor Paneer Tikka Grill",
+    "categoryId": "grill-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "ISoTXuXRKEEaIbNzCLS1",
+    "name": "Tandoori Chicken Full",
+    "categoryId": "grill-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "Q49XycXO8SW3g1OpGsvC",
+    "name": "Tandoori Chicken Half",
+    "categoryId": "grill-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "7qp0wQu8o46cAS1CF4Mh",
+    "name": "Idli",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "ZkF9ZSg3F3lxtok3c5tS",
+    "name": "Idli in Sambar",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "9rN8CLdAk8UQyiWH9Ip6",
+    "name": "Idli with Chicken Gravy",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "twITFIn5Sk0gglIXlkiL",
+    "name": "Idli with Mutton Gravy",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "vPn8qJwDJdQ71LRE2wLr",
+    "name": "Idli/Vada Combo",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "dAUKfUgqvyXJqJUUVI46",
+    "name": "Medu Vada",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "opBEgUMKLYx6fCiiXmOw",
+    "name": "Thatte Idli with Ghee Pudi",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "GvqF4CS7s2GlL0zmrzdp",
+    "name": "Vada in Sambar",
+    "categoryId": "idli-vada",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "EiuGblmc6B10wrBipmn2",
+    "name": "Chicken Manchurian Gravy",
+    "categoryId": "indo-chinese-non-veg-gravy",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "4S1Qdw5ufIPIr5Z2fMXU",
+    "name": "Chili Paneer Gravy",
+    "categoryId": "indo-chinese-veg-gravy",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "QftQKkaC2waQb9GYsWqo",
+    "name": "Gobi Manchurian Gravy",
+    "categoryId": "indo-chinese-veg-gravy",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "pYskmHafpd5ORca2eWwX",
+    "name": "Butter Chicken",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "6H6D2CBmtkEX97E7VXeS",
+    "name": "Chicken Curry (Bangalore style)",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "luE0Pf0OmF4ikB7cCIrS",
+    "name": "Chicken Tikka Masala",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "/images/ai-menu/luE0Pf0OmF4ikB7cCIrS-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "D3PWAvKesY88UOAzwsW9",
+    "name": "Cochin Prawn/Shrimp Curry",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "/images/ai-menu/D3PWAvKesY88UOAzwsW9-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "GXP36qQBrQ79GQD93yjZ",
+    "name": "Egg Curry",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "SEZjEdemROKee32qw2Y1",
+    "name": "Lamb Korma",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "SUFXHbvfxW7FNSZycg7d",
+    "name": "Mangalore Fish Curry",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "XfdsUeOY1ImCUYroJtva",
+    "name": "Mutton curry (Bangalore style)",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "l6ctzwsYcZM71hZgpnpC",
+    "name": "Bhagara Baingan",
+    "categoryId": "main-course-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "KXFYTyspv5deqAgDbJ1a",
+    "name": "Bhindi Masala",
+    "categoryId": "main-course-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "eUv4OBqyVQ68PVYMpSsi",
+    "name": "Chana Masala",
+    "categoryId": "main-course-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "CZ79qUpFJSfgun0oHA2J",
+    "name": "Navaratan Vegetable Korma",
+    "categoryId": "main-course-veg",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "pNeRF6sUhklme8iYp4u9",
+    "name": "Paneer Butter Masala",
+    "categoryId": "main-course-veg",
+    "imageUrl": "/images/ai-menu/pNeRF6sUhklme8iYp4u9-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "9WuqDHxhX1E7TVKiZqrQ",
+    "name": "Pappu (Nagarjuna style)",
+    "categoryId": "main-course-veg",
+    "imageUrl": "/images/ai-menu/9WuqDHxhX1E7TVKiZqrQ-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "ckr4J960a4tJbIQjS6iv",
+    "name": "Saag Paneer",
+    "categoryId": "main-course-veg",
+    "imageUrl": "/images/ai-menu/ckr4J960a4tJbIQjS6iv-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "q3rkl2BP1D7E7HR10gmL",
+    "name": "Tiffin 1 - Mini Masala Dosa, Idli & Vada",
+    "categoryId": "mini-tiffin",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "5fZ8PDTDjbVpsHrubMPp",
+    "name": "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath",
+    "categoryId": "mini-tiffin",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "XNFiArpMqrBhFvy9TVIr",
+    "name": "Chicken 65",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "dmDWtX3EdTUDRqx58FBm",
+    "name": "Chicken Lollipop",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "0ezpdkLMPL2DJwvPwXml",
+    "name": "Chicken Momos",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "ok9iB1RCqdEV9HJ8K7Sy",
+    "name": "Chilli Chicken",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "zUQTbNi4d9DGOXJvdEXL",
+    "name": "Fish Fry (Golden Pompano)",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "wIWaTndbsFFZudJdCV7L",
+    "name": "Hyderabadi Goat Sukka",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "BbhLtZwISTNsibAOY0o2",
+    "name": "Prawn Pepper Fry",
+    "categoryId": "non-veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "p3baFlGEmw5R5if8X6yh",
+    "name": "Chicken Fried Rice",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "yTrg7l7jtLSPrK0HEYkM",
+    "name": "Chicken Hakka Noodles",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "sSZ3O7meEVDadPfQjsT6",
+    "name": "Chicken Schezwan Noodles",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "yP9nly009nj8OAmJ2sHx",
+    "name": "Chicken Schezwan Rice",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": false
+  },
+  {
+    "id": "xKbuWgUPriG9YULmNmeW",
+    "name": "Malai Kofta",
+    "categoryId": "north-indian",
+    "imageUrl": "",
+    "isAvailable": false,
+    "isVegetarian": true
+  },
+  {
+    "id": "HS3G82KIBhYxKfr08Dxy",
+    "name": "Onion Rava Dosa",
+    "categoryId": "rava-dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "6XuLxzM52RrJ74401OAk",
+    "name": "Onion Rava Masala Dosa",
+    "categoryId": "rava-dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "7OubKUDzdo4tqvMTlSzy",
+    "name": "Plain Rava Dosa",
+    "categoryId": "rava-dosa-specials",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "972vyJ3ZgBmFigXydWDj",
+    "name": "Bisibele Bath",
+    "categoryId": "rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "3DrdN5zSlfwwbRvpO3J3",
+    "name": "Jeera Rice",
+    "categoryId": "rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "zOdmJ4Vf5KI9OBEJXHsN",
+    "name": "Steamed Rice",
+    "categoryId": "rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "ai01oRqNSqNrGAumcqxz",
+    "name": "Mild Gujrati Thali",
+    "categoryId": "S7QLqDKtIwo3puYtRLdG",
+    "imageUrl": "",
+    "isAvailable": false,
+    "isVegetarian": true
+  },
+  {
+    "id": "UoLwnm2y1Vpq8ZylsKvs",
+    "name": "Punjabi Thali",
+    "categoryId": "S7QLqDKtIwo3puYtRLdG",
+    "imageUrl": "",
+    "isAvailable": false,
+    "isVegetarian": true
+  },
+  {
+    "id": "aggcGSq4LoqAf1GDHbmi",
+    "name": "Chicken Hot and Sour Soup",
+    "categoryId": "soups",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "5UINe5gtkdwwL1ZTn1L4",
+    "name": "Goat Paya Soup",
+    "categoryId": "soups",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "qaxjgCrE9cPHERtXxREP",
+    "name": "Rasam Soup",
+    "categoryId": "soups",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "w0c6VbEJQI6csH90GrFu",
+    "name": "Sweet Corn Soup",
+    "categoryId": "soups",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "i4AuZXzGWDsRzbdGUwAf",
+    "name": "Veg Hot and Sour Soup",
+    "categoryId": "soups",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "qRqJbslPhA9xWRHi40y6",
+    "name": "Dosa Sambar",
+    "categoryId": "south-indian",
+    "imageUrl": "",
+    "isAvailable": false,
+    "isVegetarian": true
+  },
+  {
+    "id": "S8R45GozAASza4OPWwGU",
+    "name": "Cheese Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "Lq4HBRyxA96Crk9qVHTK",
+    "name": "Cheese Mysore Masala Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "Uphu1DINO1GzKob75yGs",
+    "name": "Chocolate Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "qpj1sTedu8WySFmsBOMv",
+    "name": "Paneer Mysore Masala Dosa",
+    "categoryId": "specialty-dosa",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "siYr9EbGHZxjn0iYGLVN",
+    "name": "Onion Chilli Uttapam",
+    "categoryId": "uttapam-special",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "56juMrRTVcsGAEgm11zF",
+    "name": "Tomato Onion Chilli Uttapam",
+    "categoryId": "uttapam-special",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "MYUzyQPuCQSIVNUg7qMN",
+    "name": "Tomato Onion Uttapam",
+    "categoryId": "uttapam-special",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "PoffPrdRprkR4Y3yBpqh",
+    "name": "Chilli Paneer",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "0KRzoRbLdxwwbIgx9Ubm",
+    "name": "Chilly Crispy Baby Corn",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "oG00dJzcYZKWjjSDHT1a",
+    "name": "Gobi Manchurian",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "/images/ai-menu/oG00dJzcYZKWjjSDHT1a-1200.webp?v=ai-1",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "uHiE3WG5B8HoAIx4bYpY",
+    "name": "Masala Papad",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "MfZ30OgzT8R6gjeL4oD1",
+    "name": "Masala Peanut",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "Y9jRXNsFIht2GhoKpY0A",
+    "name": "Masala Puri",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "zOkboX86h6evd4CHYq2h",
+    "name": "Onion Pakoda",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "uAYvYFs6waTSfTKygdC2",
+    "name": "Palak Chaat",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "h2q0qrKF57swceYvsYAq",
+    "name": "Samosa",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "k1nDUf6kOvVlGinb96G0",
+    "name": "Veg Momos",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "k6lpo7cmfgIcpEBd7PRz",
+    "name": "Veg Fried Rice",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "AKvxhGIKqdyiynGrtH9g",
+    "name": "Veg Hakka Noodles",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "01oAN9PRmdO8tDWwopVn",
+    "name": "Veg Schezuan Noodles",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "m3Gq6M0cdUqVQFzxJnuh",
+    "name": "Veg Schezuan Rice",
+    "categoryId": "veg-noodles-rice",
+    "imageUrl": "",
+    "isAvailable": true,
+    "isVegetarian": true
+  },
+  {
+    "id": "tistQUZYN2oqvCjmapKx",
+    "name": "7 Family Combo Meals ",
+    "categoryId": "ZdEJN8qfHD1skLooJsQZ",
+    "imageUrl": "",
+    "isAvailable": false,
+    "isVegetarian": true
+  }
+]

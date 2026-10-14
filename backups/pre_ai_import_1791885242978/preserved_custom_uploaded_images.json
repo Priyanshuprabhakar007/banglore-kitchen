@@ -1,0 +1,498 @@
+[
+  {
+    "id": "eDha0k5qxkGCULVgfaWQ",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&q=80&w=800",
+    "description": "Traditional Indian almond-based drink made with milk, ground almonds, sugar, and aromatic spices like cardamom and saffron",
+    "isJain": false,
+    "categoryId": "beverages",
+    "price": 5.99,
+    "name": "Badam Milk",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageUrl": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp?v=ai-1",
+    "imageSource": "ai_generated",
+    "isAvailable": true,
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 506000000
+    },
+    "imageNeedsReview": false
+  },
+  {
+    "id": "ElMkubNXJ2hLhHTFxfXh",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "isJain": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "name": "Bottled Water",
+    "imageSource": "ai_generated",
+    "isVegetarian": true,
+    "price": 4.99,
+    "imageUrl": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp?v=ai-1",
+    "categoryId": "beverages",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 956000000
+    },
+    "description": "",
+    "imageNeedsReview": false
+  },
+  {
+    "id": "uNMecqv1K6Rf9hzh22jy",
+    "imageNeedsReview": false,
+    "categoryId": "beverages",
+    "price": 4.99,
+    "description": "Refreshing yogurt-based drink blended with water, cilantro, and a hint of salt",
+    "name": "Buttermilk",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 656000000
+    },
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&q=80&w=800",
+    "imageUrl": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp?v=ai-1",
+    "isJain": false,
+    "isVegetarian": true,
+    "isAvailable": true,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageSource": "ai_generated"
+  },
+  {
+    "id": "te04ILCNfyoBgA72t0wg",
+    "isVegetarian": true,
+    "imageUrl": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp?v=ai-1",
+    "isJain": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 898000000
+    },
+    "description": "Traditional South Indian filter coffee is brewed strongly and served with hot milk and rich foam",
+    "categoryId": "beverages",
+    "price": 5.99,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "name": "Filter Coffee",
+    "isAvailable": true,
+    "imageSource": "ai_generated"
+  },
+  {
+    "id": "Bl4xoDsHHCgHCDKCXo5e",
+    "categoryId": "beverages",
+    "price": 7.99,
+    "imageSource": "ai_generated",
+    "isAvailable": true,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800",
+    "name": "Mango Lassi",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 215000000
+    },
+    "imageUrl": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp?v=ai-1",
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "isJain": false,
+    "description": "Creamy yogurt smoothie blended with sweet ripe mangoes",
+    "updatedAt": "2026-10-13T07:04:17.548Z"
+  },
+  {
+    "id": "ijig94ebeR0yLJ8bKGTS",
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 69000000
+    },
+    "isJain": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=800",
+    "description": "Traditional Indian milk tea brewed with aromatic spices and fresh ginger",
+    "categoryId": "beverages",
+    "isVegetarian": true,
+    "name": "Masala Chai",
+    "price": 3.99,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageSource": "ai_generated",
+    "isAvailable": true,
+    "imageUrl": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp?v=ai-1"
+  },
+  {
+    "id": "YirhCMv2HqJufSZKukld",
+    "isAvailable": true,
+    "name": "Rose Milk",
+    "categoryId": "beverages",
+    "imageSource": "ai_generated",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 359000000
+    },
+    "price": 5.99,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1576092762791-dd9e2220abd4?auto=format&fit=crop&q=80&w=800",
+    "imageUrl": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp?v=ai-1",
+    "description": "Chilled milk infused with fragrant rose syrup, served refreshing and lightly sweet",
+    "isJain": false,
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "updatedAt": "2026-10-13T07:04:17.548Z"
+  },
+  {
+    "id": "CSIAK3Dz5zj2WVtOZkqD",
+    "price": 2.99,
+    "isJain": false,
+    "imageNeedsReview": false,
+    "description": "Coke, diet coke, coke zero, sunkist, ginger ale",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageUrl": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp?v=ai-1",
+    "isVegetarian": true,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=800",
+    "name": "Soda",
+    "isAvailable": true,
+    "categoryId": "beverages",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 808000000
+    },
+    "imageSource": "ai_generated"
+  },
+  {
+    "id": "B2R9mAuZOV4m6Ac5XGW9",
+    "categoryId": "beverages",
+    "isJain": false,
+    "isVegetarian": true,
+    "price": 4.99,
+    "name": "Sparkling Water",
+    "description": "",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191772,
+      "nanoseconds": 106000000
+    },
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1560023907-5f339617ea30?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageNeedsReview": false,
+    "imageSource": "ai_generated",
+    "imageUrl": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp?v=ai-1"
+  },
+  {
+    "id": "AZ5PXwSjdfK9RFKjxYbc",
+    "price": 33.99,
+    "description": "Fragrant short-grain rice cooked with tender mutton, fresh herbs, and a signature green masala",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 333000000
+    },
+    "imageNeedsReview": false,
+    "categoryId": "biryani",
+    "isAvailable": true,
+    "isJain": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageSource": "ai_generated",
+    "name": "Bangalore Mutton Donne Biryani",
+    "imageUrl": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp?v=ai-1",
+    "isVegetarian": true
+  },
+  {
+    "id": "lGVf8BCQSgHjoLsjcSCg",
+    "description": "Fragrant biryani layered with crispy, spicy Chicken 65, tossed in bold South Indian flavors—rich, fiery, and chef's signature twist",
+    "isVegetarian": true,
+    "imageUrl": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp?v=ai-1",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 186000000
+    },
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "name": "Chef Special Chicken 65 Biryani",
+    "imageSource": "ai_generated",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "categoryId": "biryani",
+    "isJain": false,
+    "price": 24.99
+  },
+  {
+    "id": "yHB2tdZlQuUjoeIcStB7",
+    "name": "Veg Biryani",
+    "isJain": false,
+    "isVegetarian": true,
+    "description": "Fragrant rice cooked with marinated vegetables",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageSource": "ai_generated",
+    "isAvailable": true,
+    "imageUrl": "/images/ai-menu/yHB2tdZlQuUjoeIcStB7-1200.webp?v=ai-1",
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 41000000
+    },
+    "categoryId": "biryani",
+    "price": 19.99
+  },
+  {
+    "id": "5tJmPsCi14v2pqe0Lm0K",
+    "name": "Butter Roti",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 254000000
+    },
+    "description": "Whole wheat bread cooked in a clay oven and smeared with butter",
+    "isJain": false,
+    "categoryId": "breads",
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "ai_generated",
+    "price": 5,
+    "imageUrl": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp?v=ai-1",
+    "updatedAt": "2026-10-13T07:04:17.547Z",
+    "isVegetarian": true
+  },
+  {
+    "id": "oGpve56LpHbwLHk8hnHy",
+    "imageUrl": "/images/ai-menu/oGpve56LpHbwLHk8hnHy-1200.webp?v=ai-1",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageNeedsReview": false,
+    "price": 7,
+    "imageSource": "ai_generated",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 860000000
+    },
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "name": "Cheese Naan",
+    "categoryId": "breads",
+    "isVegetarian": true,
+    "description": "Soft, oven-baked naan stuffed with melted cheese"
+  },
+  {
+    "id": "iGyzBxk4OqiKyj9o0LHb",
+    "imageNeedsReview": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "description": "Flavorful twist on traditional naan, infused with garlic butter and spicy chilies for an extra kick",
+    "imageUrl": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp?v=ai-1",
+    "name": "Garlic Chilli Naan",
+    "isVegetarian": true,
+    "categoryId": "breads",
+    "price": 7,
+    "imageSource": "ai_generated",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 709000000
+    },
+    "isAvailable": true
+  },
+  {
+    "id": "lkcFtSHuWvfwBhc3x7tF",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 561000000
+    },
+    "imageUrl": "/images/ai-menu/lkcFtSHuWvfwBhc3x7tF-1200.webp?v=ai-1",
+    "imageSource": "ai_generated",
+    "isAvailable": true,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "isJain": false,
+    "name": "Garlic Naan",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "categoryId": "breads",
+    "price": 6,
+    "description": "Soft Indian bread topped with garlic and butter"
+  },
+  {
+    "id": "kUkPyCAt1SRXRTCLmUAU",
+    "price": 6,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 400000000
+    },
+    "description": "Flaky, layered flatbreads with optional savory fillings",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "isJain": false,
+    "categoryId": "breads",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "name": "Laccha Paratha",
+    "imageUrl": "/images/ai-menu/kUkPyCAt1SRXRTCLmUAU-1200.webp?v=ai-1",
+    "imageSource": "ai_generated",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=800",
+    "imageNeedsReview": false
+  },
+  {
+    "id": "TAT7TqWSUC6h0agDBySS",
+    "isVegetarian": true,
+    "imageUrl": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp?v=ai-1",
+    "name": "Gajar Halwa",
+    "price": 8.99,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageNeedsReview": false,
+    "description": "Carrot pudding cooked with milk and nuts",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "dessert",
+    "isAvailable": true,
+    "isJain": false,
+    "imageSource": "ai_generated",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 442000000
+    }
+  },
+  {
+    "id": "NMw5M8DmYtlfez5hZP89",
+    "imageUrl": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp?v=ai-1",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 749000000
+    },
+    "isAvailable": true,
+    "isVegetarian": true,
+    "categoryId": "dessert",
+    "imageSource": "ai_generated",
+    "isJain": false,
+    "price": 8.99,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "name": "Payasa",
+    "description": "Traditional South Indian dessert made with milk, jaggery, and vermicelli or lentils"
+  },
+  {
+    "id": "luE0Pf0OmF4ikB7cCIrS",
+    "price": 23.99,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "description": "Char-grilled chicken tikka simmered in a rich, creamy tomato masala",
+    "isJain": false,
+    "isVegetarian": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "ai_generated",
+    "imageUrl": "/images/ai-menu/luE0Pf0OmF4ikB7cCIrS-1200.webp?v=ai-1",
+    "categoryId": "main-course-non-veg",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 557000000
+    },
+    "isAvailable": true,
+    "imageNeedsReview": false,
+    "name": "Chicken Tikka Masala"
+  },
+  {
+    "id": "D3PWAvKesY88UOAzwsW9",
+    "imageSource": "ai_generated",
+    "categoryId": "main-course-non-veg",
+    "isAvailable": true,
+    "isVegetarian": false,
+    "imageUrl": "/images/ai-menu/D3PWAvKesY88UOAzwsW9-1200.webp?v=ai-1",
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 850000000
+    },
+    "name": "Cochin Prawn/Shrimp Curry",
+    "price": 29.99,
+    "description": "Juicy prawns simmered in a fragrant Kerala-style coconut milk curry with curry leaves and coastal spices",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "imageNeedsReview": false
+  },
+  {
+    "id": "pNeRF6sUhklme8iYp4u9",
+    "imageSource": "ai_generated",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "imageNeedsReview": false,
+    "imageUrl": "/images/ai-menu/pNeRF6sUhklme8iYp4u9-1200.webp?v=ai-1",
+    "price": 21.99,
+    "createdAt": "2026-04-09T11:34:52.533Z",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "name": "Paneer Butter Masala",
+    "description": "Cottage cheese cubes in a rich and creamy tomato-based gravy",
+    "categoryId": "main-course-veg",
+    "updatedAt": "2026-10-13T07:04:17.548Z"
+  },
+  {
+    "id": "9WuqDHxhX1E7TVKiZqrQ",
+    "isAvailable": true,
+    "price": 14.99,
+    "imageUrl": "/images/ai-menu/9WuqDHxhX1E7TVKiZqrQ-1200.webp?v=ai-1",
+    "imageSource": "ai_generated",
+    "name": "Pappu (Nagarjuna style)",
+    "imageNeedsReview": false,
+    "categoryId": "main-course-veg",
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "isVegetarian": true,
+    "description": "Traditional Andhra-style lentil dal cooked with greens, garlic, and spices, finished with a flavorful tempering. Nagarjuna style",
+    "isJain": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 229000000
+    }
+  },
+  {
+    "id": "ckr4J960a4tJbIQjS6iv",
+    "isJain": false,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "main-course-veg",
+    "description": "Paneer (Indian cottage cheese) is cooked in a smooth, flavorful spinach-based gravy",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 978000000
+    },
+    "price": 21.99,
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "imageUrl": "/images/ai-menu/ckr4J960a4tJbIQjS6iv-1200.webp?v=ai-1",
+    "imageSource": "ai_generated",
+    "name": "Saag Paneer"
+  },
+  {
+    "id": "oG00dJzcYZKWjjSDHT1a",
+    "description": "Crispy cauliflower florets tossed in a flavorful, spicy, and tangy manchurian sauce",
+    "imageUrl": "/images/ai-menu/oG00dJzcYZKWjjSDHT1a-1200.webp?v=ai-1",
+    "name": "Gobi Manchurian",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191756,
+      "nanoseconds": 928000000
+    },
+    "imageNeedsReview": false,
+    "originalImageUrlBackup": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "ai_generated",
+    "isJain": false,
+    "isAvailable": true,
+    "isVegetarian": true,
+    "updatedAt": "2026-10-13T07:04:17.548Z",
+    "categoryId": "veg-appetizers",
+    "price": 19.99
+  }
+]

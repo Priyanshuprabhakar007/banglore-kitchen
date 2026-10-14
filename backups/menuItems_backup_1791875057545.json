@@ -1,0 +1,2161 @@
+[
+  {
+    "id": "01oAN9PRmdO8tDWwopVn",
+    "isAvailable": true,
+    "categoryId": "veg-noodles-rice",
+    "imageSource": "manual",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 202000000
+    },
+    "price": 19.99,
+    "imageNeedsReview": false,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-08-11T12:48:41.146Z",
+    "description": "Stir-fried noodles with vegetables in a spicy and tangy Szechuan sauce",
+    "name": "Veg Schezuan Noodles",
+    "isJain": false,
+    "isVegetarian": true
+  },
+  {
+    "id": "0KRzoRbLdxwwbIgx9Ubm",
+    "imageUrl": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "manual",
+    "isAvailable": true,
+    "price": 19.99,
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 220000000
+    },
+    "name": "Chilly Crispy Baby Corn",
+    "description": "Crispy fried baby corn tossed in a spicy sauce with garlic, soy, and chilies for a bold, tangy flavor",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053549,
+      "nanoseconds": 759000000
+    },
+    "imageNeedsReview": false,
+    "categoryId": "veg-appetizers",
+    "isVegetarian": true
+  },
+  {
+    "id": "0ezpdkLMPL2DJwvPwXml",
+    "price": 16.99,
+    "updatedAt": "2026-08-11T12:48:41.812Z",
+    "imageUrl": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800",
+    "name": "Chicken Momos",
+    "description": "Steamed dumplings filled with juicy spiced chicken, served with spicy chutney",
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 952000000
+    },
+    "isVegetarian": false,
+    "categoryId": "non-veg-appetizers",
+    "isJain": false,
+    "isAvailable": true,
+    "imageSource": "manual"
+  },
+  {
+    "id": "3DrdN5zSlfwwbRvpO3J3",
+    "price": 9.99,
+    "updatedAt": "2026-08-11T12:48:42.135Z",
+    "name": "Jeera Rice",
+    "isJain": false,
+    "description": "Rice cooked with cumin seeds",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 622000000
+    },
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "categoryId": "rice",
+    "imageUrl": "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "imageSource": "manual"
+  },
+  {
+    "id": "4S1Qdw5ufIPIr5Z2fMXU",
+    "imageNeedsReview": false,
+    "price": 22.99,
+    "categoryId": "indo-chinese-veg-gravy",
+    "imageSource": "manual",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "name": "Chili Paneer Gravy",
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:48:42.628Z",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 753000000
+    },
+    "isJain": false,
+    "description": "Soft paneer cubes cooked in a spicy soy, garlic, and chili gravy with bell peppers and onions"
+  },
+  {
+    "id": "56juMrRTVcsGAEgm11zF",
+    "imageSource": "manual",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800",
+    "price": 17.99,
+    "imageNeedsReview": false,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 756000000
+    },
+    "categoryId": "uttapam-special",
+    "isVegetarian": true,
+    "description": "Thick crepe sprinkled and roasted with finely chopped onion, chilli and topped with tomato & cilantro",
+    "name": "Tomato Onion Chilli Uttapam",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 537000000
+    },
+    "isJain": false
+  },
+  {
+    "id": "5UINe5gtkdwwL1ZTn1L4",
+    "imageSource": "manual",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "price": 14.99,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:48:43.202Z",
+    "categoryId": "soups",
+    "description": "Slow-cooked goat trotters in a rich, aromatic gravy, infused with traditional spices for a deep, comforting flavor",
+    "isVegetarian": true,
+    "name": "Goat Paya Soup",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 633000000
+    },
+    "isJain": false
+  },
+  {
+    "id": "5fZ8PDTDjbVpsHrubMPp",
+    "imageNeedsReview": false,
+    "description": "Combination of one, idli, lentil doughnut, mini masala dosa, upma & sweet (kesaribath)",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053551,
+      "nanoseconds": 41000000
+    },
+    "categoryId": "mini-tiffin",
+    "name": "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath",
+    "isJain": false,
+    "imageUrl": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 457000000
+    },
+    "price": 22.99,
+    "imageSource": "manual",
+    "isVegetarian": true
+  },
+  {
+    "id": "5hVoHVfTXsRrQkF8rp5K",
+    "imageNeedsReview": false,
+    "isJain": false,
+    "name": "Chapati",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 103000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800",
+    "description": "Soft whole wheat flatbread served fresh and warm",
+    "price": 3.5,
+    "updatedAt": "2026-08-11T12:48:43.724Z",
+    "categoryId": "breads",
+    "isVegetarian": true
+  },
+  {
+    "id": "5tJmPsCi14v2pqe0Lm0K",
+    "isJain": false,
+    "imageSource": "family_fallback",
+    "updatedAt": "2026-08-11T12:48:44.197Z",
+    "isAvailable": true,
+    "categoryId": "breads",
+    "name": "Butter Roti",
+    "imageNeedsReview": false,
+    "description": "Whole wheat bread cooked in a clay oven and smeared with butter",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 254000000
+    },
+    "price": 5,
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "6H6D2CBmtkEX97E7VXeS",
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191762,
+      "nanoseconds": 291000000
+    },
+    "isJain": false,
+    "description": "Slow cooked bone in chicken in a spicy, pepperi karnataka style masala",
+    "price": 23.99,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 474000000
+    },
+    "isVegetarian": false,
+    "name": "Chicken Curry (Bangalore style)",
+    "categoryId": "main-course-non-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "6XuLxzM52RrJ74401OAk",
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 979000000
+    },
+    "isJain": false,
+    "description": "Crisp crepe made with semolina, sprinkled and roasted with finely chopped onions, cilantro, and mild-spiced potato masala",
+    "price": 18.99,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "isVegetarian": true,
+    "name": "Onion Rava Masala Dosa",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 900000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "rava-dosa-specials"
+  },
+  {
+    "id": "7KXApIewkNt9NXnPv0rN",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "categoryId": "dosa-specials",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 181000000
+    },
+    "description": "Crepe smeared with mild spiced red chutney & potato masala, and sprinkled with onion",
+    "name": "Onion Mysore Masala Dosa",
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:48:53.930Z",
+    "imageSource": "family_fallback",
+    "price": 16.99
+  },
+  {
+    "id": "7OubKUDzdo4tqvMTlSzy",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "categoryId": "rava-dosa-specials",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 683000000
+    },
+    "imageNeedsReview": false,
+    "isJain": false,
+    "description": "Crisp crepe made with semolina",
+    "name": "Plain Rava Dosa",
+    "updatedAt": "2026-08-11T12:48:54.197Z",
+    "price": 14.99
+  },
+  {
+    "id": "7qp0wQu8o46cAS1CF4Mh",
+    "isVegetarian": true,
+    "isJain": false,
+    "categoryId": "idli-vada",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "name": "Idli",
+    "updatedAt": "2026-08-11T12:48:54.473Z",
+    "imageUrl": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
+    "imageNeedsReview": false,
+    "price": 13.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191765,
+      "nanoseconds": 128000000
+    },
+    "description": "Steamed rice cake, 3 pieces"
+  },
+  {
+    "id": "972vyJ3ZgBmFigXydWDj",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 766000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "name": "Bisibele Bath",
+    "imageNeedsReview": false,
+    "isJain": false,
+    "price": 12.99,
+    "updatedAt": "2026-08-11T12:48:54.751Z",
+    "description": "Rice, lentils and vegetables in a spiced Karnataka style blend",
+    "categoryId": "rice"
+  },
+  {
+    "id": "9WuqDHxhX1E7TVKiZqrQ",
+    "price": 14.99,
+    "name": "Pappu (Nagarjuna style)",
+    "isJain": false,
+    "description": "Traditional Andhra-style lentil dal cooked with greens, garlic, and spices, finished with a flavorful tempering. Nagarjuna style",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 191000000
+    },
+    "imageNeedsReview": false,
+    "categoryId": "main-course-veg",
+    "imageSource": "automatic",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 229000000
+    }
+  },
+  {
+    "id": "9rN8CLdAk8UQyiWH9Ip6",
+    "description": "3 pieces",
+    "price": 28.99,
+    "imageUrl": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-08-11T12:48:55.269Z",
+    "imageSource": "family_fallback",
+    "name": "Idli with Chicken Gravy",
+    "isAvailable": true,
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "categoryId": "idli-vada",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 14000000
+    },
+    "isJain": false
+  },
+  {
+    "id": "AKvxhGIKqdyiynGrtH9g",
+    "isJain": false,
+    "name": "Veg Hakka Noodles",
+    "updatedAt": "2026-08-11T12:48:55.468Z",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "isVegetarian": true,
+    "price": 19.99,
+    "imageNeedsReview": false,
+    "categoryId": "veg-noodles-rice",
+    "description": "Classic Indo-Chinese noodles stir-fried with vegetables and savory sauces",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 360000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "AZ5PXwSjdfK9RFKjxYbc",
+    "imageUrl": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
+    "price": 33.99,
+    "updatedAt": "2026-08-11T12:48:55.729Z",
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "isJain": false,
+    "name": "Bangalore Mutton Donne Biryani",
+    "categoryId": "biryani",
+    "description": "Fragrant short-grain rice cooked with tender mutton, fresh herbs, and a signature green masala",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 333000000
+    },
+    "isVegetarian": true
+  },
+  {
+    "id": "B2R9mAuZOV4m6Ac5XGW9",
+    "imageSource": "automatic",
+    "isAvailable": true,
+    "price": 4.99,
+    "categoryId": "beverages",
+    "isJain": false,
+    "name": "Sparkling Water",
+    "updatedAt": "2026-08-11T12:48:56.049Z",
+    "imageNeedsReview": false,
+    "description": "",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191772,
+      "nanoseconds": 106000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1560023907-5f339617ea30?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true
+  },
+  {
+    "id": "BbhLtZwISTNsibAOY0o2",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "price": 23.99,
+    "categoryId": "non-veg-appetizers",
+    "isJain": false,
+    "name": "Prawn Pepper Fry",
+    "updatedAt": "2026-08-11T12:48:56.315Z",
+    "imageNeedsReview": false,
+    "description": "Juicy prawns sautéed with crushed black pepper, curry leaves, garlic, and spices-bold, spicy, and full of flavor",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191758,
+      "nanoseconds": 579000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1559742811-8228a365ccdf?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": false
+  },
+  {
+    "id": "Bl4xoDsHHCgHCDKCXo5e",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 215000000
+    },
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "categoryId": "beverages",
+    "imageUrl": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800",
+    "name": "Mango Lassi",
+    "description": "Creamy yogurt smoothie blended with sweet ripe mangoes",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:48:56.603Z",
+    "price": 7.99,
+    "isVegetarian": true
+  },
+  {
+    "id": "CSIAK3Dz5zj2WVtOZkqD",
+    "updatedAt": "2026-08-11T12:48:56.858Z",
+    "isJain": false,
+    "isAvailable": true,
+    "name": "Soda",
+    "imageSource": "automatic",
+    "imageNeedsReview": false,
+    "categoryId": "beverages",
+    "price": 2.99,
+    "imageUrl": "https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 808000000
+    },
+    "isVegetarian": true,
+    "description": "Coke, diet coke, coke zero, sunkist, ginger ale"
+  },
+  {
+    "id": "CZ79qUpFJSfgun0oHA2J",
+    "imageUrl": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800",
+    "description": "Rich and creamy Indian curry made with a mix of nine ingredients, including vegetables, nuts, and dried fruits. The name \"Navaratan\" translates to \"Nine gems,\" referring to the diverse ingredients that give this dish its unique flavor and texture",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 126000000
+    },
+    "price": 21.99,
+    "isVegetarian": true,
+    "categoryId": "main-course-veg",
+    "name": "Navaratan Vegetable Korma",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:48:57.028Z",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "isJain": false
+  },
+  {
+    "id": "D3PWAvKesY88UOAzwsW9",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 850000000
+    },
+    "isVegetarian": false,
+    "description": "Juicy prawns simmered in a fragrant Kerala-style coconut milk curry with curry leaves and coastal spices",
+    "imageNeedsReview": false,
+    "price": 29.99,
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-08-11T12:48:57.292Z",
+    "imageSource": "family_fallback",
+    "categoryId": "main-course-non-veg",
+    "name": "Cochin Prawn/Shrimp Curry",
+    "isJain": false
+  },
+  {
+    "id": "EiuGblmc6B10wrBipmn2",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 895000000
+    },
+    "description": "Juicy chicken dumplings simmered in a savory garlic, soy, and chili sauce",
+    "isVegetarian": false,
+    "name": "Chicken Manchurian Gravy",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:48:57.555Z",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "price": 22.99,
+    "categoryId": "indo-chinese-non-veg-gravy",
+    "imageSource": "family_fallback",
+    "imageNeedsReview": false
+  },
+  {
+    "id": "ElMkubNXJ2hLhHTFxfXh",
+    "imageUrl": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=800",
+    "imageNeedsReview": false,
+    "name": "Bottled Water",
+    "description": "",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 956000000
+    },
+    "isJain": false,
+    "price": 4.99,
+    "categoryId": "beverages",
+    "imageSource": "automatic",
+    "isVegetarian": true,
+    "updatedAt": "2026-08-11T12:48:57.816Z",
+    "isAvailable": true
+  },
+  {
+    "id": "GXP36qQBrQ79GQD93yjZ",
+    "imageNeedsReview": false,
+    "imageUrl": "https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&q=80&w=800",
+    "name": "Egg Curry",
+    "description": "Boiled eggs simmered in a spiced onion-tomato gravy. It is a popular Indian dish that pairs well with rice, naan, or roti",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 272000000
+    },
+    "isJain": false,
+    "price": 18,
+    "categoryId": "main-course-non-veg",
+    "isVegetarian": false,
+    "imageSource": "family_fallback",
+    "updatedAt": "2026-08-11T12:48:58.067Z",
+    "isAvailable": true
+  },
+  {
+    "id": "GvqF4CS7s2GlL0zmrzdp",
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "updatedAt": "2026-08-11T12:48:58.326Z",
+    "description": "Crisp and fried doughnut soaked in a flavorful, spiced lentil sambar, 1 piece",
+    "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
+    "price": 10.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191765,
+      "nanoseconds": 569000000
+    },
+    "categoryId": "idli-vada",
+    "name": "Vada in Sambar",
+    "isJain": false,
+    "isAvailable": true,
+    "imageSource": "family_fallback"
+  },
+  {
+    "id": "HS3G82KIBhYxKfr08Dxy",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 828000000
+    },
+    "name": "Onion Rava Dosa",
+    "categoryId": "rava-dosa-specials",
+    "description": "Crisp crepe made with semolina sprinkled and roasted with finely chopped onions and cilantro",
+    "price": 15.99,
+    "isJain": false,
+    "isVegetarian": true,
+    "updatedAt": "2026-08-11T12:48:58.581Z",
+    "imageUrl": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback"
+  },
+  {
+    "id": "IM2paxMBXt7gBIXwLMKn",
+    "price": 14.99,
+    "categoryId": "dosa-specials",
+    "name": "Masala Dosa",
+    "description": "Crepe with potato masala",
+    "updatedAt": "2026-08-11T12:48:58.828Z",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191762,
+      "nanoseconds": 578000000
+    },
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "imageNeedsReview": false,
+    "imageUrl": "https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "isVegetarian": true
+  },
+  {
+    "id": "ISoTXuXRKEEaIbNzCLS1",
+    "description": "A sizzling platter of assorted tandoori chicken, lamb, shrimp, and fish marinated in aromatic spices and grilled to perfection- mix chicken kebabs",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 78000000
+    },
+    "categoryId": "grill-specials",
+    "price": 32.99,
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:48:59.089Z",
+    "name": "Tandoori Chicken Full",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "family_fallback",
+    "imageNeedsReview": false
+  },
+  {
+    "id": "J0e6lAz4Alc80g0wr8ME",
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:48:59.301Z",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 588000000
+    },
+    "categoryId": "dessert",
+    "description": "Slow-cooked moong lentils in ghee, delicately sweetened and flavored with cardamom",
+    "price": 8.99,
+    "name": "Moong Dal Halwa"
+  },
+  {
+    "id": "KXFYTyspv5deqAgDbJ1a",
+    "isVegetarian": true,
+    "description": "Dish made with okra (bhindi) stir-fried with onions, tomatoes, and aromatic spices",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 660000000
+    },
+    "imageNeedsReview": false,
+    "isJain": false,
+    "categoryId": "main-course-veg",
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:48:59.551Z",
+    "imageSource": "family_fallback",
+    "name": "Bhindi Masala",
+    "price": 18.99
+  },
+  {
+    "id": "L1ETh9rDngSzv1eKiqWM",
+    "isJain": false,
+    "categoryId": "dosa-specials",
+    "isVegetarian": true,
+    "description": "3 small soft, light, and spongy dosas served with chicken gravy",
+    "imageUrl": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&q=80&w=800",
+    "name": "Set Dosa with Chicken Gravy",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 357000000
+    },
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "price": 28.99,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:48:59.812Z"
+  },
+  {
+    "id": "Lq4HBRyxA96Crk9qVHTK",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 804000000
+    },
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "categoryId": "specialty-dosa",
+    "isVegetarian": true,
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:00.133Z",
+    "name": "Cheese Mysore Masala Dosa",
+    "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
+    "description": "Crepe smeared with mild spiced red chutney, sprinkled with cheese & stuffed with potato masala",
+    "price": 18.99
+  },
+  {
+    "id": "MYUzyQPuCQSIVNUg7qMN",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 385000000
+    },
+    "description": "Thick crepe sprinkled and roasted with finely chopped onion and topped with tomato & cilantro",
+    "price": 16.99,
+    "isVegetarian": true,
+    "name": "Tomato Onion Uttapam",
+    "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:49:00.407Z",
+    "imageSource": "family_fallback",
+    "imageNeedsReview": false,
+    "isJain": false,
+    "categoryId": "uttapam-special"
+  },
+  {
+    "id": "MfZ30OgzT8R6gjeL4oD1",
+    "imageNeedsReview": false,
+    "isJain": true,
+    "description": "Roasted Peanuts tossed with onions, tomatoes, green chilies, lime and spices",
+    "categoryId": "veg-appetizers",
+    "updatedAt": "2026-08-11T12:49:00.663Z",
+    "isVegetarian": true,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "name": "Masala Peanut",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 369000000
+    },
+    "price": 11.99,
+    "imageUrl": "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "NMw5M8DmYtlfez5hZP89",
+    "categoryId": "dessert",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "family_fallback",
+    "updatedAt": "2026-08-11T12:49:00.921Z",
+    "isJain": false,
+    "price": 8.99,
+    "imageNeedsReview": false,
+    "description": "Traditional South Indian dessert made with milk, jaggery, and vermicelli or lentils",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 749000000
+    },
+    "name": "Payasa"
+  },
+  {
+    "id": "NkV23dZrg33OZeEeupfA",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 297000000
+    },
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "categoryId": "dessert",
+    "price": 7.99,
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "description": "Cottage cheese patties soaked in saffron-flavored milk",
+    "updatedAt": "2026-08-11T12:49:01.181Z",
+    "name": "Rasmalai",
+    "isJain": false
+  },
+  {
+    "id": "PoffPrdRprkR4Y3yBpqh",
+    "isVegetarian": true,
+    "description": "Grilled cottage cheese marinated in Indian spices",
+    "categoryId": "veg-appetizers",
+    "imageUrl": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053549,
+      "nanoseconds": 599000000
+    },
+    "imageSource": "manual",
+    "name": "Chilli Paneer",
+    "isAvailable": true,
+    "isJain": false,
+    "price": 19.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 76000000
+    },
+    "imageNeedsReview": false
+  },
+  {
+    "id": "Q49XycXO8SW3g1OpGsvC",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:01.639Z",
+    "isVegetarian": true,
+    "price": 17.99,
+    "isJain": false,
+    "description": "1/2 or full chicken marinated overnight with various spices, herbs, and yogurt, then roasted in a tandoor",
+    "name": "Tandoori Chicken Half",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 785000000
+    },
+    "categoryId": "grill-specials",
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true
+  },
+  {
+    "id": "QftQKkaC2waQb9GYsWqo",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "categoryId": "indo-chinese-veg-gravy",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:01.894Z",
+    "isVegetarian": true,
+    "name": "Gobi Manchurian Gravy",
+    "description": "Crispy cauliflower florets tossed in a flavorful Indo-Chinese garlic chili sauce",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "price": 19.99,
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 601000000
+    }
+  },
+  {
+    "id": "R6eEMDljDUZ2xUfgmcEu",
+    "updatedAt": "2026-08-11T12:49:02.188Z",
+    "price": 35.99,
+    "name": "Set Dosa with Mutton Gravy",
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "isVegetarian": true,
+    "isJain": false,
+    "imageSource": "family_fallback",
+    "categoryId": "dosa-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 500000000
+    },
+    "description": "3 small soft, light, and spongy dosas served with bone in mutton (Goat) gravy"
+  },
+  {
+    "id": "Rk3oa2NTDW2n4jFmdHff",
+    "isJain": false,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-08-11T12:49:02.361Z",
+    "name": "Ice Cream",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "imageNeedsReview": false,
+    "price": 6.99,
+    "description": "Vanilla, mango, strawberry, pista",
+    "isVegetarian": true,
+    "categoryId": "dessert",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 5000000
+    }
+  },
+  {
+    "id": "S8R45GozAASza4OPWwGU",
+    "description": "Crepe sprinkled with grated cheese",
+    "imageUrl": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&q=80&w=800",
+    "price": 15.99,
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 657000000
+    },
+    "isJain": false,
+    "name": "Cheese Dosa",
+    "imageSource": "family_fallback",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:49:02.621Z",
+    "categoryId": "specialty-dosa"
+  },
+  {
+    "id": "SEZjEdemROKee32qw2Y1",
+    "description": "Slow-cooked lamb in a rich, creamy cashew and yogurt gravy with aromatic Mughlai spices",
+    "price": 31.99,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:02.868Z",
+    "isVegetarian": false,
+    "imageUrl": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191762,
+      "nanoseconds": 143000000
+    },
+    "imageSource": "family_fallback",
+    "isJain": false,
+    "isAvailable": true,
+    "categoryId": "main-course-non-veg",
+    "name": "Lamb Korma"
+  },
+  {
+    "id": "SUFXHbvfxW7FNSZycg7d",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 701000000
+    },
+    "isJain": false,
+    "categoryId": "main-course-non-veg",
+    "price": 29.99,
+    "imageNeedsReview": false,
+    "description": "Fresh fish simmered in a spicy coconut-tamarind gravy with authentic Mangalorean coastal flavors",
+    "imageUrl": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": false,
+    "name": "Mangalore Fish Curry",
+    "updatedAt": "2026-08-11T12:49:03.126Z"
+  },
+  {
+    "id": "TAT7TqWSUC6h0agDBySS",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 442000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "name": "Gajar Halwa",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "isJain": false,
+    "categoryId": "dessert",
+    "price": 8.99,
+    "updatedAt": "2026-08-11T12:49:03.384Z",
+    "isVegetarian": true,
+    "description": "Carrot pudding cooked with milk and nuts",
+    "imageNeedsReview": false
+  },
+  {
+    "id": "UoLwnm2y1Vpq8ZylsKvs",
+    "createdAt": "2026-04-09T11:39:45.244Z",
+    "isJain": false,
+    "description": "A Punjabi Thali is a hearty,, traditional North Indian platter known for rich flavors,, generous use of ghee, and buttery dishes. It typically includes Dal Makhani, Paneer (Paneer Makhani/Shahi Paneer), Pindi Chole, and diverse breads like Amritsari Kulcha or Lachha Parantha. Served with rice, lassi, and accompaniments, it offers a complete, indulgent culinary experience.",
+    "name": "Punjabi Thali",
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "categoryId": "S7QLqDKtIwo3puYtRLdG",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053129,
+      "nanoseconds": 257000000
+    },
+    "price": 480,
+    "isAvailable": false,
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "Uphu1DINO1GzKob75yGs",
+    "description": "Crispy crepe smeared with Nutella",
+    "name": "Chocolate Dosa",
+    "updatedAt": "2026-08-11T12:49:03.964Z",
+    "categoryId": "specialty-dosa",
+    "isJain": false,
+    "price": 13.99,
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 93000000
+    }
+  },
+  {
+    "id": "XNFiArpMqrBhFvy9TVIr",
+    "updatedAt": "2026-08-11T12:49:04.221Z",
+    "imageUrl": "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&q=80&w=800",
+    "description": "Chicken marinated with flour spices, yogurt, egg and curry leaves and then fried until golden and crisp",
+    "name": "Chicken 65",
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191758,
+      "nanoseconds": 247000000
+    },
+    "price": 19.99,
+    "isVegetarian": false,
+    "imageNeedsReview": false,
+    "categoryId": "non-veg-appetizers",
+    "isAvailable": true,
+    "imageSource": "family_fallback"
+  },
+  {
+    "id": "XfdsUeOY1ImCUYroJtva",
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "name": "Mutton curry (Bangalore style)",
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 999000000
+    },
+    "price": 31.99,
+    "categoryId": "main-course-non-veg",
+    "isJain": false,
+    "description": "Mandya style tender mutton slow-cooked in a spiced onion-tomato-based sauce",
+    "isVegetarian": false,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 332000000
+    }
+  },
+  {
+    "id": "Y9jRXNsFIht2GhoKpY0A",
+    "isAvailable": true,
+    "name": "Masala Puri",
+    "imageNeedsReview": false,
+    "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 512000000
+    },
+    "price": 12.99,
+    "categoryId": "veg-appetizers",
+    "isJain": false,
+    "description": "Crispy chat puris topped with flavorful peas curry, onions, chutneys and fresh herbs for a classic Bangalore street style chaat",
+    "isVegetarian": true,
+    "updatedAt": "2026-08-11T12:49:04.767Z"
+  },
+  {
+    "id": "YirhCMv2HqJufSZKukld",
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1576092762791-dd9e2220abd4?auto=format&fit=crop&q=80&w=800",
+    "price": 5.99,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 359000000
+    },
+    "name": "Rose Milk",
+    "categoryId": "beverages",
+    "updatedAt": "2026-08-11T12:49:05.141Z",
+    "imageNeedsReview": false,
+    "description": "Chilled milk infused with fragrant rose syrup, served refreshing and lightly sweet",
+    "isJain": false
+  },
+  {
+    "id": "ZkF9ZSg3F3lxtok3c5tS",
+    "isVegetarian": true,
+    "price": 11.99,
+    "isJain": false,
+    "imageSource": "family_fallback",
+    "name": "Idli in Sambar",
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:49:05.404Z",
+    "imageNeedsReview": false,
+    "categoryId": "idli-vada",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191765,
+      "nanoseconds": 271000000
+    },
+    "description": "Soft steamed idlis soaked in a flavorful, spiced lentil sambar, 2 pieces",
+    "imageUrl": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "aggcGSq4LoqAf1GDHbmi",
+    "isJain": false,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "name": "Chicken Hot and Sour Soup",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 488000000
+    },
+    "isVegetarian": true,
+    "description": "A bold Indo-Chinese soup with tender chicken, mushrooms, and vegetables in a tangy, spicy broth",
+    "price": 9.99,
+    "updatedAt": "2026-08-11T12:49:05.681Z",
+    "imageNeedsReview": false,
+    "categoryId": "soups",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "ai01oRqNSqNrGAumcqxz",
+    "imageSource": "manual",
+    "isAvailable": false,
+    "price": 360,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053129,
+      "nanoseconds": 393000000
+    },
+    "categoryId": "S7QLqDKtIwo3puYtRLdG",
+    "imageNeedsReview": false,
+    "isJain": false,
+    "isVegetarian": true,
+    "description": "A mild Gujarati Thali is a balanced, vegetarian meal known for its subtle sweetness and, generally, low spice levels. Key components include delicate Dhokla or Khandvi (farsan), a sweet-and-sour dal, seasonal veggie shaak, soft rotli, and sweetened yogurt (shrikhand), often served with chaas (buttermilk). It represents a gentle, traditional home-cooked style.",
+    "name": "Mild Gujrati Thali",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "createdAt": "2026-04-09T11:50:07.587Z"
+  },
+  {
+    "id": "ckr4J960a4tJbIQjS6iv",
+    "price": 21.99,
+    "name": "Saag Paneer",
+    "updatedAt": "2026-08-11T12:49:06.208Z",
+    "isJain": false,
+    "categoryId": "main-course-veg",
+    "imageNeedsReview": false,
+    "description": "Paneer (Indian cottage cheese) is cooked in a smooth, flavorful spinach-based gravy",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 978000000
+    }
+  },
+  {
+    "id": "dAUKfUgqvyXJqJUUVI46",
+    "isJain": false,
+    "categoryId": "idli-vada",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:06.467Z",
+    "imageSource": "family_fallback",
+    "name": "Medu Vada",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "price": 11.99,
+    "imageUrl": "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&q=80&w=800",
+    "description": "Crisp and fried doughnut made from black grams, 2 pieces",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191765,
+      "nanoseconds": 424000000
+    }
+  },
+  {
+    "id": "dmDWtX3EdTUDRqx58FBm",
+    "categoryId": "non-veg-appetizers",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "updatedAt": "2026-08-11T12:49:06.728Z",
+    "name": "Chicken Lollipop",
+    "isVegetarian": false,
+    "imageNeedsReview": false,
+    "isJain": false,
+    "imageUrl": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80&w=800",
+    "price": 19.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191758,
+      "nanoseconds": 432000000
+    },
+    "description": "Frenched chicken wings marinated with spices, deep-fried until crispy, and tossed in a spicy Indo-Chinese sauce"
+  },
+  {
+    "id": "eDha0k5qxkGCULVgfaWQ",
+    "isAvailable": true,
+    "categoryId": "beverages",
+    "updatedAt": "2026-08-11T12:49:06.999Z",
+    "imageSource": "family_fallback",
+    "name": "Badam Milk",
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "isJain": false,
+    "imageUrl": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&q=80&w=800",
+    "price": 5.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 506000000
+    },
+    "description": "Traditional Indian almond-based drink made with milk, ground almonds, sugar, and aromatic spices like cardamom and saffron"
+  },
+  {
+    "id": "eUv4OBqyVQ68PVYMpSsi",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:07.422Z",
+    "name": "Chana Masala",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "categoryId": "main-course-veg",
+    "imageNeedsReview": false,
+    "imageUrl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "price": 18.99,
+    "description": "Dish made with chickpeas simmered in a spiced onion-tomato gravy",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 373000000
+    }
+  },
+  {
+    "id": "h2q0qrKF57swceYvsYAq",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:07.680Z",
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "name": "Samosa",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191756,
+      "nanoseconds": 624000000
+    },
+    "categoryId": "veg-appetizers",
+    "price": 8.99,
+    "isVegetarian": true,
+    "description": "2 pieces of crisp pastries stuffed with spiced potatoes and peas"
+  },
+  {
+    "id": "i4AuZXzGWDsRzbdGUwAf",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 338000000
+    },
+    "imageSource": "family_fallback",
+    "isVegetarian": true,
+    "isJain": false,
+    "isAvailable": true,
+    "categoryId": "soups",
+    "description": "A bold Indo-Chinese soup with mushrooms and vegetables in a tangy, spicy broth",
+    "updatedAt": "2026-08-11T12:49:07.914Z",
+    "name": "Veg Hot and Sour Soup",
+    "imageNeedsReview": false,
+    "price": 8.99,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "iGyzBxk4OqiKyj9o0LHb",
+    "isVegetarian": true,
+    "price": 7,
+    "isJain": false,
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 709000000
+    },
+    "name": "Garlic Chilli Naan",
+    "isAvailable": true,
+    "imageUrl": "https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "breads",
+    "imageNeedsReview": false,
+    "description": "Flavorful twist on traditional naan, infused with garlic butter and spicy chilies for an extra kick",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053551,
+      "nanoseconds": 182000000
+    }
+  },
+  {
+    "id": "ijig94ebeR0yLJ8bKGTS",
+    "isVegetarian": true,
+    "price": 3.99,
+    "isJain": false,
+    "name": "Masala Chai",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 69000000
+    },
+    "imageNeedsReview": false,
+    "description": "Traditional Indian milk tea brewed with aromatic spices and fresh ginger",
+    "imageUrl": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "beverages",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:49:08.487Z"
+  },
+  {
+    "id": "k1nDUf6kOvVlGinb96G0",
+    "isJain": false,
+    "name": "Veg Momos",
+    "updatedAt": "2026-08-11T12:49:08.758Z",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "isVegetarian": true,
+    "price": 14.99,
+    "imageNeedsReview": false,
+    "categoryId": "veg-appetizers",
+    "description": "Steamed dumplings filled with seasoned vegetables, served with spicy chutney",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 804000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "k6lpo7cmfgIcpEBd7PRz",
+    "updatedAt": "2026-08-11T12:49:09.052Z",
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "isJain": false,
+    "imageSource": "family_fallback",
+    "categoryId": "veg-noodles-rice",
+    "description": "Wok-tossed rice with fresh vegetables, garlic, and light soy seasoning",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 912000000
+    },
+    "name": "Veg Fried Rice",
+    "price": 19.99,
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "kUkPyCAt1SRXRTCLmUAU",
+    "description": "Flaky, layered flatbreads with optional savory fillings",
+    "name": "Laccha Paratha",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:09.312Z",
+    "categoryId": "breads",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 400000000
+    },
+    "isJain": false,
+    "price": 6,
+    "isAvailable": true,
+    "isVegetarian": true,
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "kmIr6RSg0TBlOv27Hf5Q",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191762,
+      "nanoseconds": 885000000
+    },
+    "description": "Open-style crispy dosa roasted in ghee, topped with spiced potato masala",
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "categoryId": "dosa-specials",
+    "isAvailable": true,
+    "name": "Ghee Open Masala Dosa",
+    "imageSource": "family_fallback",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:09.578Z",
+    "price": 16.99,
+    "imageUrl": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "l6ctzwsYcZM71hZgpnpC",
+    "price": 18.99,
+    "name": "Bhagara Baingan",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "isJain": false,
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191760,
+      "nanoseconds": 516000000
+    },
+    "categoryId": "main-course-veg",
+    "updatedAt": "2026-08-11T12:49:09.859Z",
+    "imageNeedsReview": false,
+    "description": "Baby eggplants simmered in a rich, tangy gravy of peanuts, sesame, coconut, and aromatic spices-classic Hyderabadi flavor with a smooth, nutty finish"
+  },
+  {
+    "id": "lGVf8BCQSgHjoLsjcSCg",
+    "price": 24.99,
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "name": "Chef Special Chicken 65 Biryani",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 186000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "biryani",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:10.127Z",
+    "description": "Fragrant biryani layered with crispy, spicy Chicken 65, tossed in bold South Indian flavors—rich, fiery, and chef's signature twist"
+  },
+  {
+    "id": "lkcFtSHuWvfwBhc3x7tF",
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 561000000
+    },
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "updatedAt": "2026-08-11T12:49:10.419Z",
+    "isJain": false,
+    "categoryId": "breads",
+    "description": "Soft Indian bread topped with garlic and butter",
+    "price": 6,
+    "name": "Garlic Naan"
+  },
+  {
+    "id": "luE0Pf0OmF4ikB7cCIrS",
+    "categoryId": "main-course-non-veg",
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:10.679Z",
+    "price": 23.99,
+    "imageUrl": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
+    "description": "Char-grilled chicken tikka simmered in a rich, creamy tomato masala",
+    "isVegetarian": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 557000000
+    },
+    "name": "Chicken Tikka Masala",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "isJain": false
+  },
+  {
+    "id": "m3Gq6M0cdUqVQFzxJnuh",
+    "imageSource": "placeholder",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 57000000
+    },
+    "categoryId": "veg-noodles-rice",
+    "description": "Flavorful fried rice with vegetables in a bold and spicy Szechuan sauce",
+    "name": "Veg Schezuan Rice",
+    "imageNeedsReview": true,
+    "price": 19.99,
+    "updatedAt": "2026-08-11T12:49:10.933Z",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "nCZw72stSsjaxobtTDfK",
+    "price": 15.99,
+    "description": "Crispy crepe generously roasted in butter (benne) and filled with a spiced potato masala",
+    "name": "Benne Masala Dosa",
+    "imageUrl": "https://images.unsplash.com/photo-1610192244270-3c12a7a40306?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191762,
+      "nanoseconds": 738000000
+    },
+    "categoryId": "dosa-specials",
+    "isJain": false,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:11.189Z",
+    "isAvailable": true,
+    "imageSource": "family_fallback"
+  },
+  {
+    "id": "oG00dJzcYZKWjjSDHT1a",
+    "categoryId": "veg-appetizers",
+    "price": 19.99,
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191756,
+      "nanoseconds": 928000000
+    },
+    "description": "Crispy cauliflower florets tossed in a flavorful, spicy, and tangy manchurian sauce",
+    "name": "Gobi Manchurian",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053549,
+      "nanoseconds": 350000000
+    },
+    "imageNeedsReview": false,
+    "isJain": false
+  },
+  {
+    "id": "oGpve56LpHbwLHk8hnHy",
+    "description": "Soft, oven-baked naan stuffed with melted cheese",
+    "isJain": false,
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191769,
+      "nanoseconds": 860000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "breads",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:20.715Z",
+    "name": "Cheese Naan",
+    "price": 7
+  },
+  {
+    "id": "ok9iB1RCqdEV9HJ8K7Sy",
+    "name": "Chilli Chicken",
+    "imageUrl": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "categoryId": "non-veg-appetizers",
+    "description": "Boneless chicken is marinated in flavorful sauces, fried until crispy, and then stir-fried with lots of ginger, garlic, onions, bell peppers, and sauces",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053549,
+      "nanoseconds": 909000000
+    },
+    "price": 19.99,
+    "isVegetarian": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191758,
+      "nanoseconds": 99000000
+    },
+    "imageSource": "placeholder",
+    "isAvailable": true,
+    "imageNeedsReview": true
+  },
+  {
+    "id": "opBEgUMKLYx6fCiiXmOw",
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "imageUrl": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191765,
+      "nanoseconds": 863000000
+    },
+    "categoryId": "idli-vada",
+    "name": "Thatte Idli with Ghee Pudi",
+    "isJain": false,
+    "price": 10.99,
+    "updatedAt": "2026-08-11T12:49:21.255Z",
+    "description": "Soft, plate-sized thatte idli topped with aromatic ghee and spicy podi"
+  },
+  {
+    "id": "p3baFlGEmw5R5if8X6yh",
+    "isJain": false,
+    "name": "Chicken Fried Rice",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 519000000
+    },
+    "description": "Wok-fried rice with tender chicken, egg, vegetables, and savory soy flavors",
+    "categoryId": "non-veg-noodles-rice",
+    "updatedAt": "2026-08-11T12:49:21.488Z",
+    "isVegetarian": false,
+    "price": 21.99,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "imageSource": "placeholder",
+    "imageNeedsReview": true
+  },
+  {
+    "id": "pNeRF6sUhklme8iYp4u9",
+    "categoryId": "main-course-veg",
+    "imageUrl": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-08-11T12:49:21.760Z",
+    "description": "Cottage cheese cubes in a rich and creamy tomato-based gravy",
+    "price": 21.99,
+    "isJain": false,
+    "name": "Paneer Butter Masala",
+    "isVegetarian": true,
+    "imageSource": "placeholder",
+    "imageNeedsReview": true,
+    "createdAt": "2026-04-09T11:34:52.533Z",
+    "isAvailable": true
+  },
+  {
+    "id": "pYskmHafpd5ORca2eWwX",
+    "isVegetarian": false,
+    "price": 23.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191761,
+      "nanoseconds": 415000000
+    },
+    "name": "Butter Chicken",
+    "isAvailable": true,
+    "imageSource": "placeholder",
+    "imageUrl": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800",
+    "updatedAt": "2026-08-11T12:49:22.155Z",
+    "categoryId": "main-course-non-veg",
+    "isJain": false,
+    "description": "Creamy tomato-based curry with tender chicken pieces",
+    "imageNeedsReview": true
+  },
+  {
+    "id": "q3rkl2BP1D7E7HR10gmL",
+    "updatedAt": "2026-08-11T12:49:22.416Z",
+    "price": 17.99,
+    "categoryId": "mini-tiffin",
+    "isVegetarian": true,
+    "imageSource": "placeholder",
+    "isAvailable": true,
+    "isJain": false,
+    "name": "Tiffin 1 - Mini Masala Dosa, Idli & Vada",
+    "description": "A combination of one steamed rice cake, one lentil doughnut & mini masala dosa",
+    "imageNeedsReview": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 312000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "qRqJbslPhA9xWRHi40y6",
+    "imageNeedsReview": false,
+    "description": "Dosa and Sambar form a quintessential South Indian breakfast pairing, combining crispy, fermented rice-and-lentil crepes (dosa) with a savory, tangy, and spiced lentil-vegetable stew (sambar). This high-protein, nutritious, and high-carb combination is commonly paired with coconut chutney and is a cornerstone of Indian cuisine, often served fermented.",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053129,
+      "nanoseconds": 532000000
+    },
+    "isJain": false,
+    "price": 250,
+    "categoryId": "south-indian",
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "name": "Dosa Sambar",
+    "imageSource": "family_fallback",
+    "isAvailable": false,
+    "createdAt": "2026-04-08T04:07:44.557Z"
+  },
+  {
+    "id": "qSeTghIDhtYCEUsgwAJO",
+    "price": 12.99,
+    "name": "Plain Dosa",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191762,
+      "nanoseconds": 436000000
+    },
+    "categoryId": "dosa-specials",
+    "imageNeedsReview": false,
+    "description": "Crepe made with fermented rice and lentil batter",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:22.943Z",
+    "imageUrl": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true
+  },
+  {
+    "id": "qaxjgCrE9cPHERtXxREP",
+    "price": 8.99,
+    "name": "Rasam Soup",
+    "imageSource": "placeholder",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 42000000
+    },
+    "categoryId": "soups",
+    "description": "A classic South Indian broth made with tamarind, tomatoes, and aromatic spices, known for its light, tangy, and soothing flavor",
+    "imageNeedsReview": true,
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:23.264Z",
+    "isVegetarian": true,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "qpj1sTedu8WySFmsBOMv",
+    "categoryId": "specialty-dosa",
+    "price": 18.99,
+    "updatedAt": "2026-08-11T12:49:23.563Z",
+    "isVegetarian": true,
+    "description": "Crepe sprinkled with grated paneer and smeared with red chutney and stuffed with potato masala",
+    "name": "Paneer Mysore Masala Dosa",
+    "isJain": false,
+    "imageUrl": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 948000000
+    },
+    "imageNeedsReview": false
+  },
+  {
+    "id": "sSZ3O7meEVDadPfQjsT6",
+    "description": "Noodles tossed with chicken in a spicy and flavorful Schezwan sauce",
+    "categoryId": "non-veg-noodles-rice",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "price": 21.99,
+    "updatedAt": "2026-08-11T12:49:23.906Z",
+    "imageSource": "placeholder",
+    "name": "Chicken Schezwan Noodles",
+    "isAvailable": true,
+    "imageNeedsReview": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 811000000
+    },
+    "isVegetarian": false,
+    "isJain": false
+  },
+  {
+    "id": "siYr9EbGHZxjn0iYGLVN",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 616000000
+    },
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "isJain": false,
+    "name": "Onion Chilli Uttapam",
+    "imageUrl": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
+    "imageNeedsReview": false,
+    "isVegetarian": true,
+    "categoryId": "uttapam-special",
+    "price": 15.99,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191764,
+      "nanoseconds": 237000000
+    },
+    "description": "Thick crepe sprinkled and roasted with finely chopped onion, green chilli & cilantro"
+  },
+  {
+    "id": "t8cr8fo3WojchkBu5fpO",
+    "updatedAt": "2026-08-11T12:49:24.490Z",
+    "price": 7.99,
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "name": "Gulab Jamun",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 150000000
+    },
+    "imageNeedsReview": false,
+    "isJain": false,
+    "categoryId": "dessert",
+    "description": "Fried dumplings soaked in sugar syrup"
+  },
+  {
+    "id": "te04ILCNfyoBgA72t0wg",
+    "imageNeedsReview": true,
+    "description": "Traditional South Indian filter coffee is brewed strongly and served with hot milk and rich foam",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191770,
+      "nanoseconds": 898000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "categoryId": "beverages",
+    "price": 5.99,
+    "isVegetarian": true,
+    "imageSource": "placeholder",
+    "updatedAt": "2026-08-11T12:49:24.915Z",
+    "isAvailable": true,
+    "name": "Filter Coffee"
+  },
+  {
+    "id": "tistQUZYN2oqvCjmapKx",
+    "categoryId": "ZdEJN8qfHD1skLooJsQZ",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053129,
+      "nanoseconds": 668000000
+    },
+    "imageSource": "manual",
+    "isJain": false,
+    "isBestseller": false,
+    "price": 560,
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "name": "7 Family Combo Meals ",
+    "isAvailable": false,
+    "createdAt": "2026-04-09T12:01:21.891Z",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isChefsSpecial": false,
+    "description": "Enjoy with Family\n"
+  },
+  {
+    "id": "twITFIn5Sk0gglIXlkiL",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191766,
+      "nanoseconds": 165000000
+    },
+    "imageSource": "family_fallback",
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "categoryId": "idli-vada",
+    "imageUrl": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=800",
+    "name": "Idli with Mutton Gravy",
+    "description": "3 pieces Idli served with bone in Mutton (Goat) gravy",
+    "updatedAt": "2026-08-11T12:49:25.455Z",
+    "isJain": false,
+    "price": 35.99
+  },
+  {
+    "id": "uAYvYFs6waTSfTKygdC2",
+    "price": 12.99,
+    "imageSource": "family_fallback",
+    "name": "Palak Chaat",
+    "imageUrl": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": true,
+    "isVegetarian": true,
+    "imageNeedsReview": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191757,
+      "nanoseconds": 660000000
+    },
+    "description": "Crispy battered spinach leaves topped with yogurt, chutneys and tangy chat spices",
+    "categoryId": "veg-appetizers",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:25.713Z"
+  },
+  {
+    "id": "uHiE3WG5B8HoAIx4bYpY",
+    "imageSource": "family_fallback",
+    "price": 8.99,
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191756,
+      "nanoseconds": 464000000
+    },
+    "name": "Masala Papad",
+    "isVegetarian": true,
+    "isJain": true,
+    "imageNeedsReview": false,
+    "categoryId": "veg-appetizers",
+    "updatedAt": "2026-08-11T12:49:25.969Z",
+    "description": "2 pieces of crunchy papad topped with a fresh mix of onions, tomatoes, chilies, and herbs",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "uNMecqv1K6Rf9hzh22jy",
+    "imageUrl": "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&q=80&w=800",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191771,
+      "nanoseconds": 656000000
+    },
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "imageNeedsReview": false,
+    "name": "Buttermilk",
+    "description": "Refreshing yogurt-based drink blended with water, cilantro, and a hint of salt",
+    "updatedAt": "2026-08-11T12:49:26.170Z",
+    "isJain": false,
+    "categoryId": "beverages",
+    "price": 4.99,
+    "isVegetarian": true
+  },
+  {
+    "id": "uZW2gSYdkCgNEdEKLqGM",
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191763,
+      "nanoseconds": 34000000
+    },
+    "isAvailable": true,
+    "isVegetarian": true,
+    "description": "Crepe smeared with mild spiced red chutney & potato masala",
+    "categoryId": "dosa-specials",
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:26.424Z",
+    "imageUrl": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=800",
+    "name": "Mysore Masala Dosa",
+    "price": 15.99
+  },
+  {
+    "id": "vPn8qJwDJdQ71LRE2wLr",
+    "imageUrl": "https://images.unsplash.com/photo-1576092762791-dd9e2220abd4?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "idli-vada",
+    "description": "2 idlis & 1 medu vada",
+    "isVegetarian": true,
+    "price": 13.99,
+    "updatedAt": "2026-08-11T12:49:26.686Z",
+    "imageNeedsReview": false,
+    "isAvailable": true,
+    "name": "Idli/Vada Combo",
+    "imageSource": "family_fallback",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191765,
+      "nanoseconds": 719000000
+    },
+    "isJain": false
+  },
+  {
+    "id": "w0c6VbEJQI6csH90GrFu",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isVegetarian": true,
+    "categoryId": "soups",
+    "isAvailable": true,
+    "imageSource": "family_fallback",
+    "updatedAt": "2026-08-11T12:49:26.920Z",
+    "price": 8.99,
+    "name": "Sweet Corn Soup",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 191000000
+    },
+    "isJain": false,
+    "imageNeedsReview": false,
+    "description": "A comforting blend of sweet corn, vegetables, and mild spices, simmered into a smooth, flavorful soup"
+  },
+  {
+    "id": "wIWaTndbsFFZudJdCV7L",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191758,
+      "nanoseconds": 898000000
+    },
+    "name": "Hyderabadi Goat Sukka",
+    "imageSource": "family_fallback",
+    "imageUrl": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
+    "categoryId": "non-veg-appetizers",
+    "price": 34.99,
+    "isJain": false,
+    "imageNeedsReview": false,
+    "description": "Tender goat pieces slow-cooked and tossed in a spicy, dry Hyderabadi masala with curry leaves, black pepper, and aromatic spices for a bold, rustic flavor",
+    "updatedAt": "2026-08-11T12:49:27.206Z",
+    "isVegetarian": false
+  },
+  {
+    "id": "wxP3E3HwHvSDXnJREP6y",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "categoryId": "grill-specials",
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191759,
+      "nanoseconds": 930000000
+    },
+    "imageNeedsReview": false,
+    "name": "Tandoor Paneer Tikka Grill",
+    "description": "Char-grilled tandoori vegetables & paneer (paneer, broccoli, cauliflower, paprika & onions) served sizzling and a rich, flavorful sauce",
+    "price": 24.99,
+    "updatedAt": "2026-08-11T12:49:27.394Z",
+    "isVegetarian": true
+  },
+  {
+    "id": "xKbuWgUPriG9YULmNmeW",
+    "price": 140,
+    "categoryId": "north-indian",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053129,
+      "nanoseconds": 807000000
+    },
+    "description": "Malai Kofta is a popular, luxurious North Indian vegetarian dish consisting of deep-fried dumplings (koftas) made from paneer (cottage cheese) and potatoes, served in a rich, creamy, and mildly spiced tomato-onion curry. It is a staple at celebrations and top restaurants, known for its soft, melt-in-the-mouth texture.",
+    "name": "Malai Kofta",
+    "imageUrl": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
+    "isAvailable": false,
+    "imageSource": "family_fallback",
+    "createdAt": "2026-04-09T11:33:04.488Z",
+    "isJain": false,
+    "isVegetarian": true,
+    "imageNeedsReview": false
+  },
+  {
+    "id": "yHB2tdZlQuUjoeIcStB7",
+    "imageUrl": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800",
+    "imageNeedsReview": false,
+    "imageSource": "family_fallback",
+    "isVegetarian": true,
+    "isAvailable": true,
+    "price": 19.99,
+    "updatedAt": "2026-08-11T12:49:27.881Z",
+    "categoryId": "biryani",
+    "description": "Fragrant rice cooked with marinated vegetables",
+    "name": "Veg Biryani",
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 41000000
+    }
+  },
+  {
+    "id": "yP9nly009nj8OAmJ2sHx",
+    "description": "Fried rice with chicken, egg, cooked in a bold and spicy Szechuan sauce",
+    "isVegetarian": false,
+    "price": 21.99,
+    "categoryId": "non-veg-noodles-rice",
+    "isJain": false,
+    "name": "Chicken Schezwan Rice",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 664000000
+    },
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "family_fallback",
+    "isAvailable": true,
+    "imageNeedsReview": false,
+    "updatedAt": "2026-08-11T12:49:28.107Z"
+  },
+  {
+    "id": "yTrg7l7jtLSPrK0HEYkM",
+    "description": "Stir-fried noodles with chicken, vegetables, and classic Hakka-style seasoning",
+    "imageNeedsReview": true,
+    "isVegetarian": false,
+    "imageUrl": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
+    "price": 21.99,
+    "updatedAt": "2026-08-11T12:49:28.380Z",
+    "categoryId": "non-veg-noodles-rice",
+    "isJain": false,
+    "name": "Chicken Hakka Noodles",
+    "imageSource": "placeholder",
+    "isAvailable": true,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191768,
+      "nanoseconds": 955000000
+    }
+  },
+  {
+    "id": "zOdmJ4Vf5KI9OBEJXHsN",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191767,
+      "nanoseconds": 475000000
+    },
+    "imageNeedsReview": true,
+    "name": "Steamed Rice",
+    "isAvailable": true,
+    "imageSource": "placeholder",
+    "isVegetarian": true,
+    "categoryId": "rice",
+    "price": 7.99,
+    "isJain": false,
+    "updatedAt": "2026-08-11T12:49:28.649Z",
+    "description": "Fluffy basmati rice",
+    "imageUrl": "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "zOkboX86h6evd4CHYq2h",
+    "imageNeedsReview": true,
+    "isAvailable": true,
+    "updatedAt": "2026-08-11T12:49:28.933Z",
+    "imageSource": "placeholder",
+    "isVegetarian": true,
+    "price": 14.99,
+    "categoryId": "veg-appetizers",
+    "isJain": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191756,
+      "nanoseconds": 786000000
+    },
+    "description": "Crispy fritters made with sliced onions, gram flour, and aromatic spices, deep-fried to golden perfection",
+    "name": "Onion Pakoda",
+    "imageUrl": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    "id": "zUQTbNi4d9DGOXJvdEXL",
+    "imageUrl": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=800",
+    "imageSource": "placeholder",
+    "price": 24.99,
+    "isAvailable": true,
+    "isVegetarian": false,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1786191758,
+      "nanoseconds": 746000000
+    },
+    "isJain": false,
+    "name": "Fish Fry (Golden Pompano)",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1787053550,
+      "nanoseconds": 48000000
+    },
+    "description": "Spicy marinated golden pompano fish slices are marinated in a spicy masala and shallow fried on Tawa",
+    "categoryId": "non-veg-appetizers",
+    "imageNeedsReview": true
+  }
+]

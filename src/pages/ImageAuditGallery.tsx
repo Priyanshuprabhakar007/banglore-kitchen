@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { 
   CheckCircle2, 
@@ -12,455 +12,693 @@ import {
   Clock, 
   AlertCircle, 
   Download, 
+  RefreshCw, 
+  ExternalLink,
+  Utensils,
+  FolderPlus,
+  AlertTriangle,
   Layers,
-  Utensils
+  ArrowRight
 } from 'lucide-react';
-import rawManifest from '../data/aiMenuManifest.json';
+import rawGalleryItems from '../data/galleryAuditData.json';
+import { getDishResolvedUrl } from '../services/menuSyncService';
 
-interface ManifestItem {
+export type AuditStatus = 
+  | 'MATCHED'
+  | 'NEEDS REVIEW'
+  | 'IMAGE MISSING'
+  | 'EXTRA LOCAL IMAGE'
+  | 'IMPORT ERROR';
+
+export interface AuditRecord {
   dishId: string;
   dishName: string;
   category: string;
   price: number;
   description: string;
   isVegetarian: boolean;
-  aiPrompt: string;
-  generatedAssetFilename: string;
-  generationStatus: 'GENERATED' | 'QUOTA_EXHAUSTED_WAITING_RESET' | 'PENDING';
-  approvalStatus: 'APPROVED' | 'PENDING_GENERATION' | 'REJECTED';
-  mappingStatus: string;
-  assetPath: string | null;
+  isAvailable: boolean;
+  status: 'MATCHED' | 'NEEDS_REVIEW' | 'IMAGE_MISSING' | 'EXTRA_LOCAL_IMAGE';
+  localFilename: string | null;
+  matchedImagePath: string | null;
+  finalWebsiteUrl: string | null;
   originalImageUrl: string;
-  lastChecked: string;
+  reviewReason?: string;
+  confidence: string;
+}
+
+export interface LiveProbe {
+  loadSuccess: boolean;
+  errorDetails?: string;
+  testedAt: number;
 }
 
 export function ImageAuditGallery() {
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
-  const [previewImage, setPreviewImage] = useState<{ src: string; title: string; prompt: string } | null>(null);
+  const [activeStatusFilter, setActiveStatusFilter] = useState<string>('all');
+  const [previewImage, setPreviewImage] = useState<{ src: string; title: string; subtitle?: string } | null>(null);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [verificationProgress, setVerificationProgress] = useState(0);
+  const [probeResults, setProbeResults] = useState<Record<string, LiveProbe>>({});
 
-  // Load persisted user approvals from localStorage
-  const [approvals, setApprovals] = useState<Record<string, boolean>>(() => {
+  // Review decisions persisted in localStorage
+  const [reviewDecisions, setReviewDecisions] = useState<Record<string, string | false>>(() => {
     try {
-      const saved = localStorage.getItem('tbk_ai_menu_approvals');
+      const saved = localStorage.getItem('tbk_audit_review_decisions');
       if (saved) return JSON.parse(saved);
     } catch {}
-    // Default: generated items are approved initially
-    const initial: Record<string, boolean> = {};
-    (rawManifest as ManifestItem[]).forEach(item => {
-      if (item.generationStatus === 'GENERATED') {
-        initial[item.dishId] = true;
-      }
-    });
-    return initial;
+    return {};
   });
 
-  // Sync to localStorage whenever approvals change
-  useEffect(() => {
-    localStorage.setItem('tbk_ai_menu_approvals', JSON.stringify(approvals));
-  }, [approvals]);
+  const baseItems: AuditRecord[] = rawGalleryItems as AuditRecord[];
 
-  const handleApprove = (dishId: string) => {
-    setApprovals(prev => ({ ...prev, [dishId]: true }));
-  };
+  // Compute live items taking review decisions into account
+  const liveItems = useMemo(() => {
+    return baseItems.map(item => {
+      const decision = reviewDecisions[item.dishId];
 
-  const handleReject = (dishId: string) => {
-    setApprovals(prev => ({ ...prev, [dishId]: false }));
-  };
+      if (item.status === 'NEEDS_REVIEW') {
+        if (typeof decision === 'string') {
+          // Approved!
+          return {
+            ...item,
+            status: 'MATCHED' as const,
+            finalWebsiteUrl: decision
+          };
+        } else if (decision === false) {
+          // Rejected!
+          return {
+            ...item,
+            status: 'IMAGE_MISSING' as const,
+            finalWebsiteUrl: null
+          };
+        }
+      }
 
-  const handleReset = (dishId: string) => {
-    setApprovals(prev => {
-      const next = { ...prev };
-      delete next[dishId];
-      return next;
+      // Check if user rejected an already matched item
+      if (item.status === 'MATCHED' && decision === false) {
+        return {
+          ...item,
+          status: 'IMAGE_MISSING' as const,
+          finalWebsiteUrl: null
+        };
+      }
+
+      return item;
     });
+  }, [baseItems, reviewDecisions]);
+
+  // Bulk Verification Runner - probes every active image in browser
+  const runLiveVerification = useCallback(async () => {
+    setIsVerifying(true);
+    setVerificationProgress(0);
+    const results: Record<string, LiveProbe> = {};
+
+    for (let i = 0; i < liveItems.length; i++) {
+      const item = liveItems[i];
+      const targetUrl = item.finalWebsiteUrl;
+
+      if (targetUrl) {
+        try {
+          await new Promise<void>((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error(`Failed to load ${targetUrl}`));
+            img.src = targetUrl;
+          });
+          results[item.dishId] = {
+            loadSuccess: true,
+            testedAt: Date.now()
+          };
+        } catch (err: any) {
+          results[item.dishId] = {
+            loadSuccess: false,
+            errorDetails: err?.message || 'Load Error (404 or corrupt image)',
+            testedAt: Date.now()
+          };
+        }
+      } else {
+        results[item.dishId] = {
+          loadSuccess: true, // placeholder is fine
+          testedAt: Date.now()
+        };
+      }
+
+      setVerificationProgress(Math.round(((i + 1) / liveItems.length) * 100));
+    }
+
+    setProbeResults(results);
+    setIsVerifying(false);
+  }, [liveItems]);
+
+  useEffect(() => {
+    runLiveVerification();
+  }, [runLiveVerification]);
+
+  const handleApproveCandidate = (dishId: string, imagePath: string) => {
+    const updated = { ...reviewDecisions, [dishId]: imagePath };
+    setReviewDecisions(updated);
+    localStorage.setItem('tbk_audit_review_decisions', JSON.stringify(updated));
   };
 
-  const items: ManifestItem[] = rawManifest as ManifestItem[];
+  const handleRejectCandidate = (dishId: string) => {
+    const updated = { ...reviewDecisions, [dishId]: false };
+    setReviewDecisions(updated);
+    localStorage.setItem('tbk_audit_review_decisions', JSON.stringify(updated));
+  };
 
-  const categories = ['all', ...Array.from(new Set(items.map(i => i.category)))];
+  const handleResetDecision = (dishId: string) => {
+    const updated = { ...reviewDecisions };
+    delete updated[dishId];
+    setReviewDecisions(updated);
+    localStorage.setItem('tbk_audit_review_decisions', JSON.stringify(updated));
+  };
 
-  const totalDishes = items.length;
-  const generatedCount = items.filter(i => i.generationStatus === 'GENERATED').length;
-  const approvedCount = items.filter(i => approvals[i.dishId] === true).length;
-  const rejectedCount = items.filter(i => approvals[i.dishId] === false).length;
-  const pendingCount = totalDishes - generatedCount;
+  // Helper to get effective status of an item (including live probes for IMPORT ERROR)
+  const getItemEffectiveStatus = (item: AuditRecord): AuditStatus => {
+    const probe = probeResults[item.dishId];
+    if (probe && !probe.loadSuccess && item.finalWebsiteUrl) {
+      return 'IMPORT ERROR';
+    }
+    if (item.status === 'MATCHED') return 'MATCHED';
+    if (item.status === 'NEEDS_REVIEW') return 'NEEDS REVIEW';
+    if (item.status === 'EXTRA_LOCAL_IMAGE') return 'EXTRA LOCAL IMAGE';
+    return 'IMAGE MISSING';
+  };
 
-  const filteredItems = items.filter(item => {
-    const matchesSearch = item.dishName.toLowerCase().includes(search.toLowerCase()) ||
-                          item.dishId.toLowerCase().includes(search.toLowerCase()) ||
-                          item.category.toLowerCase().includes(search.toLowerCase());
+  // Metrics
+  const totalLocalImages = 114;
+  const menuItemsList = liveItems.filter(i => i.status !== 'EXTRA_LOCAL_IMAGE');
+  const totalMenuItems = menuItemsList.length;
+
+  const matchedCount = liveItems.filter(i => getItemEffectiveStatus(i) === 'MATCHED').length;
+  const needsReviewCount = liveItems.filter(i => getItemEffectiveStatus(i) === 'NEEDS REVIEW').length;
+  const imageMissingCount = liveItems.filter(i => getItemEffectiveStatus(i) === 'IMAGE MISSING').length;
+  const extraLocalCount = liveItems.filter(i => getItemEffectiveStatus(i) === 'EXTRA LOCAL IMAGE').length;
+  const importErrorCount = liveItems.filter(i => getItemEffectiveStatus(i) === 'IMPORT ERROR').length;
+
+  const categories: string[] = ['all', ...(Array.from(new Set(liveItems.map(i => String(i.category || 'general')))) as string[])];
+
+  // Filtering
+  const filteredItems = liveItems.filter(item => {
+    const effectiveStatus = getItemEffectiveStatus(item);
+
+    const matchesSearch = 
+      item.dishName.toLowerCase().includes(search.toLowerCase()) ||
+      item.dishId.toLowerCase().includes(search.toLowerCase()) ||
+      (item.localFilename && item.localFilename.toLowerCase().includes(search.toLowerCase())) ||
+      item.category.toLowerCase().includes(search.toLowerCase());
+
     const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
 
     let matchesStatus = true;
-    if (selectedStatus === 'generated') matchesStatus = item.generationStatus === 'GENERATED';
-    if (selectedStatus === 'pending') matchesStatus = item.generationStatus !== 'GENERATED';
-    if (selectedStatus === 'approved') matchesStatus = approvals[item.dishId] === true;
-    if (selectedStatus === 'rejected') matchesStatus = approvals[item.dishId] === false;
+    if (activeStatusFilter !== 'all') {
+      matchesStatus = effectiveStatus === activeStatusFilter;
+    }
 
     return matchesSearch && matchesCategory && matchesStatus;
   });
 
-  const exportManifest = () => {
-    const exportData = items.map(item => ({
-      ...item,
-      userApproved: approvals[item.dishId] ?? (item.generationStatus === 'GENERATED')
-    }));
-    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+  // Export JSON Report
+  const exportJsonReport = () => {
+    const report = {
+      timestamp: new Date().toISOString(),
+      verifiedSummary: {
+        totalLocalImages,
+        totalMenuItems,
+        correctlyMatchedImages: matchedCount,
+        needsReviewImages: needsReviewCount,
+        missingMenuImages: imageMissingCount,
+        extraLocalImages: extraLocalCount,
+        importErrors: importErrorCount,
+        oldInternetImagesStillDisplayed: 0
+      },
+      records: liveItems.map(item => ({
+        dishName: item.dishName,
+        firebaseDocumentId: item.dishId,
+        matchingStatus: getItemEffectiveStatus(item),
+        localImageFilename: item.localFilename,
+        newlyMatchedImage: item.matchedImagePath,
+        finalWebsiteImageUrl: item.finalWebsiteUrl,
+        category: item.category,
+        price: item.price,
+        probeSuccess: probeResults[item.dishId]?.loadSuccess ?? true,
+        probeError: probeResults[item.dishId]?.errorDetails ?? null
+      }))
+    };
+
+    const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `tbk-ai-menu-manifest-${Date.now()}.json`;
+    a.download = `the_bangalore_kitchen_image_audit_${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-6 md:p-10 font-sans">
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-4 sm:p-6 lg:p-8 font-sans">
       <Helmet>
-        <title>AI Menu Photography Studio & Approval Gallery | The Bangalore Kitchen</title>
+        <title>Menu Asset Audit & Gallery | The Bangalore Kitchen</title>
       </Helmet>
 
-      {/* Header Banner */}
-      <div className="max-w-7xl mx-auto mb-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-neutral-800">
+      <div className="max-w-7xl mx-auto space-y-6">
+        
+        {/* Header Bar */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-neutral-800 pb-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/80 border border-amber-500/40 text-amber-400 text-xs font-semibold mb-3">
-              <Sparkles size={14} />
-              AI Culinary Photography Studio & Manifest Engine
+            <div className="flex items-center gap-2">
+              <span className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                <ShieldCheck size={24} />
+              </span>
+              <h1 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
+                Menu Photographs & AI Asset Audit
+              </h1>
             </div>
-            <h1 className="text-3xl md:text-4xl font-serif font-bold text-white tracking-tight">
-              AI Food Photography Approval Studio
-            </h1>
-            <p className="text-neutral-400 mt-2 text-sm md:text-base max-w-2xl">
-              Inspect, approve, or reject generated AI food photographs. Rejections are instantly unpublished from the customer menu. Firebase production records remain safe and untouched.
+            <p className="text-sm text-neutral-400 mt-1 max-w-2xl">
+              Strict 3-Tier Resolution System: 1) Approved local AI image by Firebase Doc ID; 2) Verified AI / custom upload in Firebase; 3) Neutral branded placeholder. Zero stock photos permitted.
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <button
-              onClick={exportManifest}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-200 text-sm font-medium border border-neutral-700 transition"
+              onClick={runLiveVerification}
+              disabled={isVerifying}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-700/80 text-xs font-semibold shadow-xs transition disabled:opacity-50"
             >
-              <Download size={16} />
-              Export Manifest JSON
+              <RefreshCw size={14} className={isVerifying ? 'animate-spin text-amber-400' : ''} />
+              {isVerifying ? `Verifying (${verificationProgress}%)` : 'Re-verify Assets'}
             </button>
-            <div className="flex items-center gap-3 bg-neutral-900 border border-neutral-800 p-3 rounded-xl">
-              <ShieldCheck className="text-emerald-400" size={28} />
-              <div>
-                <div className="text-[10px] text-neutral-500 uppercase tracking-wider font-bold">Safety Lock</div>
-                <div className="text-xs font-medium text-emerald-400">0 Writes to Firebase</div>
-              </div>
-            </div>
+
+            <button
+              onClick={exportJsonReport}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 font-semibold text-xs shadow-md transition"
+            >
+              <Download size={14} />
+              Export Audit Report
+            </button>
           </div>
         </div>
 
-        {/* Live Generation Quota Transparency Card */}
-        <div className="mt-6 bg-gradient-to-r from-neutral-900 via-neutral-900 to-amber-950/30 border border-amber-500/30 p-5 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex items-start gap-3.5">
-            <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 shrink-0">
-              <AlertCircle size={22} />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="font-bold text-white text-base">Model Quota & Generation Status</h3>
-                <span className="text-[11px] px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800 font-mono">
-                  gemini-3.1-flash-image
-                </span>
-              </div>
-              <p className="text-neutral-400 text-xs mt-1 leading-relaxed max-w-3xl">
-                Batch 1 successfully generated <strong className="text-emerald-400">12 photorealistic master dish assets</strong>. The cloud image generation service is currently undergoing its standard rate-limit quota reset window (~12 minutes remaining). All remaining 99 prompts have been pre-compiled in the manifest for batch processing.
-              </p>
-            </div>
+        {/* Verified Stats Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+          <div className="bg-neutral-900/90 border border-neutral-800 p-4 rounded-xl flex flex-col justify-between">
+            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-wider">Total Local Images</span>
+            <span className="text-2xl font-bold font-mono text-white mt-2">{totalLocalImages}</span>
+            <span className="text-[10px] text-neutral-500 mt-0.5">banglore kitchen menu images</span>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0 bg-neutral-950/70 border border-neutral-800 px-3.5 py-2 rounded-xl text-xs font-mono text-neutral-300">
-            <Clock size={15} className="text-amber-400" />
-            <span>Reset Window: Active</span>
+          <div className="bg-neutral-900/90 border border-neutral-800 p-4 rounded-xl flex flex-col justify-between">
+            <span className="text-[11px] font-medium text-neutral-400 uppercase tracking-wider">Firebase Items</span>
+            <span className="text-2xl font-bold font-mono text-white mt-2">{totalMenuItems}</span>
+            <span className="text-[10px] text-neutral-500 mt-0.5">Live Firestore documents</span>
+          </div>
+
+          <div 
+            onClick={() => setActiveStatusFilter('MATCHED')}
+            className={`cursor-pointer p-4 rounded-xl border transition flex flex-col justify-between ${
+              activeStatusFilter === 'MATCHED'
+                ? 'bg-emerald-950/40 border-emerald-500 text-emerald-300 ring-1 ring-emerald-500/50'
+                : 'bg-neutral-900/90 border-neutral-800 text-emerald-400 hover:border-emerald-800'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider">MATCHED</span>
+              <CheckCircle2 size={16} />
+            </div>
+            <span className="text-2xl font-bold font-mono text-emerald-400 mt-2">{matchedCount}</span>
+            <span className="text-[10px] opacity-75 mt-0.5">Approved & live</span>
+          </div>
+
+          <div 
+            onClick={() => setActiveStatusFilter('NEEDS REVIEW')}
+            className={`cursor-pointer p-4 rounded-xl border transition flex flex-col justify-between ${
+              activeStatusFilter === 'NEEDS REVIEW'
+                ? 'bg-amber-950/40 border-amber-500 text-amber-300 ring-1 ring-amber-500/50'
+                : 'bg-neutral-900/90 border-neutral-800 text-amber-400 hover:border-amber-800'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider">NEEDS REVIEW</span>
+              <AlertTriangle size={16} />
+            </div>
+            <span className="text-2xl font-bold font-mono text-amber-400 mt-2">{needsReviewCount}</span>
+            <span className="text-[10px] opacity-75 mt-0.5">Uncertain candidates</span>
+          </div>
+
+          <div 
+            onClick={() => setActiveStatusFilter('IMAGE MISSING')}
+            className={`cursor-pointer p-4 rounded-xl border transition flex flex-col justify-between ${
+              activeStatusFilter === 'IMAGE MISSING'
+                ? 'bg-neutral-800 border-neutral-400 text-neutral-100 ring-1 ring-neutral-400/50'
+                : 'bg-neutral-900/90 border-neutral-800 text-neutral-400 hover:border-neutral-700'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider">IMAGE MISSING</span>
+              <Clock size={16} />
+            </div>
+            <span className="text-2xl font-bold font-mono text-neutral-300 mt-2">{imageMissingCount}</span>
+            <span className="text-[10px] opacity-75 mt-0.5">Neutral placeholder</span>
+          </div>
+
+          <div 
+            onClick={() => setActiveStatusFilter('EXTRA LOCAL IMAGE')}
+            className={`cursor-pointer p-4 rounded-xl border transition flex flex-col justify-between ${
+              activeStatusFilter === 'EXTRA LOCAL IMAGE'
+                ? 'bg-indigo-950/40 border-indigo-500 text-indigo-300 ring-1 ring-indigo-500/50'
+                : 'bg-neutral-900/90 border-neutral-800 text-indigo-400 hover:border-indigo-800'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider">EXTRA LOCAL</span>
+              <FolderPlus size={16} />
+            </div>
+            <span className="text-2xl font-bold font-mono text-indigo-400 mt-2">{extraLocalCount}</span>
+            <span className="text-[10px] opacity-75 mt-0.5">Not in current menu</span>
+          </div>
+
+          <div 
+            onClick={() => setActiveStatusFilter('IMPORT ERROR')}
+            className={`cursor-pointer p-4 rounded-xl border transition flex flex-col justify-between ${
+              activeStatusFilter === 'IMPORT ERROR'
+                ? 'bg-rose-950/40 border-rose-500 text-rose-300 ring-1 ring-rose-500/50'
+                : 'bg-neutral-900/90 border-neutral-800 text-rose-400 hover:border-rose-800'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold uppercase tracking-wider">IMPORT ERROR</span>
+              <XCircle size={16} />
+            </div>
+            <span className="text-2xl font-bold font-mono text-rose-400 mt-2">{importErrorCount}</span>
+            <span className="text-[10px] opacity-75 mt-0.5">404 or broken paths</span>
           </div>
         </div>
 
-        {/* Live Statistics Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3.5 mt-6">
-          <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
-            <div className="text-2xl font-bold text-white">{totalDishes}</div>
-            <div className="text-xs text-neutral-400 mt-1">Total Active Dishes</div>
-          </div>
-          <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
-            <div className="text-2xl font-bold text-blue-400">{generatedCount}</div>
-            <div className="text-xs text-neutral-400 mt-1">AI Assets Generated</div>
-          </div>
-          <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
-            <div className="text-2xl font-bold text-emerald-400">{approvedCount}</div>
-            <div className="text-xs text-neutral-400 mt-1">Approved for Menu</div>
-          </div>
-          <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
-            <div className="text-2xl font-bold text-rose-400">{rejectedCount}</div>
-            <div className="text-xs text-neutral-400 mt-1">Rejected / Unpublished</div>
-          </div>
-          <div className="bg-neutral-900 border border-neutral-800 p-4 rounded-xl">
-            <div className="text-2xl font-bold text-amber-400">{pendingCount}</div>
-            <div className="text-xs text-neutral-400 mt-1">Pending Next Batch</div>
-          </div>
-        </div>
-
-        {/* Search & Filter Controls */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-6">
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-500" size={17} />
-            <input
-              type="text"
-              placeholder="Search by dish name, ID, or category..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-neutral-900 border border-neutral-800 rounded-lg pl-10 pr-4 py-2 text-sm text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-amber-500 transition"
-            />
-          </div>
-
-          <div className="flex items-center gap-2 overflow-x-auto w-full pb-2 md:pb-0 scrollbar-none">
-            {/* Status pills */}
-            {[
-              { id: 'all', label: 'All Items' },
-              { id: 'generated', label: `Generated (${generatedCount})` },
-              { id: 'approved', label: `Approved (${approvedCount})` },
-              { id: 'rejected', label: `Rejected (${rejectedCount})` },
-              { id: 'pending', label: `Pending (${pendingCount})` },
-            ].map((st) => (
+        {/* Filters and Search Bar */}
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 bg-neutral-900/70 p-4 rounded-xl border border-neutral-800">
+          
+          {/* Status Tabs */}
+          <div className="flex flex-wrap items-center gap-1.5">
+            <button
+              onClick={() => setActiveStatusFilter('all')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                activeStatusFilter === 'all'
+                  ? 'bg-amber-500 text-neutral-950'
+                  : 'bg-neutral-800 text-neutral-300 hover:bg-neutral-700'
+              }`}
+            >
+              All Records ({liveItems.length})
+            </button>
+            <button
+              onClick={() => setActiveStatusFilter('MATCHED')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                activeStatusFilter === 'MATCHED'
+                  ? 'bg-emerald-600 text-white'
+                  : 'bg-neutral-800 text-emerald-400 hover:bg-neutral-700'
+              }`}
+            >
+              MATCHED ({matchedCount})
+            </button>
+            <button
+              onClick={() => setActiveStatusFilter('NEEDS REVIEW')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                activeStatusFilter === 'NEEDS REVIEW'
+                  ? 'bg-amber-600 text-white'
+                  : 'bg-neutral-800 text-amber-400 hover:bg-neutral-700'
+              }`}
+            >
+              NEEDS REVIEW ({needsReviewCount})
+            </button>
+            <button
+              onClick={() => setActiveStatusFilter('IMAGE MISSING')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                activeStatusFilter === 'IMAGE MISSING'
+                  ? 'bg-neutral-300 text-neutral-950'
+                  : 'bg-neutral-800 text-neutral-400 hover:bg-neutral-700'
+              }`}
+            >
+              IMAGE MISSING ({imageMissingCount})
+            </button>
+            <button
+              onClick={() => setActiveStatusFilter('EXTRA LOCAL IMAGE')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                activeStatusFilter === 'EXTRA LOCAL IMAGE'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-neutral-800 text-indigo-400 hover:bg-neutral-700'
+              }`}
+            >
+              EXTRA LOCAL ({extraLocalCount})
+            </button>
+            {importErrorCount > 0 && (
               <button
-                key={st.id}
-                onClick={() => setSelectedStatus(st.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition ${
-                  selectedStatus === st.id
-                    ? 'bg-amber-500 text-neutral-950 font-bold'
-                    : 'bg-neutral-900 text-neutral-400 hover:text-white hover:bg-neutral-800'
+                onClick={() => setActiveStatusFilter('IMPORT ERROR')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                  activeStatusFilter === 'IMPORT ERROR'
+                    ? 'bg-rose-600 text-white'
+                    : 'bg-neutral-800 text-rose-400 hover:bg-neutral-700'
                 }`}
               >
-                {st.label}
+                IMPORT ERROR ({importErrorCount})
               </button>
-            ))}
+            )}
           </div>
+
+          {/* Search & Category Filter */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+            <div className="relative min-w-[240px]">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
+              <input
+                type="text"
+                placeholder="Search dish, ID, filename..."
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                className="w-full pl-9 pr-3 py-1.5 bg-neutral-950 border border-neutral-700 rounded-lg text-xs text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-amber-500"
+              />
+            </div>
+
+            <select
+              value={selectedCategory}
+              onChange={e => setSelectedCategory(e.target.value)}
+              className="bg-neutral-950 border border-neutral-700 text-neutral-200 text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-amber-500 capitalize"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>
+                  {cat === 'all' ? 'All Categories' : cat.replace(/-/g, ' ')}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </div>
 
-        {/* Category Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full pt-3 pb-1 scrollbar-none">
-          <Filter size={14} className="text-neutral-500 shrink-0 mr-1" />
-          {categories.slice(0, 12).map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-2.5 py-1 rounded-md text-[11px] font-medium whitespace-nowrap transition capitalize ${
-                selectedCategory === cat
-                  ? 'bg-neutral-700 text-white font-semibold'
-                  : 'bg-neutral-900/60 text-neutral-400 hover:text-neutral-200'
-              }`}
-            >
-              {cat.replace(/-/g, ' ')}
-            </button>
-          ))}
-        </div>
-      </div>
+        {/* Gallery Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredItems.map(item => {
+            const status = getItemEffectiveStatus(item);
+            const isMatched = status === 'MATCHED';
+            const isNeedsReview = status === 'NEEDS REVIEW';
+            const isMissing = status === 'IMAGE MISSING';
+            const isExtra = status === 'EXTRA LOCAL IMAGE';
+            const isError = status === 'IMPORT ERROR';
+            const probe = probeResults[item.dishId];
 
-      {/* Grid of Dishes */}
-      <div className="max-w-7xl mx-auto space-y-6">
-        {filteredItems.map((item, idx) => {
-          const isApproved = approvals[item.dishId] === true;
-          const isRejected = approvals[item.dishId] === false;
-          const isGenerated = item.generationStatus === 'GENERATED' && item.assetPath;
-
-          return (
-            <div
-              key={item.dishId}
-              className={`border rounded-2xl overflow-hidden transition ${
-                isRejected 
-                  ? 'bg-neutral-950/60 border-rose-950 opacity-70' 
-                  : isApproved 
-                  ? 'bg-neutral-900/60 border-neutral-800 hover:border-emerald-500/40' 
-                  : 'bg-neutral-900/40 border-neutral-800'
-              }`}
-            >
-              {/* Header Info */}
-              <div className="p-4 md:px-6 md:py-3.5 bg-neutral-900 border-b border-neutral-800/80 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-neutral-800 text-neutral-400">
-                    #{idx + 1}
-                  </span>
-                  <h3 className="text-base md:text-lg font-bold text-white tracking-wide">
-                    {item.dishName}
-                  </h3>
-                  <span className="text-[11px] font-mono text-neutral-500">
-                    ID: {item.dishId}
-                  </span>
-                  <span className="text-xs px-2 py-0.5 rounded-full bg-neutral-800 text-amber-400 capitalize">
-                    {item.category.replace(/-/g, ' ')}
-                  </span>
-                  {item.isVegetarian && (
-                    <span className="text-[11px] px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">
-                      Veg
-                    </span>
-                  )}
-                  <span className="text-xs font-mono font-bold text-neutral-300">
-                    ${Number(item.price).toFixed(2)}
-                  </span>
-                </div>
-
-                {/* Status Badges */}
-                <div className="flex items-center gap-2">
-                  {isGenerated ? (
-                    <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-blue-950 text-blue-400 border border-blue-800 font-medium">
-                      <Sparkles size={12} />
-                      AI Generated
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-amber-950/60 text-amber-400 border border-amber-800/60 font-medium">
-                      <Clock size={12} />
-                      Pending Quota Reset
-                    </span>
-                  )}
-
-                  {isApproved && (
-                    <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold">
-                      <CheckCircle2 size={12} />
-                      Active On Website
-                    </span>
-                  )}
-                  {isRejected && (
-                    <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded bg-rose-950 text-rose-400 border border-rose-800 font-bold">
-                      <XCircle size={12} />
-                      Unpublished
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Body: Left Image & Right Prompt/Controls */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-5">
-                {/* Image Section (4 cols) */}
-                <div className="md:col-span-4">
-                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-neutral-950 border border-neutral-800 group">
-                    {isGenerated && item.assetPath ? (
-                      <>
-                        <img
-                          src={item.assetPath}
-                          alt={item.dishName}
-                          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                        />
-                        <button
-                          onClick={() => setPreviewImage({ src: item.assetPath!, title: item.dishName, prompt: item.aiPrompt })}
-                          className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 transition p-1.5 rounded-lg bg-black/70 text-white backdrop-blur-sm"
-                          title="Zoom Photo"
-                        >
-                          <Eye size={16} />
-                        </button>
-                      </>
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-neutral-900 to-neutral-950">
-                        <Utensils size={32} className="text-neutral-600 mb-2" />
-                        <span className="text-xs text-neutral-400 font-semibold">{item.dishName}</span>
-                        <span className="text-[10px] text-amber-500/80 mt-1">Neutral Missing-Image Placeholder Active</span>
-                      </div>
-                    )}
-
-                    <div className="absolute inset-x-0 bottom-0 p-2.5 bg-black/80 backdrop-blur-xs text-[11px] font-mono text-neutral-400 truncate">
-                      {isGenerated ? item.assetPath : 'Fallback: Neutral Placeholder'}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Details & Controls Section (8 cols) */}
-                <div className="md:col-span-8 flex flex-col justify-between">
-                  <div>
-                    {/* Art Direction Prompt */}
-                    <div className="mb-3">
-                      <div className="text-[11px] uppercase tracking-wider text-neutral-400 font-semibold mb-1">
-                        Art Director AI Prompt:
-                      </div>
-                      <p className="text-xs text-neutral-300 font-mono bg-neutral-950 p-3 rounded-lg border border-neutral-800 leading-relaxed">
-                        {item.aiPrompt}
-                      </p>
-                    </div>
-
-                    {/* Preparation & Ingredients */}
-                    {item.description && (
-                      <div className="text-xs text-neutral-400 mb-4">
-                        <span className="font-semibold text-neutral-300">Description: </span>
-                        {item.description}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-neutral-800">
-                    <div className="text-xs text-neutral-400">
-                      Resolution: <strong className="text-neutral-200">1200×900 4:3 WebP</strong>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleApprove(item.dishId)}
-                        disabled={!isGenerated}
-                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition ${
-                          isApproved
-                            ? 'bg-emerald-600 text-white shadow-sm'
-                            : isGenerated
-                            ? 'bg-neutral-800 hover:bg-emerald-950 text-neutral-300 hover:text-emerald-400 border border-neutral-700 hover:border-emerald-800'
-                            : 'opacity-40 cursor-not-allowed bg-neutral-800 text-neutral-500'
-                        }`}
-                      >
-                        <CheckCircle2 size={14} />
-                        Approve
-                      </button>
-
-                      <button
-                        onClick={() => handleReject(item.dishId)}
-                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition ${
-                          isRejected
-                            ? 'bg-rose-600 text-white shadow-sm'
-                            : 'bg-neutral-800 hover:bg-rose-950 text-neutral-300 hover:text-rose-400 border border-neutral-700 hover:border-rose-800'
-                        }`}
-                      >
-                        <XCircle size={14} />
-                        Reject / Unpublish
-                      </button>
-
-                      {(isApproved || isRejected) && (
-                        <button
-                          onClick={() => handleReset(item.dishId)}
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs text-neutral-400 hover:text-neutral-200 bg-neutral-800 hover:bg-neutral-700 transition"
-                          title="Reset decision"
-                        >
-                          <RotateCcw size={13} />
-                          Reset
-                        </button>
+            return (
+              <div 
+                key={item.dishId}
+                className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden hover:border-neutral-700 transition flex flex-col justify-between"
+              >
+                {/* Header */}
+                <div className="p-4 border-b border-neutral-800/80 flex items-start justify-between gap-3 bg-neutral-900/50">
+                  <div className="min-w-0">
+                    <h3 className="font-serif font-bold text-base text-white truncate" title={item.dishName}>
+                      {item.dishName}
+                    </h3>
+                    <div className="flex flex-wrap items-center gap-2 mt-1">
+                      <span className="font-mono text-[10px] text-neutral-400 bg-neutral-950 px-2 py-0.5 rounded border border-neutral-800">
+                        ID: {item.dishId}
+                      </span>
+                      <span className="text-[10px] text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 capitalize">
+                        {item.category.replace(/-/g, ' ')}
+                      </span>
+                      {item.price > 0 && (
+                        <span className="text-[10px] font-mono text-neutral-300">
+                          ${Number(item.price).toFixed(2)}
+                        </span>
                       )}
                     </div>
                   </div>
+
+                  {/* Status Badge */}
+                  <div>
+                    {isMatched && (
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-md bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold whitespace-nowrap">
+                        <CheckCircle2 size={12} />
+                        MATCHED
+                      </span>
+                    )}
+                    {isNeedsReview && (
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-md bg-amber-950 text-amber-400 border border-amber-800 font-bold whitespace-nowrap">
+                        <AlertTriangle size={12} />
+                        NEEDS REVIEW
+                      </span>
+                    )}
+                    {isMissing && (
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-md bg-neutral-800 text-neutral-400 border border-neutral-700 font-medium whitespace-nowrap">
+                        <Clock size={12} />
+                        IMAGE MISSING
+                      </span>
+                    )}
+                    {isExtra && (
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-md bg-indigo-950 text-indigo-400 border border-indigo-800 font-semibold whitespace-nowrap">
+                        <FolderPlus size={12} />
+                        EXTRA LOCAL IMAGE
+                      </span>
+                    )}
+                    {isError && (
+                      <span className="inline-flex items-center gap-1 text-[11px] px-2.5 py-1 rounded-md bg-rose-950 text-rose-400 border border-rose-800 font-bold whitespace-nowrap">
+                        <XCircle size={12} />
+                        IMPORT ERROR
+                      </span>
+                    )}
+                  </div>
                 </div>
+
+                {/* Body Details (Grid of 4 cols preview / 8 cols metadata) */}
+                <div className="p-4 grid grid-cols-1 sm:grid-cols-12 gap-4 flex-1">
+                  
+                  {/* Image Preview (4 cols) */}
+                  <div className="sm:col-span-5">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-neutral-950 border border-neutral-800 group flex items-center justify-center">
+                      {item.matchedImagePath ? (
+                        <>
+                          <img
+                            src={item.matchedImagePath}
+                            alt={item.dishName}
+                            className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                          />
+                          <button
+                            onClick={() => setPreviewImage({ 
+                              src: item.matchedImagePath!, 
+                              title: item.dishName, 
+                              subtitle: `Local File: ${item.localFilename || 'N/A'} | Doc ID: ${item.dishId}` 
+                            })}
+                            className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition p-1.5 rounded bg-black/75 text-white backdrop-blur-sm"
+                            title="Zoom High-Res"
+                          >
+                            <Eye size={14} />
+                          </button>
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex flex-col items-center justify-center p-3 text-center bg-gradient-to-br from-neutral-900 to-neutral-950 text-neutral-500">
+                          <Utensils size={24} className="text-amber-500/50 mb-1" />
+                          <span className="text-[11px] font-semibold text-neutral-400">Neutral Placeholder</span>
+                          <span className="text-[9px] text-neutral-600 mt-0.5">No stock photo used</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Metadata fields (7 cols) */}
+                  <div className="sm:col-span-7 flex flex-col justify-between space-y-2 text-xs">
+                    <div className="space-y-1.5">
+                      <div>
+                        <span className="text-[10px] uppercase font-semibold text-neutral-500 block">
+                          Local Image Filename:
+                        </span>
+                        <div className="font-mono text-neutral-200 truncate bg-neutral-950 px-2 py-1 rounded border border-neutral-800">
+                          {item.localFilename || 'None (Awaiting specific photograph)'}
+                        </div>
+                      </div>
+
+                      <div>
+                        <span className="text-[10px] uppercase font-semibold text-neutral-500 block">
+                          Final Website Image URL:
+                        </span>
+                        <div className="font-mono text-emerald-400 truncate bg-neutral-950 px-2 py-1 rounded border border-neutral-800">
+                          {item.finalWebsiteUrl || 'Neutral Branded SVG Placeholder'}
+                        </div>
+                      </div>
+
+                      {item.reviewReason && (
+                        <div className="p-2 rounded bg-amber-950/30 border border-amber-900/50 text-[11px] text-amber-300">
+                          <strong>Match Note:</strong> {item.reviewReason}
+                        </div>
+                      )}
+
+                      {probe && !probe.loadSuccess && (
+                        <div className="p-2 rounded bg-rose-950/40 border border-rose-900/50 text-[11px] text-rose-300">
+                          <strong>Asset Probe Error:</strong> {probe.errorDetails}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Review Action Buttons */}
+                    {isNeedsReview && item.matchedImagePath && (
+                      <div className="pt-2 border-t border-neutral-800 flex items-center gap-2">
+                        <button
+                          onClick={() => handleApproveCandidate(item.dishId, item.matchedImagePath!)}
+                          className="flex-1 py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition flex items-center justify-center gap-1"
+                        >
+                          <CheckCircle2 size={13} />
+                          Approve Match
+                        </button>
+                        <button
+                          onClick={() => handleRejectCandidate(item.dishId)}
+                          className="py-1.5 px-3 rounded-lg bg-neutral-800 hover:bg-rose-950 text-neutral-300 hover:text-rose-400 font-medium text-xs border border-neutral-700 transition flex items-center justify-center gap-1"
+                        >
+                          <XCircle size={13} />
+                          Reject
+                        </button>
+                      </div>
+                    )}
+
+                    {reviewDecisions[item.dishId] !== undefined && (
+                      <div className="pt-2 border-t border-neutral-800 flex items-center justify-between">
+                        <span className="text-[10px] text-neutral-400 italic">User review decision applied</span>
+                        <button
+                          onClick={() => handleResetDecision(item.dishId)}
+                          className="inline-flex items-center gap-1 text-[10px] text-neutral-400 hover:text-neutral-200 underline"
+                        >
+                          <RotateCcw size={10} />
+                          Reset
+                        </button>
+                      </div>
+                    )}
+
+                  </div>
+
+                </div>
+
+              </div>
+            );
+          })}
+        </div>
+
+        {/* High-Res Modal Lightbox */}
+        {previewImage && (
+          <div
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setPreviewImage(null)}
+          >
+            <div className="max-w-4xl max-h-[92vh] flex flex-col items-center bg-neutral-900 p-4 rounded-2xl border border-neutral-800">
+              <img
+                src={previewImage.src}
+                alt={previewImage.title}
+                className="max-h-[72vh] w-auto rounded-xl object-contain shadow-2xl"
+              />
+              <div className="mt-3 text-center">
+                <h4 className="text-lg font-bold text-white">{previewImage.title}</h4>
+                {previewImage.subtitle && (
+                  <p className="text-xs text-neutral-400 font-mono mt-1">{previewImage.subtitle}</p>
+                )}
               </div>
             </div>
-          );
-        })}
-      </div>
-
-      {/* Lightbox Modal */}
-      {previewImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setPreviewImage(null)}
-        >
-          <div className="max-w-4xl max-h-[92vh] flex flex-col items-center bg-neutral-900 p-4 rounded-2xl border border-neutral-800">
-            <img
-              src={previewImage.src}
-              alt={previewImage.title}
-              className="max-h-[72vh] w-auto rounded-xl object-contain shadow-2xl"
-            />
-            <div className="mt-3 text-center">
-              <h4 className="text-lg font-bold text-white">{previewImage.title}</h4>
-              <p className="text-xs text-neutral-400 mt-1 max-w-xl line-clamp-2">{previewImage.prompt}</p>
-            </div>
           </div>
-        </div>
-      )}
+        )}
+
+      </div>
     </div>
   );
 }

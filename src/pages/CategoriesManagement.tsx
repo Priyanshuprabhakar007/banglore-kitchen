@@ -4,6 +4,7 @@ import { collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc, query, order
 import { db } from '../lib/firebase';
 import { Plus, Search, Edit2, Trash2, Image as ImageIcon, Upload, Loader2, List } from 'lucide-react';
 import { StorageService } from '../services/storageService';
+import { ProductImage } from '../components/ProductImage';
 
 export function CategoriesManagement() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -431,7 +432,7 @@ export function CategoriesManagement() {
                   categoryDishes.map(dish => (
                     <div key={dish.id} className="flex gap-3 p-3 border border-gray-100 rounded-xl hover:shadow-md transition-shadow bg-white">
                       <div className="w-16 h-16 rounded-lg bg-gray-100 shrink-0 overflow-hidden">
-                        {dish.imageUrl ? <img src={dish.imageUrl} alt={dish.name} className="w-full h-full object-cover" /> : <ImageIcon className="w-full h-full p-4 text-gray-300" />}
+                        <ProductImage id={dish.id} src={dish.imageUrl} alt={dish.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between items-start">

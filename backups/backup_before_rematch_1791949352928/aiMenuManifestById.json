@@ -1,0 +1,324 @@
+{
+  "yHB2tdZlQuUjoeIcStB7": {
+    "dishName": "Veg Biryani",
+    "imagePath": "/images/ai-menu/056-veg-biryani.webp",
+    "sourceFilename": "056-veg-biryani.webp",
+    "category": "biryani",
+    "status": "MATCHED"
+  },
+  "oGpve56LpHbwLHk8hnHy": {
+    "dishName": "Cheese Naan",
+    "imagePath": "/images/ai-menu/074-cheese-naan.webp",
+    "sourceFilename": "074-cheese-naan.webp",
+    "category": "breads",
+    "status": "MATCHED"
+  },
+  "lkcFtSHuWvfwBhc3x7tF": {
+    "dishName": "Garlic Naan",
+    "imagePath": "/images/ai-menu/073-garlic-naan.webp",
+    "sourceFilename": "073-garlic-naan.webp",
+    "category": "breads",
+    "status": "MATCHED"
+  },
+  "kUkPyCAt1SRXRTCLmUAU": {
+    "dishName": "Laccha Paratha",
+    "imagePath": "/images/ai-menu/075-lachha-paratha.webp",
+    "sourceFilename": "075-lachha-paratha.webp",
+    "category": "breads",
+    "status": "MATCHED"
+  },
+  "wxP3E3HwHvSDXnJREP6y": {
+    "dishName": "Tandoor Paneer Tikka Grill",
+    "imagePath": "/images/ai-menu/024-tandoor-paneer-tikka-grill.webp",
+    "sourceFilename": "024-tandoor-paneer-tikka-grill.webp",
+    "category": "grill-specials",
+    "status": "MATCHED"
+  },
+  "ISoTXuXRKEEaIbNzCLS1": {
+    "dishName": "Tandoori Chicken Full",
+    "imagePath": "/images/ai-menu/025-tandoori-chicken-full.webp",
+    "sourceFilename": "025-tandoori-chicken-full.webp",
+    "category": "grill-specials",
+    "status": "MATCHED"
+  },
+  "Q49XycXO8SW3g1OpGsvC": {
+    "dishName": "Tandoori Chicken Half",
+    "imagePath": "/images/ai-menu/023-tandoori-chicken-half.webp",
+    "sourceFilename": "023-tandoori-chicken-half.webp",
+    "category": "grill-specials",
+    "status": "MATCHED"
+  },
+  "pYskmHafpd5ORca2eWwX": {
+    "dishName": "Butter Chicken",
+    "imagePath": "/images/ai-menu/034-butter-chicken.webp",
+    "sourceFilename": "034-butter-chicken.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "6H6D2CBmtkEX97E7VXeS": {
+    "dishName": "Chicken Curry (Bangalore style)",
+    "imagePath": "/images/ai-menu/040-chicken-curry-bangalore-style.webp",
+    "sourceFilename": "040-chicken-curry-bangalore-style.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "luE0Pf0OmF4ikB7cCIrS": {
+    "dishName": "Chicken Tikka Masala",
+    "imagePath": "/images/ai-menu/035-chicken-tikka-masala.webp",
+    "sourceFilename": "035-chicken-tikka-masala.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "D3PWAvKesY88UOAzwsW9": {
+    "dishName": "Cochin Prawn/Shrimp Curry",
+    "imagePath": "/images/ai-menu/037-cochin-prawn-shrimp-curry.webp",
+    "sourceFilename": "037-cochin-prawn-shrimp-curry.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "GXP36qQBrQ79GQD93yjZ": {
+    "dishName": "Egg Curry",
+    "imagePath": "/images/ai-menu/033-egg-curry.webp",
+    "sourceFilename": "033-egg-curry.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "SEZjEdemROKee32qw2Y1": {
+    "dishName": "Lamb Korma",
+    "imagePath": "/images/ai-menu/039-lamb-korma.webp",
+    "sourceFilename": "039-lamb-korma.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "SUFXHbvfxW7FNSZycg7d": {
+    "dishName": "Mangalore Fish Curry",
+    "imagePath": "/images/ai-menu/036-mangalore-fish-curry.webp",
+    "sourceFilename": "036-mangalore-fish-curry.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "XfdsUeOY1ImCUYroJtva": {
+    "dishName": "Mutton curry (Bangalore style)",
+    "imagePath": "/images/ai-menu/038-mutton-curry-bangalore-style.webp",
+    "sourceFilename": "038-mutton-curry-bangalore-style.webp",
+    "category": "main-course-non-veg",
+    "status": "MATCHED"
+  },
+  "l6ctzwsYcZM71hZgpnpC": {
+    "dishName": "Bhagara Baingan",
+    "imagePath": "/images/ai-menu/028-bhagara-baingan.webp",
+    "sourceFilename": "028-bhagara-baingan.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "KXFYTyspv5deqAgDbJ1a": {
+    "dishName": "Bhindi Masala",
+    "imagePath": "/images/ai-menu/029-bhindi-masala.webp",
+    "sourceFilename": "029-bhindi-masala.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "eUv4OBqyVQ68PVYMpSsi": {
+    "dishName": "Chana Masala",
+    "imagePath": "/images/ai-menu/027-chana-masala.webp",
+    "sourceFilename": "027-chana-masala.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "CZ79qUpFJSfgun0oHA2J": {
+    "dishName": "Navaratan Vegetable Korma",
+    "imagePath": "/images/ai-menu/032-navaratan-vegetable-korma.webp",
+    "sourceFilename": "032-navaratan-vegetable-korma.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "pNeRF6sUhklme8iYp4u9": {
+    "dishName": "Paneer Butter Masala",
+    "imagePath": "/images/ai-menu/030-paneer-butter-masala.webp",
+    "sourceFilename": "030-paneer-butter-masala.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "9WuqDHxhX1E7TVKiZqrQ": {
+    "dishName": "Pappu (Nagarjuna style)",
+    "imagePath": "/images/ai-menu/026-pappu-nagarjuna-style.webp",
+    "sourceFilename": "026-pappu-nagarjuna-style.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "ckr4J960a4tJbIQjS6iv": {
+    "dishName": "Saag Paneer",
+    "imagePath": "/images/ai-menu/031-saag-paneer.webp",
+    "sourceFilename": "031-saag-paneer.webp",
+    "category": "main-course-veg",
+    "status": "MATCHED"
+  },
+  "XNFiArpMqrBhFvy9TVIr": {
+    "dishName": "Chicken 65",
+    "imagePath": "/images/ai-menu/013-chicken-65.webp",
+    "sourceFilename": "013-chicken-65.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "dmDWtX3EdTUDRqx58FBm": {
+    "dishName": "Chicken Lollipop",
+    "imagePath": "/images/ai-menu/014-chicken-lollipop.webp",
+    "sourceFilename": "014-chicken-lollipop.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "0ezpdkLMPL2DJwvPwXml": {
+    "dishName": "Chicken Momos",
+    "imagePath": "/images/ai-menu/011-chicken-momos.webp",
+    "sourceFilename": "011-chicken-momos.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "ok9iB1RCqdEV9HJ8K7Sy": {
+    "dishName": "Chilli Chicken",
+    "imagePath": "/images/ai-menu/012-chilli-chicken.webp",
+    "sourceFilename": "012-chilli-chicken.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "zUQTbNi4d9DGOXJvdEXL": {
+    "dishName": "Fish Fry (Golden Pompano)",
+    "imagePath": "/images/ai-menu/016-fish-fry-golden-pompano.webp",
+    "sourceFilename": "016-fish-fry-golden-pompano.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "wIWaTndbsFFZudJdCV7L": {
+    "dishName": "Hyderabadi Goat Sukka",
+    "imagePath": "/images/ai-menu/017-hyderabadi-goat-sukka.webp",
+    "sourceFilename": "017-hyderabadi-goat-sukka.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "BbhLtZwISTNsibAOY0o2": {
+    "dishName": "Prawn Pepper Fry",
+    "imagePath": "/images/ai-menu/015-prawn-pepper-fry.webp",
+    "sourceFilename": "015-prawn-pepper-fry.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "p3baFlGEmw5R5if8X6yh": {
+    "dishName": "Chicken Fried Rice",
+    "imagePath": "/images/ai-menu/047-chicken-fried-rice.webp",
+    "sourceFilename": "047-chicken-fried-rice.webp",
+    "category": "non-veg-noodles-rice",
+    "status": "MATCHED"
+  },
+  "3DrdN5zSlfwwbRvpO3J3": {
+    "dishName": "Jeera Rice",
+    "imagePath": "/images/ai-menu/063-jeera-rice.webp",
+    "sourceFilename": "063-jeera-rice.webp",
+    "category": "rice",
+    "status": "MATCHED"
+  },
+  "5UINe5gtkdwwL1ZTn1L4": {
+    "dishName": "Goat Paya Soup",
+    "imagePath": "/images/ai-menu/022-goat-paya-soup.webp",
+    "sourceFilename": "022-goat-paya-soup.webp",
+    "category": "soups",
+    "status": "MATCHED"
+  },
+  "qaxjgCrE9cPHERtXxREP": {
+    "dishName": "Rasam Soup",
+    "imagePath": "/images/ai-menu/018-rasam-soup.webp",
+    "sourceFilename": "018-rasam-soup.webp",
+    "category": "soups",
+    "status": "MATCHED"
+  },
+  "w0c6VbEJQI6csH90GrFu": {
+    "dishName": "Sweet Corn Soup",
+    "imagePath": "/images/ai-menu/019-sweet-corn-soup.webp",
+    "sourceFilename": "019-sweet-corn-soup.webp",
+    "category": "soups",
+    "status": "MATCHED"
+  },
+  "i4AuZXzGWDsRzbdGUwAf": {
+    "dishName": "Veg Hot and Sour Soup",
+    "imagePath": "/images/ai-menu/020-veg-hot-and-sour-soup.webp",
+    "sourceFilename": "020-veg-hot-and-sour-soup.webp",
+    "category": "soups",
+    "status": "MATCHED"
+  },
+  "PoffPrdRprkR4Y3yBpqh": {
+    "dishName": "Chilli Paneer",
+    "imagePath": "/images/ai-menu/005-chilli-paneer.webp",
+    "sourceFilename": "005-chilli-paneer.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "0KRzoRbLdxwwbIgx9Ubm": {
+    "dishName": "Chilly Crispy Baby Corn",
+    "imagePath": "/images/ai-menu/006-chilly-crispy-baby-corn.webp",
+    "sourceFilename": "006-chilly-crispy-baby-corn.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "oG00dJzcYZKWjjSDHT1a": {
+    "dishName": "Gobi Manchurian",
+    "imagePath": "/images/ai-menu/004-gobi-manchurian.webp",
+    "sourceFilename": "004-gobi-manchurian.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "uHiE3WG5B8HoAIx4bYpY": {
+    "dishName": "Masala Papad",
+    "imagePath": "/images/ai-menu/001-masala-papad.webp",
+    "sourceFilename": "001-masala-papad.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "MfZ30OgzT8R6gjeL4oD1": {
+    "dishName": "Masala Peanut",
+    "imagePath": "/images/ai-menu/007-masala-peanut.webp",
+    "sourceFilename": "007-masala-peanut.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "Y9jRXNsFIht2GhoKpY0A": {
+    "dishName": "Masala Puri",
+    "imagePath": "/images/ai-menu/008-masala-puri.webp",
+    "sourceFilename": "008-masala-puri.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "zOkboX86h6evd4CHYq2h": {
+    "dishName": "Onion Pakoda",
+    "imagePath": "/images/ai-menu/003-onion-pakoda.webp",
+    "sourceFilename": "003-onion-pakoda.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "uAYvYFs6waTSfTKygdC2": {
+    "dishName": "Palak Chaat",
+    "imagePath": "/images/ai-menu/009-palak-chaat.webp",
+    "sourceFilename": "009-palak-chaat.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "h2q0qrKF57swceYvsYAq": {
+    "dishName": "Samosa",
+    "imagePath": "/images/ai-menu/002-samosa.webp",
+    "sourceFilename": "002-samosa.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "k1nDUf6kOvVlGinb96G0": {
+    "dishName": "Veg Momos",
+    "imagePath": "/images/ai-menu/010-veg-momos.webp",
+    "sourceFilename": "010-veg-momos.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "k6lpo7cmfgIcpEBd7PRz": {
+    "dishName": "Veg Fried Rice",
+    "imagePath": "/images/ai-menu/057-veg-fried-rice.webp",
+    "sourceFilename": "057-veg-fried-rice.webp",
+    "category": "veg-noodles-rice",
+    "status": "MATCHED"
+  }
+}

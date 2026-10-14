@@ -1,0 +1,572 @@
+[
+  {
+    "filename": "001-masala-papad.webp",
+    "size": 434722,
+    "ext": ".webp"
+  },
+  {
+    "filename": "002-samosa.webp",
+    "size": 428340,
+    "ext": ".webp"
+  },
+  {
+    "filename": "003-onion-pakoda.webp",
+    "size": 494756,
+    "ext": ".webp"
+  },
+  {
+    "filename": "004-gobi-manchurian.webp",
+    "size": 613568,
+    "ext": ".webp"
+  },
+  {
+    "filename": "005-chilli-paneer.webp",
+    "size": 465992,
+    "ext": ".webp"
+  },
+  {
+    "filename": "006-chilly-crispy-baby-corn.webp",
+    "size": 543722,
+    "ext": ".webp"
+  },
+  {
+    "filename": "007-masala-peanut.webp",
+    "size": 527068,
+    "ext": ".webp"
+  },
+  {
+    "filename": "008-masala-puri.webp",
+    "size": 521864,
+    "ext": ".webp"
+  },
+  {
+    "filename": "009-veg-momos.webp",
+    "size": 382026,
+    "ext": ".webp"
+  },
+  {
+    "filename": "010-Chiken-momos.webp",
+    "size": 402800,
+    "ext": ".webp"
+  },
+  {
+    "filename": "011-chicken-chilli.webp",
+    "size": 560858,
+    "ext": ".webp"
+  },
+  {
+    "filename": "012-palak-chatt.webp",
+    "size": 547934,
+    "ext": ".webp"
+  },
+  {
+    "filename": "013-chicken-65.webp",
+    "size": 603614,
+    "ext": ".webp"
+  },
+  {
+    "filename": "014-chicken-lollipop.webp",
+    "size": 527962,
+    "ext": ".webp"
+  },
+  {
+    "filename": "015-prawn-pepper-fry.webp",
+    "size": 539088,
+    "ext": ".webp"
+  },
+  {
+    "filename": "016-fish-fry-golden-pompano.webp",
+    "size": 675928,
+    "ext": ".webp"
+  },
+  {
+    "filename": "017-hyderabadi-goat-sukka.webp",
+    "size": 587160,
+    "ext": ".webp"
+  },
+  {
+    "filename": "018-rasam-soup.webp",
+    "size": 482008,
+    "ext": ".webp"
+  },
+  {
+    "filename": "019-sweet-corn-soup.webp",
+    "size": 384432,
+    "ext": ".webp"
+  },
+  {
+    "filename": "020-veg-hot-and-sour-soup.webp",
+    "size": 541898,
+    "ext": ".webp"
+  },
+  {
+    "filename": "022-goat-paya-soup.webp",
+    "size": 502662,
+    "ext": ".webp"
+  },
+  {
+    "filename": "023-tandoori-chicken-half.webp",
+    "size": 541140,
+    "ext": ".webp"
+  },
+  {
+    "filename": "024-tandoor-paneer-tikka-grill.webp",
+    "size": 639042,
+    "ext": ".webp"
+  },
+  {
+    "filename": "025-tandoori-chicken-full.webp",
+    "size": 622532,
+    "ext": ".webp"
+  },
+  {
+    "filename": "026-pappu-nagarjuna-style.webp",
+    "size": 541342,
+    "ext": ".webp"
+  },
+  {
+    "filename": "027-chana-masala.webp",
+    "size": 583540,
+    "ext": ".webp"
+  },
+  {
+    "filename": "028-bhagara-baingan.webp",
+    "size": 523266,
+    "ext": ".webp"
+  },
+  {
+    "filename": "029-bhindi-masala.webp",
+    "size": 553130,
+    "ext": ".webp"
+  },
+  {
+    "filename": "030-paneer-butter-masala.webp",
+    "size": 416430,
+    "ext": ".webp"
+  },
+  {
+    "filename": "031-navratan-veg-korma.webp",
+    "size": 446474,
+    "ext": ".webp"
+  },
+  {
+    "filename": "032-saag-paneer.webp",
+    "size": 579576,
+    "ext": ".webp"
+  },
+  {
+    "filename": "033-egg-curry.webp",
+    "size": 533354,
+    "ext": ".webp"
+  },
+  {
+    "filename": "034-butter-chicken.webp",
+    "size": 524192,
+    "ext": ".webp"
+  },
+  {
+    "filename": "035-chicken-tikka-masala.webp",
+    "size": 653598,
+    "ext": ".webp"
+  },
+  {
+    "filename": "036-mangalore-fish-curry.webp",
+    "size": 589616,
+    "ext": ".webp"
+  },
+  {
+    "filename": "037-cochin-prawn-shrimp-curry.webp",
+    "size": 578692,
+    "ext": ".webp"
+  },
+  {
+    "filename": "038-mutton-curry-bangalore-style.webp",
+    "size": 582752,
+    "ext": ".webp"
+  },
+  {
+    "filename": "039-lamb-korma.webp",
+    "size": 474028,
+    "ext": ".webp"
+  },
+  {
+    "filename": "040-chicken-curry-bangalore-style.webp",
+    "size": 598130,
+    "ext": ".webp"
+  },
+  {
+    "filename": "041-goat-curry-bangalore-style.webp",
+    "size": 645352,
+    "ext": ".webp"
+  },
+  {
+    "filename": "042-fish-mango-curry.webp",
+    "size": 577994,
+    "ext": ".webp"
+  },
+  {
+    "filename": "043-bhuna-mutton-dry.webp",
+    "size": 595912,
+    "ext": ".webp"
+  },
+  {
+    "filename": "044-veg-noodles.webp",
+    "size": 499352,
+    "ext": ".webp"
+  },
+  {
+    "filename": "045-egg-fried-rice.webp",
+    "size": 532480,
+    "ext": ".webp"
+  },
+  {
+    "filename": "046-chiken-noodles.webp",
+    "size": 582506,
+    "ext": ".webp"
+  },
+  {
+    "filename": "047-chicken-fried-rice.webp",
+    "size": 497978,
+    "ext": ".webp"
+  },
+  {
+    "filename": "048-mixed-fried-rice.webp",
+    "size": 581858,
+    "ext": ".webp"
+  },
+  {
+    "filename": "049-mixed-noodles.webp",
+    "size": 471694,
+    "ext": ".webp"
+  },
+  {
+    "filename": "050-prawn-fried-rice.webp",
+    "size": 538232,
+    "ext": ".webp"
+  },
+  {
+    "filename": "051-mushroom-fried-rice.webp",
+    "size": 557272,
+    "ext": ".webp"
+  },
+  {
+    "filename": "052-chicken-biryani.webp",
+    "size": 539828,
+    "ext": ".webp"
+  },
+  {
+    "filename": "053-veg-biryani.webp",
+    "size": 515244,
+    "ext": ".webp"
+  },
+  {
+    "filename": "054-goat-biryani.webp",
+    "size": 560780,
+    "ext": ".webp"
+  },
+  {
+    "filename": "055-kaju-paneer-biryani.webp",
+    "size": 517342,
+    "ext": ".webp"
+  },
+  {
+    "filename": "056-egg-biryani.webp",
+    "size": 491920,
+    "ext": ".webp"
+  },
+  {
+    "filename": "057-veg-fried-rice.webp",
+    "size": 525052,
+    "ext": ".webp"
+  },
+  {
+    "filename": "058-sambar-rice.webp",
+    "size": 565412,
+    "ext": ".webp"
+  },
+  {
+    "filename": "059-rasam-rice.webp",
+    "size": 494146,
+    "ext": ".webp"
+  },
+  {
+    "filename": "060-curd-rice.webp",
+    "size": 353138,
+    "ext": ".webp"
+  },
+  {
+    "filename": "061-tomato-rice.webp",
+    "size": 540718,
+    "ext": ".webp"
+  },
+  {
+    "filename": "062-ghee-rice.webp",
+    "size": 519512,
+    "ext": ".webp"
+  },
+  {
+    "filename": "063-jeera-rice.webp",
+    "size": 470636,
+    "ext": ".webp"
+  },
+  {
+    "filename": "064-coconut-rice.webp",
+    "size": 465088,
+    "ext": ".webp"
+  },
+  {
+    "filename": "065-lemon-rice.webp",
+    "size": 481914,
+    "ext": ".webp"
+  },
+  {
+    "filename": "066-tamarind-rice.webp",
+    "size": 469094,
+    "ext": ".webp"
+  },
+  {
+    "filename": "067-pulao-veg-pulao.webp",
+    "size": 441866,
+    "ext": ".webp"
+  },
+  {
+    "filename": "068-peas-pulao.webp",
+    "size": 471156,
+    "ext": ".webp"
+  },
+  {
+    "filename": "069-kaju-pulao.webp",
+    "size": 477616,
+    "ext": ".webp"
+  },
+  {
+    "filename": "070-dal-fry.webp",
+    "size": 483738,
+    "ext": ".webp"
+  },
+  {
+    "filename": "071-dal-tadka.webp",
+    "size": 523182,
+    "ext": ".webp"
+  },
+  {
+    "filename": "072-butter-naan.webp",
+    "size": 389920,
+    "ext": ".webp"
+  },
+  {
+    "filename": "073-tandoori-roti.webp",
+    "size": 557830,
+    "ext": ".webp"
+  },
+  {
+    "filename": "074-cheese-naan.webp",
+    "size": 500996,
+    "ext": ".webp"
+  },
+  {
+    "filename": "075-lachha-paratha.webp",
+    "size": 449162,
+    "ext": ".webp"
+  },
+  {
+    "filename": "076-garlic-naan.webp",
+    "size": 402146,
+    "ext": ".webp"
+  },
+  {
+    "filename": "077-rumali-roti.webp",
+    "size": 376378,
+    "ext": ".webp"
+  },
+  {
+    "filename": "078-stuffed-kulcha.webp",
+    "size": 449816,
+    "ext": ".webp"
+  },
+  {
+    "filename": "079-kulcha.webp",
+    "size": 360856,
+    "ext": ".webp"
+  },
+  {
+    "filename": "080-paratha.webp",
+    "size": 410494,
+    "ext": ".webp"
+  },
+  {
+    "filename": "081-paneer-paratha.webp",
+    "size": 546746,
+    "ext": ".webp"
+  },
+  {
+    "filename": "082-aloo-paratha.webp",
+    "size": 434976,
+    "ext": ".webp"
+  },
+  {
+    "filename": "083-gobi-paratha.webp",
+    "size": 505218,
+    "ext": ".webp"
+  },
+  {
+    "filename": "084-masala-kulcha.webp",
+    "size": 527890,
+    "ext": ".webp"
+  },
+  {
+    "filename": "085-papad.webp",
+    "size": 418278,
+    "ext": ".webp"
+  },
+  {
+    "filename": "086-mixed-indian-breads.webp",
+    "size": 528788,
+    "ext": ".webp"
+  },
+  {
+    "filename": "087-roti-basket.webp",
+    "size": 529926,
+    "ext": ".webp"
+  },
+  {
+    "filename": "088-green-salad.webp",
+    "size": 484162,
+    "ext": ".webp"
+  },
+  {
+    "filename": "089-cucumber-salad.webp",
+    "size": 440076,
+    "ext": ".webp"
+  },
+  {
+    "filename": "090-onion-salad.webp",
+    "size": 441770,
+    "ext": ".webp"
+  },
+  {
+    "filename": "091-tomato-salad.webp",
+    "size": 402552,
+    "ext": ".webp"
+  },
+  {
+    "filename": "092-kachumber-salad.webp",
+    "size": 475108,
+    "ext": ".webp"
+  },
+  {
+    "filename": "093-raita.webp",
+    "size": 523748,
+    "ext": ".webp"
+  },
+  {
+    "filename": "094-boondi-raita.webp",
+    "size": 426326,
+    "ext": ".webp"
+  },
+  {
+    "filename": "095-mix-veg-raita.webp",
+    "size": 408132,
+    "ext": ".webp"
+  },
+  {
+    "filename": "096-cucumber-raita.webp",
+    "size": 441984,
+    "ext": ".webp"
+  },
+  {
+    "filename": "097-onion-raita.webp",
+    "size": 478326,
+    "ext": ".webp"
+  },
+  {
+    "filename": "098-mango-pickle.webp",
+    "size": 543108,
+    "ext": ".webp"
+  },
+  {
+    "filename": "098-pineapple-raita.webp",
+    "size": 412230,
+    "ext": ".webp"
+  },
+  {
+    "filename": "099-masala-papad-1.webp",
+    "size": 545510,
+    "ext": ".webp"
+  },
+  {
+    "filename": "099-pineapple-raita.webp",
+    "size": 329786,
+    "ext": ".webp"
+  },
+  {
+    "filename": "100-masala-papad.webp",
+    "size": 497448,
+    "ext": ".webp"
+  },
+  {
+    "filename": "100-tomato-raita.webp",
+    "size": 475288,
+    "ext": ".webp"
+  },
+  {
+    "filename": "101-green-chutney.webp",
+    "size": 394360,
+    "ext": ".webp"
+  },
+  {
+    "filename": "102-tomato-chatney.webp",
+    "size": 477568,
+    "ext": ".webp"
+  },
+  {
+    "filename": "103-red-chutney.webp",
+    "size": 509158,
+    "ext": ".webp"
+  },
+  {
+    "filename": "104-coconut-chutney.webp",
+    "size": 491976,
+    "ext": ".webp"
+  },
+  {
+    "filename": "105-tamarind-chutney.webp",
+    "size": 540686,
+    "ext": ".webp"
+  },
+  {
+    "filename": "106-mango-chutney.webp",
+    "size": 480750,
+    "ext": ".webp"
+  },
+  {
+    "filename": "107-mint-chutney.webp",
+    "size": 581972,
+    "ext": ".webp"
+  },
+  {
+    "filename": "108-peanut-chutney.webp",
+    "size": 513200,
+    "ext": ".webp"
+  },
+  {
+    "filename": "109-garlic-chutney.webp",
+    "size": 589818,
+    "ext": ".webp"
+  },
+  {
+    "filename": "110-dates-chutney.webp",
+    "size": 549154,
+    "ext": ".webp"
+  },
+  {
+    "filename": "111-gunpowder.webp",
+    "size": 466580,
+    "ext": ".webp"
+  },
+  {
+    "filename": "112-pickle.webp",
+    "size": 545332,
+    "ext": ".webp"
+  }
+]

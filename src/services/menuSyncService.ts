@@ -1,6 +1,9 @@
 import { collection, getDocs, doc, writeBatch, serverTimestamp, setDoc, updateDoc, addDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import aiManifest from '../data/aiMenuManifest.json';
+import aiMenuManifestByIdRaw from '../data/aiMenuManifestById.json';
+
+const aiMenuManifestById: Record<string, { dishName: string; imagePath: string; sourceFilename: string; category?: string; status?: string }> = aiMenuManifestByIdRaw as any;
 
 export interface SyncLog {
   timestamp: string;
@@ -33,78 +36,9 @@ export function normalizeMenuName(name: string): string {
     .replace(/\s+/g, ' ');
 }
 
-export const DISH_UNSPLASH_IMAGES: Record<string, string> = {
-  // --- DOSA SPECIALS & SPECIALTY DOSAS ---
-  "Plain Dosa": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&q=80&w=800",
-  "Masala Dosa": "https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&q=80&w=800",
-  "Benne Masala Dosa": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&q=80&w=800",
-  "Ghee Open Masala Dosa": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
-  "Mysore Masala Dosa": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=800",
-  "Onion Mysore Masala Dosa": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
-  "Set Dosa with Chicken Gravy": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&q=80&w=800",
-  "Set Dosa with Mutton Gravy": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800",
-  "Cheese Dosa": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&q=80&w=800",
-  "Cheese Mysore Masala Dosa": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800",
-  "Paneer Mysore Masala Dosa": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&q=80&w=800",
-  "Chocolate Dosa": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800",
-  "Plain Rava Dosa": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
-  "Onion Rava Dosa": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=800",
-  "Onion Rava Masala Dosa": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=800",
-  "Dosa Sambar": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800",
-
-  // --- UTTAPAMS ---
-  "Onion Chilli Uttapam": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
-  "Tomato Onion Uttapam": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&q=80&w=800",
-  "Tomato Onion Chilli Uttapam": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800",
-
-  // --- IDLI & VADA ---
-  "Idli": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
-  "Idli in Sambar": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=800",
-  "Medu Vada": "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&q=80&w=800",
-  "Vada in Sambar": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800",
-  "Idli/Vada Combo": "https://images.unsplash.com/photo-1576092762791-dd9e2220abd4?auto=format&fit=crop&q=80&w=800",
-  "Thatte Idli with Ghee Pudi": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800",
-  "Idli with Chicken Gravy": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=800",
-  "Idli with Mutton Gravy": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=800",
-
-  // --- TIFFINS ---
-  "Tiffin 1 - Mini Masala Dosa, Idli & Vada": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=800",
-  "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=800",
-
-  // --- BREADS ---
-  "Chapati": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=800",
-  "Butter Roti": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800",
-  "Laccha Paratha": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&q=80&w=800",
-  "Garlic Naan": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
-  "Garlic Chilli Naan": "https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&q=80&w=800",
-  "Cheese Naan": "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&q=80&w=800",
-
-  // --- NON-VEG CURRIES & APPETIZERS ---
-  "Chicken Curry (Bangalore style)": "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800",
-  "Mutton curry (Bangalore style)": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&q=80&w=800",
-  "Butter Chicken": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
-  "Chicken Tikka Masala": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800",
-  "Egg Curry": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&q=80&w=800",
-  "Mangalore Fish Curry": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=800",
-  "Cochin Prawn/Shrimp Curry": "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=800",
-  "Lamb Korma": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
-  "Chicken 65": "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&q=80&w=800",
-  "Chicken Lollipop": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&q=80&w=800",
-  "Prawn Pepper Fry": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=800",
-  "Fish Fry (Golden Pompano)": "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&q=80&w=800",
-  "Hyderabadi Goat Sukka": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800",
-
-  // --- BEVERAGES ---
-  "Masala Chai": "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=800",
-  "Filter Coffee": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800",
-  "Mango Lassi": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800",
-  "Rose Milk": "https://images.unsplash.com/photo-1576092762791-dd9e2220abd4?auto=format&fit=crop&q=80&w=800",
-  "Badam Milk": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&q=80&w=800",
-  "Buttermilk": "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&q=80&w=800",
-  "Soda": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&q=80&w=800",
-  "Bottled Water": "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&q=80&w=800",
-  "Sparkling Water": "https://images.unsplash.com/photo-1560023907-5f339617ea30?auto=format&fit=crop&q=80&w=800"
-};
+// Legacy stock dictionaries deprecated per zero-stock AI menu architecture
+export const DISH_UNSPLASH_IMAGES: Record<string, string> = {};
+export const VERIFIED_LOCAL_DISH_IMAGES: Record<string, string> = {};
 
 export function getDishSlug(name: string): string {
   if (!name) return '';
@@ -115,129 +49,8 @@ export function getDishSlug(name: string): string {
   return clean.trim().replace(/\s+/g, '-').replace(/-+/g, '-');
 }
 
-export const VERIFIED_LOCAL_DISH_IMAGES: Record<string, string> = {
-  "7 Family Combo Meals ": "/images/dishes/7-family-combo-meals-1200.webp",
-  "Badam Milk": "/images/dishes/badam-milk-1200.webp",
-  "Bangalore Mutton Donne Biryani": "/images/dishes/bangalore-mutton-donne-biryani-1200.webp",
-  "Benne Masala Dosa": "/images/dishes/benne-masala-dosa-1200.webp",
-  "Bhagara Baingan": "/images/dishes/bhagara-baingan-1200.webp",
-  "Bhindi Masala": "/images/dishes/bhindi-masala-1200.webp",
-  "Bisibele Bath": "/images/dishes/bisibele-bath-1200.webp",
-  "Bottled Water": "/images/dishes/bottled-water-1200.webp",
-  "Butter Chicken": "/images/dishes/butter-chicken-1200.webp",
-  "Butter Roti": "/images/dishes/butter-roti-1200.webp",
-  "Buttermilk": "/images/dishes/buttermilk-1200.webp",
-  "Chana Masala": "/images/dishes/chana-masala-1200.webp",
-  "Chapati": "/images/dishes/chapati-1200.webp",
-  "Cheese Dosa": "/images/dishes/cheese-dosa-1200.webp",
-  "Cheese Mysore Masala Dosa": "/images/dishes/cheese-mysore-masala-dosa-1200.webp",
-  "Cheese Naan": "/images/dishes/cheese-naan-1200.webp",
-  "Chef Special Chicken 65 Biryani": "/images/dishes/chef-special-chicken-65-biryani-1200.webp",
-  "Chicken 65": "/images/dishes/chicken-65-1200.webp",
-  "Chicken Curry (Bangalore style)": "/images/dishes/chicken-curry-bangalore-style-1200.webp",
-  "Chicken Fried Rice": "/images/dishes/chicken-fried-rice-1200.webp",
-  "Chicken Hakka Noodles": "/images/dishes/chicken-hakka-noodles-1200.webp",
-  "Chicken Hot and Sour Soup": "/images/dishes/chicken-hot-and-sour-soup-1200.webp",
-  "Chicken Lollipop": "/images/dishes/chicken-lollipop-1200.webp",
-  "Chicken Manchurian Gravy": "/images/dishes/chicken-manchurian-gravy-1200.webp",
-  "Chicken Momos": "/images/dishes/chicken-momos-1200.webp",
-  "Chicken Schezwan Noodles": "/images/dishes/chicken-schezwan-noodles-1200.webp",
-  "Chicken Schezwan Rice": "/images/dishes/chicken-schezwan-rice-1200.webp",
-  "Chicken Tikka Masala": "/images/dishes/chicken-tikka-masala-1200.webp",
-  "Chili Paneer Gravy": "/images/dishes/chili-paneer-gravy-1200.webp",
-  "Chilli Chicken": "/images/dishes/chilli-chicken-1200.webp",
-  "Chilli Paneer": "/images/dishes/chilli-paneer-1200.webp",
-  "Chilly Crispy Baby Corn": "/images/dishes/chilly-crispy-baby-corn-1200.webp",
-  "Chocolate Dosa": "/images/dishes/chocolate-dosa-1200.webp",
-  "Cochin Prawn/Shrimp Curry": "/images/dishes/cochin-prawn-shrimp-curry-1200.webp",
-  "Dosa Sambar": "/images/dishes/dosa-sambar-1200.webp",
-  "Egg Curry": "/images/dishes/egg-curry-1200.webp",
-  "Filter Coffee": "/images/dishes/filter-coffee-1200.webp",
-  "Fish Fry (Golden Pompano)": "/images/dishes/fish-fry-golden-pompano-1200.webp",
-  "Gajar Halwa": "/images/dishes/gajar-halwa-1200.webp",
-  "Garlic Chilli Naan": "/images/dishes/garlic-chilli-naan-1200.webp",
-  "Garlic Naan": "/images/dishes/garlic-naan-1200.webp",
-  "Ghee Open Masala Dosa": "/images/dishes/ghee-open-masala-dosa-1200.webp",
-  "Goat Paya Soup": "/images/dishes/goat-paya-soup-1200.webp",
-  "Gobi Manchurian": "/images/dishes/gobi-manchurian-1200.webp",
-  "Gobi Manchurian Gravy": "/images/dishes/gobi-manchurian-gravy-1200.webp",
-  "Gulab Jamun": "/images/dishes/gulab-jamun-1200.webp",
-  "Hyderabadi Goat Sukka": "/images/dishes/hyderabadi-goat-sukka-1200.webp",
-  "Ice Cream": "/images/dishes/ice-cream-1200.webp",
-  "Idli": "/images/dishes/idli-1200.webp",
-  "Idli in Sambar": "/images/dishes/idli-in-sambar-1200.webp",
-  "Idli with Chicken Gravy": "/images/dishes/idli-with-chicken-gravy-1200.webp",
-  "Idli with Mutton Gravy": "/images/dishes/idli-with-mutton-gravy-1200.webp",
-  "Idli/Vada Combo": "/images/dishes/idli-vada-combo-1200.webp",
-  "Jeera Rice": "/images/dishes/jeera-rice-1200.webp",
-  "Laccha Paratha": "/images/dishes/laccha-paratha-1200.webp",
-  "Lamb Korma": "/images/dishes/lamb-korma-1200.webp",
-  "Malai Kofta": "/images/dishes/malai-kofta-1200.webp",
-  "Mangalore Fish Curry": "/images/dishes/mangalore-fish-curry-1200.webp",
-  "Mango Lassi": "/images/dishes/mango-lassi-1200.webp",
-  "Masala Chai": "/images/dishes/masala-chai-1200.webp",
-  "Masala Dosa": "/images/dishes/masala-dosa-1200.webp",
-  "Masala Papad": "/images/dishes/masala-papad-1200.webp",
-  "Masala Peanut": "/images/dishes/masala-peanut-1200.webp",
-  "Masala Puri": "/images/dishes/masala-puri-1200.webp",
-  "Medu Vada": "/images/dishes/medu-vada-1200.webp",
-  "Mild Gujrati Thali": "/images/dishes/mild-gujrati-thali-1200.webp",
-  "Moong Dal Halwa": "/images/dishes/moong-dal-halwa-1200.webp",
-  "Mutton curry (Bangalore style)": "/images/dishes/mutton-curry-bangalore-style-1200.webp",
-  "Mysore Masala Dosa": "/images/dishes/mysore-masala-dosa-1200.webp",
-  "Navaratan Vegetable Korma": "/images/dishes/navaratan-vegetable-korma-1200.webp",
-  "Onion Chilli Uttapam": "/images/dishes/onion-chilli-uttapam-1200.webp",
-  "Onion Mysore Masala Dosa": "/images/dishes/onion-mysore-masala-dosa-1200.webp",
-  "Onion Pakoda": "/images/dishes/onion-pakoda-1200.webp",
-  "Onion Rava Dosa": "/images/dishes/onion-rava-dosa-1200.webp",
-  "Onion Rava Masala Dosa": "/images/dishes/onion-rava-masala-dosa-1200.webp",
-  "Palak Chaat": "/images/dishes/palak-chaat-1200.webp",
-  "Paneer Butter Masala": "/images/dishes/paneer-butter-masala-1200.webp",
-  "Paneer Mysore Masala Dosa": "/images/dishes/paneer-mysore-masala-dosa-1200.webp",
-  "Pappu (Nagarjuna style)": "/images/dishes/pappu-nagarjuna-style-1200.webp",
-  "Payasa": "/images/dishes/payasa-1200.webp",
-  "Plain Dosa": "/images/dishes/plain-dosa-1200.webp",
-  "Plain Rava Dosa": "/images/dishes/plain-rava-dosa-1200.webp",
-  "Prawn Pepper Fry": "/images/dishes/prawn-pepper-fry-1200.webp",
-  "Punjabi Thali": "/images/dishes/punjabi-thali-1200.webp",
-  "Rasam Soup": "/images/dishes/rasam-soup-1200.webp",
-  "Rasmalai": "/images/dishes/rasmalai-1200.webp",
-  "Rose Milk": "/images/dishes/rose-milk-1200.webp",
-  "Saag Paneer": "/images/dishes/saag-paneer-1200.webp",
-  "Samosa": "/images/dishes/samosa-1200.webp",
-  "Set Dosa with Chicken Gravy": "/images/dishes/set-dosa-with-chicken-gravy-1200.webp",
-  "Set Dosa with Mutton Gravy": "/images/dishes/set-dosa-with-mutton-gravy-1200.webp",
-  "Soda": "/images/dishes/soda-1200.webp",
-  "Sparkling Water": "/images/dishes/sparkling-water-1200.webp",
-  "Steamed Rice": "/images/dishes/steamed-rice-1200.webp",
-  "Sweet Corn Soup": "/images/dishes/sweet-corn-soup-1200.webp",
-  "Tandoor Paneer Tikka Grill": "/images/dishes/tandoor-paneer-tikka-grill-1200.webp",
-  "Tandoori Chicken Full": "/images/dishes/tandoori-chicken-full-1200.webp",
-  "Tandoori Chicken Half": "/images/dishes/tandoori-chicken-half-1200.webp",
-  "Thatte Idli with Ghee Pudi": "/images/dishes/thatte-idli-with-ghee-pudi-1200.webp",
-  "Tiffin 1 - Mini Masala Dosa, Idli & Vada": "/images/dishes/tiffin-1-mini-masala-dosa-idli-vada-1200.webp",
-  "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath": "/images/dishes/tiffin-2-mini-masala-dosa-idli-vada-upma-kesaribath-1200.webp",
-  "Tomato Onion Chilli Uttapam": "/images/dishes/tomato-onion-chilli-uttapam-1200.webp",
-  "Tomato Onion Uttapam": "/images/dishes/tomato-onion-uttapam-1200.webp",
-  "Vada in Sambar": "/images/dishes/vada-in-sambar-1200.webp",
-  "Veg Biryani": "/images/dishes/veg-biryani-1200.webp",
-  "Veg Fried Rice": "/images/dishes/veg-fried-rice-1200.webp",
-  "Veg Hakka Noodles": "/images/dishes/veg-hakka-noodles-1200.webp",
-  "Veg Hot and Sour Soup": "/images/dishes/veg-hot-and-sour-soup-1200.webp",
-  "Veg Momos": "/images/dishes/veg-momos-1200.webp",
-  "Veg Schezuan Noodles": "/images/dishes/veg-schezuan-noodles-1200.webp",
-  "Veg Schezuan Rice": "/images/dishes/veg-schezuan-rice-1200.webp",
-};
-
 export function getDishImageUrl(name: string): string {
-  if (!name) return '';
-  const clean = name.replace(/^authentic\s+/gi, '').trim();
-  
-  // 1. Check verified dedicated local photography first
-  if (VERIFIED_LOCAL_DISH_IMAGES[name]) return VERIFIED_LOCAL_DISH_IMAGES[name];
-  if (VERIFIED_LOCAL_DISH_IMAGES[clean]) return VERIFIED_LOCAL_DISH_IMAGES[clean];
-  
-  // 2. Do not return generic Samosas/Chicken 65 duplicates or repeated Unsplash photos
+  // Legacy scraped/Unsplash fallbacks permanently disabled per AI menu architecture
   return '';
 }
 
@@ -256,35 +69,101 @@ export const AI_DISH_STATUS_BY_ID: Record<string, { status: string; approved: bo
   }
 });
 
+// Cache-busting version token for verified AI menu assets
+export const AI_MENU_ASSET_VERSION = 'ai-v3-rematch';
+
 export function getApprovedAiImageUrl(dishId?: string, dishName?: string): string | null {
   if (dishId) {
-    // Check localStorage overrides if any from Audit Gallery
+    // Check localStorage overrides if explicitly rejected in Audit Gallery
     try {
-      const stored = localStorage.getItem('tbk_ai_menu_approvals');
-      if (stored) {
-        const overrides = JSON.parse(stored);
-        if (overrides[dishId] === false) return null; // explicitly rejected
-        if (overrides[dishId] === true) {
-          const item = (aiManifest as any[]).find(m => m.dishId === dishId);
-          if (item?.assetPath) return item.assetPath;
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const stored = localStorage.getItem('tbk_ai_menu_approvals');
+        if (stored) {
+          const overrides = JSON.parse(stored);
+          if (overrides[dishId] === false) return null; // explicitly rejected
+        }
+
+        // Check if an uncertain match was explicitly approved in Audit Gallery
+        const reviewDecisions = localStorage.getItem('tbk_audit_review_decisions');
+        if (reviewDecisions) {
+          const decisions = JSON.parse(reviewDecisions);
+          if (decisions[dishId]) {
+            return `${decisions[dishId]}?v=${AI_MENU_ASSET_VERSION}`;
+          }
         }
       }
     } catch {}
 
+    // Priority 1: Newly imported local AI image strictly matched by Firebase Document ID
+    const directLocalMatch = aiMenuManifestById[dishId];
+    if (directLocalMatch?.imagePath) {
+      return `${directLocalMatch.imagePath}?v=${AI_MENU_ASSET_VERSION}`;
+    }
+
+    // Priority 1b: Previously generated verified AI image in aiManifest
     if (AI_DISH_IMAGES_BY_ID[dishId]) {
-      return AI_DISH_IMAGES_BY_ID[dishId];
+      return `${AI_DISH_IMAGES_BY_ID[dishId]}?v=${AI_MENU_ASSET_VERSION}`;
     }
   }
 
   if (dishName) {
     const clean = dishName.replace(/^authentic\s+/gi, '').trim().toLowerCase();
+    // Check manifest by normalized dish name
+    for (const entry of Object.values(aiMenuManifestById)) {
+      if (entry.dishName.trim().toLowerCase() === clean && entry.imagePath) {
+        return `${entry.imagePath}?v=${AI_MENU_ASSET_VERSION}`;
+      }
+    }
+
     const item = (aiManifest as any[]).find(
       m => m.dishName.toLowerCase().trim() === clean && m.approvalStatus === 'APPROVED' && m.assetPath
     );
-    if (item?.assetPath) return item.assetPath;
+    if (item?.assetPath) return `${item.assetPath}?v=${AI_MENU_ASSET_VERSION}`;
   }
 
   return null;
+}
+
+/**
+ * Authoritative 3-tier image resolution priority:
+ * 1. Approved local AI image for the exact Firebase dish ID.
+ * 2. Verified AI image selected in admin and stored in Firebase (or custom upload).
+ * 3. Neutral missing-image placeholder (returns null).
+ *
+ * Stale stock/Unsplash/Wikimedia images are strictly blocked and never returned.
+ */
+export function getDishResolvedUrl(dishId?: string, dishName?: string, currentImageUrl?: string): {
+  url: string | null;
+  source: 'AI_APPROVED' | 'CUSTOM_UPLOAD' | 'NEUTRAL_PLACEHOLDER';
+} {
+  // 1. Approved local AI image for the exact Firebase dish ID
+  const approvedAi = getApprovedAiImageUrl(dishId, dishName);
+  if (approvedAi) {
+    return { url: approvedAi, source: 'AI_APPROVED' };
+  }
+
+  // 2. Verified AI image selected in admin and stored in Firebase
+  const target = currentImageUrl?.trim();
+  if (target) {
+    const isForbiddenStock = target.includes('images.unsplash.com') || target.includes('wikimedia.org');
+    if (!isForbiddenStock) {
+      const isCustomUpload = (
+        target.startsWith('/uploads/') ||
+        target.startsWith('data:image/') ||
+        target.includes('firebasestorage.googleapis.com')
+      );
+      if (isCustomUpload) {
+        return { url: target, source: 'CUSTOM_UPLOAD' };
+      }
+
+      if (target.startsWith('/images/ai-menu/')) {
+        return { url: `${target}${target.includes('?') ? '' : `?v=${AI_MENU_ASSET_VERSION}`}`, source: 'AI_APPROVED' };
+      }
+    }
+  }
+
+  // 3. Neutral missing-image placeholder (null triggers graceful ProductImage placeholder)
+  return { url: null, source: 'NEUTRAL_PLACEHOLDER' };
 }
 
 export const REFERENCE_CATEGORIES = [
@@ -410,7 +289,7 @@ export const REFERENCE_MENU_ITEMS = [
     categoryId: 'non-veg-appetizers',
     isVegetarian: false,
     isJain: false,
-    imageUrl: 'https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&q=80&w=800'
+    imageUrl: ''
   },
   {
     name: "Chilli Chicken",
@@ -626,7 +505,7 @@ export const REFERENCE_MENU_ITEMS = [
     categoryId: 'main-course-non-veg',
     isVegetarian: false,
     isJain: false,
-    imageUrl: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&q=80&w=800'
+    imageUrl: ''
   },
   {
     name: "Mangalore Fish Curry",
@@ -1031,7 +910,7 @@ export const REFERENCE_MENU_ITEMS = [
     categoryId: 'biryani',
     isVegetarian: true,
     isJain: false,
-    imageUrl: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800'
+    imageUrl: ''
   },
   {
     name: "Chef Special Chicken 65 Biryani",
@@ -1139,7 +1018,7 @@ export const REFERENCE_MENU_ITEMS = [
     categoryId: 'dessert',
     isVegetarian: true,
     isJain: false,
-    imageUrl: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?auto=format&fit=crop&q=80&w=800'
+    imageUrl: ''
   },
   {
     name: "Gulab Jamun",
@@ -1193,7 +1072,7 @@ export const REFERENCE_MENU_ITEMS = [
     categoryId: 'beverages',
     isVegetarian: true,
     isJain: false,
-    imageUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800'
+    imageUrl: ''
   },
   {
     name: "Masala Chai",
@@ -1202,7 +1081,7 @@ export const REFERENCE_MENU_ITEMS = [
     categoryId: 'beverages',
     isVegetarian: true,
     isJain: false,
-    imageUrl: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=800'
+    imageUrl: ''
   },
   {
     name: "Mango Lassi",

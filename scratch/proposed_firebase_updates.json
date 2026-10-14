@@ -1,0 +1,863 @@
+{
+  "summary": {
+    "totalFirestoreDocuments": 111,
+    "proposedAiImageUpdates": 46,
+    "proposedStockImageCleanups": 0,
+    "unchangedDocuments": 65
+  },
+  "proposedUpdates": [
+    {
+      "dishId": "yHB2tdZlQuUjoeIcStB7",
+      "dishName": "Veg Biryani",
+      "category": "biryani",
+      "currentImageUrl": "/images/ai-menu/yHB2tdZlQuUjoeIcStB7-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/056-veg-biryani.webp?v=ai-v2",
+      "sourceFilename": "056-veg-biryani.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "oGpve56LpHbwLHk8hnHy",
+      "dishName": "Cheese Naan",
+      "category": "breads",
+      "currentImageUrl": "/images/ai-menu/oGpve56LpHbwLHk8hnHy-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/074-cheese-naan.webp?v=ai-v2",
+      "sourceFilename": "074-cheese-naan.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "lkcFtSHuWvfwBhc3x7tF",
+      "dishName": "Garlic Naan",
+      "category": "breads",
+      "currentImageUrl": "/images/ai-menu/lkcFtSHuWvfwBhc3x7tF-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/073-garlic-naan.webp?v=ai-v2",
+      "sourceFilename": "073-garlic-naan.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "kUkPyCAt1SRXRTCLmUAU",
+      "dishName": "Laccha Paratha",
+      "category": "breads",
+      "currentImageUrl": "/images/ai-menu/kUkPyCAt1SRXRTCLmUAU-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/075-lachha-paratha.webp?v=ai-v2",
+      "sourceFilename": "075-lachha-paratha.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "wxP3E3HwHvSDXnJREP6y",
+      "dishName": "Tandoor Paneer Tikka Grill",
+      "category": "grill-specials",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/024-tandoor-paneer-tikka-grill.webp?v=ai-v2",
+      "sourceFilename": "024-tandoor-paneer-tikka-grill.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "ISoTXuXRKEEaIbNzCLS1",
+      "dishName": "Tandoori Chicken Full",
+      "category": "grill-specials",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/025-tandoori-chicken-full.webp?v=ai-v2",
+      "sourceFilename": "025-tandoori-chicken-full.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "Q49XycXO8SW3g1OpGsvC",
+      "dishName": "Tandoori Chicken Half",
+      "category": "grill-specials",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/023-tandoori-chicken-half.webp?v=ai-v2",
+      "sourceFilename": "023-tandoori-chicken-half.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "pYskmHafpd5ORca2eWwX",
+      "dishName": "Butter Chicken",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/034-butter-chicken.webp?v=ai-v2",
+      "sourceFilename": "034-butter-chicken.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "6H6D2CBmtkEX97E7VXeS",
+      "dishName": "Chicken Curry (Bangalore style)",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/040-chicken-curry-bangalore-style.webp?v=ai-v2",
+      "sourceFilename": "040-chicken-curry-bangalore-style.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "luE0Pf0OmF4ikB7cCIrS",
+      "dishName": "Chicken Tikka Masala",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "/images/ai-menu/luE0Pf0OmF4ikB7cCIrS-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/035-chicken-tikka-masala.webp?v=ai-v2",
+      "sourceFilename": "035-chicken-tikka-masala.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "D3PWAvKesY88UOAzwsW9",
+      "dishName": "Cochin Prawn/Shrimp Curry",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "/images/ai-menu/D3PWAvKesY88UOAzwsW9-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/037-cochin-prawn-shrimp-curry.webp?v=ai-v2",
+      "sourceFilename": "037-cochin-prawn-shrimp-curry.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "GXP36qQBrQ79GQD93yjZ",
+      "dishName": "Egg Curry",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/033-egg-curry.webp?v=ai-v2",
+      "sourceFilename": "033-egg-curry.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "SEZjEdemROKee32qw2Y1",
+      "dishName": "Lamb Korma",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/039-lamb-korma.webp?v=ai-v2",
+      "sourceFilename": "039-lamb-korma.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "SUFXHbvfxW7FNSZycg7d",
+      "dishName": "Mangalore Fish Curry",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/036-mangalore-fish-curry.webp?v=ai-v2",
+      "sourceFilename": "036-mangalore-fish-curry.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "XfdsUeOY1ImCUYroJtva",
+      "dishName": "Mutton curry (Bangalore style)",
+      "category": "main-course-non-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/038-mutton-curry-bangalore-style.webp?v=ai-v2",
+      "sourceFilename": "038-mutton-curry-bangalore-style.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "l6ctzwsYcZM71hZgpnpC",
+      "dishName": "Bhagara Baingan",
+      "category": "main-course-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/028-bhagara-baingan.webp?v=ai-v2",
+      "sourceFilename": "028-bhagara-baingan.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "KXFYTyspv5deqAgDbJ1a",
+      "dishName": "Bhindi Masala",
+      "category": "main-course-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/029-bhindi-masala.webp?v=ai-v2",
+      "sourceFilename": "029-bhindi-masala.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "eUv4OBqyVQ68PVYMpSsi",
+      "dishName": "Chana Masala",
+      "category": "main-course-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/027-chana-masala.webp?v=ai-v2",
+      "sourceFilename": "027-chana-masala.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "CZ79qUpFJSfgun0oHA2J",
+      "dishName": "Navaratan Vegetable Korma",
+      "category": "main-course-veg",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/032-navaratan-vegetable-korma.webp?v=ai-v2",
+      "sourceFilename": "032-navaratan-vegetable-korma.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "pNeRF6sUhklme8iYp4u9",
+      "dishName": "Paneer Butter Masala",
+      "category": "main-course-veg",
+      "currentImageUrl": "/images/ai-menu/pNeRF6sUhklme8iYp4u9-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/030-paneer-butter-masala.webp?v=ai-v2",
+      "sourceFilename": "030-paneer-butter-masala.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "9WuqDHxhX1E7TVKiZqrQ",
+      "dishName": "Pappu (Nagarjuna style)",
+      "category": "main-course-veg",
+      "currentImageUrl": "/images/ai-menu/9WuqDHxhX1E7TVKiZqrQ-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/026-pappu-nagarjuna-style.webp?v=ai-v2",
+      "sourceFilename": "026-pappu-nagarjuna-style.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "ckr4J960a4tJbIQjS6iv",
+      "dishName": "Saag Paneer",
+      "category": "main-course-veg",
+      "currentImageUrl": "/images/ai-menu/ckr4J960a4tJbIQjS6iv-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/031-saag-paneer.webp?v=ai-v2",
+      "sourceFilename": "031-saag-paneer.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "XNFiArpMqrBhFvy9TVIr",
+      "dishName": "Chicken 65",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/013-chicken-65.webp?v=ai-v2",
+      "sourceFilename": "013-chicken-65.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "dmDWtX3EdTUDRqx58FBm",
+      "dishName": "Chicken Lollipop",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/014-chicken-lollipop.webp?v=ai-v2",
+      "sourceFilename": "014-chicken-lollipop.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "0ezpdkLMPL2DJwvPwXml",
+      "dishName": "Chicken Momos",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/011-chicken-momos.webp?v=ai-v2",
+      "sourceFilename": "011-chicken-momos.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "ok9iB1RCqdEV9HJ8K7Sy",
+      "dishName": "Chilli Chicken",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/012-chilli-chicken.webp?v=ai-v2",
+      "sourceFilename": "012-chilli-chicken.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "zUQTbNi4d9DGOXJvdEXL",
+      "dishName": "Fish Fry (Golden Pompano)",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/016-fish-fry-golden-pompano.webp?v=ai-v2",
+      "sourceFilename": "016-fish-fry-golden-pompano.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "wIWaTndbsFFZudJdCV7L",
+      "dishName": "Hyderabadi Goat Sukka",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/017-hyderabadi-goat-sukka.webp?v=ai-v2",
+      "sourceFilename": "017-hyderabadi-goat-sukka.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "BbhLtZwISTNsibAOY0o2",
+      "dishName": "Prawn Pepper Fry",
+      "category": "non-veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/015-prawn-pepper-fry.webp?v=ai-v2",
+      "sourceFilename": "015-prawn-pepper-fry.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "p3baFlGEmw5R5if8X6yh",
+      "dishName": "Chicken Fried Rice",
+      "category": "non-veg-noodles-rice",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/047-chicken-fried-rice.webp?v=ai-v2",
+      "sourceFilename": "047-chicken-fried-rice.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "3DrdN5zSlfwwbRvpO3J3",
+      "dishName": "Jeera Rice",
+      "category": "rice",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/063-jeera-rice.webp?v=ai-v2",
+      "sourceFilename": "063-jeera-rice.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "5UINe5gtkdwwL1ZTn1L4",
+      "dishName": "Goat Paya Soup",
+      "category": "soups",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/022-goat-paya-soup.webp?v=ai-v2",
+      "sourceFilename": "022-goat-paya-soup.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "qaxjgCrE9cPHERtXxREP",
+      "dishName": "Rasam Soup",
+      "category": "soups",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/018-rasam-soup.webp?v=ai-v2",
+      "sourceFilename": "018-rasam-soup.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "w0c6VbEJQI6csH90GrFu",
+      "dishName": "Sweet Corn Soup",
+      "category": "soups",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/019-sweet-corn-soup.webp?v=ai-v2",
+      "sourceFilename": "019-sweet-corn-soup.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "i4AuZXzGWDsRzbdGUwAf",
+      "dishName": "Veg Hot and Sour Soup",
+      "category": "soups",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/020-veg-hot-and-sour-soup.webp?v=ai-v2",
+      "sourceFilename": "020-veg-hot-and-sour-soup.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "PoffPrdRprkR4Y3yBpqh",
+      "dishName": "Chilli Paneer",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/005-chilli-paneer.webp?v=ai-v2",
+      "sourceFilename": "005-chilli-paneer.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "0KRzoRbLdxwwbIgx9Ubm",
+      "dishName": "Chilly Crispy Baby Corn",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/006-chilly-crispy-baby-corn.webp?v=ai-v2",
+      "sourceFilename": "006-chilly-crispy-baby-corn.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "oG00dJzcYZKWjjSDHT1a",
+      "dishName": "Gobi Manchurian",
+      "category": "veg-appetizers",
+      "currentImageUrl": "/images/ai-menu/oG00dJzcYZKWjjSDHT1a-1200.webp?v=ai-1",
+      "proposedImageUrl": "/images/ai-menu/004-gobi-manchurian.webp?v=ai-v2",
+      "sourceFilename": "004-gobi-manchurian.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "uHiE3WG5B8HoAIx4bYpY",
+      "dishName": "Masala Papad",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/001-masala-papad.webp?v=ai-v2",
+      "sourceFilename": "001-masala-papad.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "MfZ30OgzT8R6gjeL4oD1",
+      "dishName": "Masala Peanut",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/007-masala-peanut.webp?v=ai-v2",
+      "sourceFilename": "007-masala-peanut.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "Y9jRXNsFIht2GhoKpY0A",
+      "dishName": "Masala Puri",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/008-masala-puri.webp?v=ai-v2",
+      "sourceFilename": "008-masala-puri.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "zOkboX86h6evd4CHYq2h",
+      "dishName": "Onion Pakoda",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/003-onion-pakoda.webp?v=ai-v2",
+      "sourceFilename": "003-onion-pakoda.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "uAYvYFs6waTSfTKygdC2",
+      "dishName": "Palak Chaat",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/009-palak-chaat.webp?v=ai-v2",
+      "sourceFilename": "009-palak-chaat.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "h2q0qrKF57swceYvsYAq",
+      "dishName": "Samosa",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/002-samosa.webp?v=ai-v2",
+      "sourceFilename": "002-samosa.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "k1nDUf6kOvVlGinb96G0",
+      "dishName": "Veg Momos",
+      "category": "veg-appetizers",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/010-veg-momos.webp?v=ai-v2",
+      "sourceFilename": "010-veg-momos.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    },
+    {
+      "dishId": "k6lpo7cmfgIcpEBd7PRz",
+      "dishName": "Veg Fried Rice",
+      "category": "veg-noodles-rice",
+      "currentImageUrl": "",
+      "proposedImageUrl": "/images/ai-menu/057-veg-fried-rice.webp?v=ai-v2",
+      "sourceFilename": "057-veg-fried-rice.webp",
+      "action": "UPDATE_TO_LOCAL_AI_IMAGE",
+      "reason": "Matched newly downloaded premium AI food photograph"
+    }
+  ],
+  "clearStockImages": [],
+  "noChangeRequired": [
+    {
+      "dishId": "eDha0k5qxkGCULVgfaWQ",
+      "dishName": "Badam Milk",
+      "currentImageUrl": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "ElMkubNXJ2hLhHTFxfXh",
+      "dishName": "Bottled Water",
+      "currentImageUrl": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "uNMecqv1K6Rf9hzh22jy",
+      "dishName": "Buttermilk",
+      "currentImageUrl": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "te04ILCNfyoBgA72t0wg",
+      "dishName": "Filter Coffee",
+      "currentImageUrl": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "Bl4xoDsHHCgHCDKCXo5e",
+      "dishName": "Mango Lassi",
+      "currentImageUrl": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "ijig94ebeR0yLJ8bKGTS",
+      "dishName": "Masala Chai",
+      "currentImageUrl": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "YirhCMv2HqJufSZKukld",
+      "dishName": "Rose Milk",
+      "currentImageUrl": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "CSIAK3Dz5zj2WVtOZkqD",
+      "dishName": "Soda",
+      "currentImageUrl": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "B2R9mAuZOV4m6Ac5XGW9",
+      "dishName": "Sparkling Water",
+      "currentImageUrl": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "AZ5PXwSjdfK9RFKjxYbc",
+      "dishName": "Bangalore Mutton Donne Biryani",
+      "currentImageUrl": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "lGVf8BCQSgHjoLsjcSCg",
+      "dishName": "Chef Special Chicken 65 Biryani",
+      "currentImageUrl": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "5tJmPsCi14v2pqe0Lm0K",
+      "dishName": "Butter Roti",
+      "currentImageUrl": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "5hVoHVfTXsRrQkF8rp5K",
+      "dishName": "Chapati",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "iGyzBxk4OqiKyj9o0LHb",
+      "dishName": "Garlic Chilli Naan",
+      "currentImageUrl": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "TAT7TqWSUC6h0agDBySS",
+      "dishName": "Gajar Halwa",
+      "currentImageUrl": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "t8cr8fo3WojchkBu5fpO",
+      "dishName": "Gulab Jamun",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "Rk3oa2NTDW2n4jFmdHff",
+      "dishName": "Ice Cream",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "J0e6lAz4Alc80g0wr8ME",
+      "dishName": "Moong Dal Halwa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "NMw5M8DmYtlfez5hZP89",
+      "dishName": "Payasa",
+      "currentImageUrl": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp?v=ai-1",
+      "status": "VERIFIED_AI_OR_CUSTOM"
+    },
+    {
+      "dishId": "NkV23dZrg33OZeEeupfA",
+      "dishName": "Rasmalai",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "nCZw72stSsjaxobtTDfK",
+      "dishName": "Benne Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "kmIr6RSg0TBlOv27Hf5Q",
+      "dishName": "Ghee Open Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "IM2paxMBXt7gBIXwLMKn",
+      "dishName": "Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "uZW2gSYdkCgNEdEKLqGM",
+      "dishName": "Mysore Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "7KXApIewkNt9NXnPv0rN",
+      "dishName": "Onion Mysore Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "qSeTghIDhtYCEUsgwAJO",
+      "dishName": "Plain Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "L1ETh9rDngSzv1eKiqWM",
+      "dishName": "Set Dosa with Chicken Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "R6eEMDljDUZ2xUfgmcEu",
+      "dishName": "Set Dosa with Mutton Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "7qp0wQu8o46cAS1CF4Mh",
+      "dishName": "Idli",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "ZkF9ZSg3F3lxtok3c5tS",
+      "dishName": "Idli in Sambar",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "9rN8CLdAk8UQyiWH9Ip6",
+      "dishName": "Idli with Chicken Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "twITFIn5Sk0gglIXlkiL",
+      "dishName": "Idli with Mutton Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "vPn8qJwDJdQ71LRE2wLr",
+      "dishName": "Idli/Vada Combo",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "dAUKfUgqvyXJqJUUVI46",
+      "dishName": "Medu Vada",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "opBEgUMKLYx6fCiiXmOw",
+      "dishName": "Thatte Idli with Ghee Pudi",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "GvqF4CS7s2GlL0zmrzdp",
+      "dishName": "Vada in Sambar",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "EiuGblmc6B10wrBipmn2",
+      "dishName": "Chicken Manchurian Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "4S1Qdw5ufIPIr5Z2fMXU",
+      "dishName": "Chili Paneer Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "QftQKkaC2waQb9GYsWqo",
+      "dishName": "Gobi Manchurian Gravy",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "q3rkl2BP1D7E7HR10gmL",
+      "dishName": "Tiffin 1 - Mini Masala Dosa, Idli & Vada",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "5fZ8PDTDjbVpsHrubMPp",
+      "dishName": "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "yTrg7l7jtLSPrK0HEYkM",
+      "dishName": "Chicken Hakka Noodles",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "sSZ3O7meEVDadPfQjsT6",
+      "dishName": "Chicken Schezwan Noodles",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "yP9nly009nj8OAmJ2sHx",
+      "dishName": "Chicken Schezwan Rice",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "xKbuWgUPriG9YULmNmeW",
+      "dishName": "Malai Kofta",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "HS3G82KIBhYxKfr08Dxy",
+      "dishName": "Onion Rava Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "6XuLxzM52RrJ74401OAk",
+      "dishName": "Onion Rava Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "7OubKUDzdo4tqvMTlSzy",
+      "dishName": "Plain Rava Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "972vyJ3ZgBmFigXydWDj",
+      "dishName": "Bisibele Bath",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "zOdmJ4Vf5KI9OBEJXHsN",
+      "dishName": "Steamed Rice",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "ai01oRqNSqNrGAumcqxz",
+      "dishName": "Mild Gujrati Thali",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "UoLwnm2y1Vpq8ZylsKvs",
+      "dishName": "Punjabi Thali",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "aggcGSq4LoqAf1GDHbmi",
+      "dishName": "Chicken Hot and Sour Soup",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "qRqJbslPhA9xWRHi40y6",
+      "dishName": "Dosa Sambar",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "S8R45GozAASza4OPWwGU",
+      "dishName": "Cheese Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "Lq4HBRyxA96Crk9qVHTK",
+      "dishName": "Cheese Mysore Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "Uphu1DINO1GzKob75yGs",
+      "dishName": "Chocolate Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "qpj1sTedu8WySFmsBOMv",
+      "dishName": "Paneer Mysore Masala Dosa",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "siYr9EbGHZxjn0iYGLVN",
+      "dishName": "Onion Chilli Uttapam",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "56juMrRTVcsGAEgm11zF",
+      "dishName": "Tomato Onion Chilli Uttapam",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "MYUzyQPuCQSIVNUg7qMN",
+      "dishName": "Tomato Onion Uttapam",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "AKvxhGIKqdyiynGrtH9g",
+      "dishName": "Veg Hakka Noodles",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "01oAN9PRmdO8tDWwopVn",
+      "dishName": "Veg Schezuan Noodles",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "m3Gq6M0cdUqVQFzxJnuh",
+      "dishName": "Veg Schezuan Rice",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    },
+    {
+      "dishId": "tistQUZYN2oqvCjmapKx",
+      "dishName": "7 Family Combo Meals ",
+      "currentImageUrl": "",
+      "status": "EMPTY_PLACEHOLDER"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "dishesDir": {
+    "total": 336,
+    "referenced": [],
+    "unreferencedCount": 336,
+    "sampleUnreferenced": [
+      "7-family-combo-meals-1200.webp",
+      "7-family-combo-meals-480.webp",
+      "7-family-combo-meals-800.webp",
+      "badam-milk-1200.webp",
+      "badam-milk-480.webp",
+      "badam-milk-800.webp",
+      "bangalore-mutton-donne-biryani-1200.webp",
+      "bangalore-mutton-donne-biryani-480.webp",
+      "bangalore-mutton-donne-biryani-800.webp",
+      "benne-masala-dosa-1200.webp"
+    ]
+  },
+  "menuDir": {
+    "total": 8,
+    "referenced": [],
+    "unreferencedCount": 8,
+    "files": [
+      "chicken_momos.webp",
+      "chili_paneer_gravy.webp",
+      "chilly_crispy_baby_corn.webp",
+      "goat_paya_soup.webp",
+      "jeera_rice.webp",
+      "tiffin_2_mini_masala_dosa.webp",
+      "tomato_onion_chilli_uttapam.webp",
+      "veg_schezwan_noodles.webp"
+    ]
+  }
+}

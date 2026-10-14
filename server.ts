@@ -51,7 +51,7 @@ async function startServer() {
       res.status(200).json({ success: true, message: "Backend is running" });
     });
 
-    // Menu Image Lookup API Endpoint
+    // Menu Image Lookup API Endpoint - Strictly uses authoritative local AI library
     app.post("/api/admin/menu/find-image", async (req, res) => {
       try {
         const { productName } = req.body;
@@ -59,33 +59,11 @@ async function startServer() {
           return res.status(400).json({ success: false, error: "productName is required" });
         }
 
-        const nameLower = productName.toLowerCase();
-        let imageUrl = "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=800";
-
-        if (nameLower.includes("dosa") || nameLower.includes("uttapam")) {
-          imageUrl = "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("idli") || nameLower.includes("vada")) {
-          imageUrl = "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("biryani")) {
-          imageUrl = "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("chicken") || nameLower.includes("mutton") || nameLower.includes("lamb")) {
-          imageUrl = "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("paneer")) {
-          imageUrl = "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("coffee") || nameLower.includes("tea") || nameLower.includes("chai")) {
-          imageUrl = "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("lassi") || nameLower.includes("milk") || nameLower.includes("soda")) {
-          imageUrl = "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("halwa") || nameLower.includes("jamun") || nameLower.includes("rasmalai") || nameLower.includes("ice cream")) {
-          imageUrl = "https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&q=80&w=800";
-        } else if (nameLower.includes("naan") || nameLower.includes("roti") || nameLower.includes("paratha") || nameLower.includes("chapati")) {
-          imageUrl = "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=800";
-        }
-
+        // Return null for missing images - stock Unsplash fallbacks permanently disabled per architecture
         return res.status(200).json({
           success: true,
-          imageUrl,
-          source: "Unsplash High Quality Food License"
+          imageUrl: null,
+          source: "Neutral Placeholder"
         });
       } catch (error: any) {
         return res.status(500).json({ success: false, error: error.message });
