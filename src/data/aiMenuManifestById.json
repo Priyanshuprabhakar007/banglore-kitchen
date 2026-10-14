@@ -1,4 +1,81 @@
 {
+  "eDha0k5qxkGCULVgfaWQ": {
+    "dishName": "Badam Milk",
+    "imagePath": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp",
+    "sourceFilename": "eDha0k5qxkGCULVgfaWQ-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "ElMkubNXJ2hLhHTFxfXh": {
+    "dishName": "Bottled Water",
+    "imagePath": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp",
+    "sourceFilename": "ElMkubNXJ2hLhHTFxfXh-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "uNMecqv1K6Rf9hzh22jy": {
+    "dishName": "Buttermilk",
+    "imagePath": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp",
+    "sourceFilename": "uNMecqv1K6Rf9hzh22jy-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "te04ILCNfyoBgA72t0wg": {
+    "dishName": "Filter Coffee",
+    "imagePath": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp",
+    "sourceFilename": "te04ILCNfyoBgA72t0wg-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "Bl4xoDsHHCgHCDKCXo5e": {
+    "dishName": "Mango Lassi",
+    "imagePath": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp",
+    "sourceFilename": "Bl4xoDsHHCgHCDKCXo5e-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "ijig94ebeR0yLJ8bKGTS": {
+    "dishName": "Masala Chai",
+    "imagePath": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp",
+    "sourceFilename": "ijig94ebeR0yLJ8bKGTS-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "YirhCMv2HqJufSZKukld": {
+    "dishName": "Rose Milk",
+    "imagePath": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp",
+    "sourceFilename": "YirhCMv2HqJufSZKukld-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "CSIAK3Dz5zj2WVtOZkqD": {
+    "dishName": "Soda",
+    "imagePath": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp",
+    "sourceFilename": "CSIAK3Dz5zj2WVtOZkqD-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "B2R9mAuZOV4m6Ac5XGW9": {
+    "dishName": "Sparkling Water",
+    "imagePath": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp",
+    "sourceFilename": "B2R9mAuZOV4m6Ac5XGW9-1200.webp",
+    "category": "beverages",
+    "status": "MATCHED"
+  },
+  "AZ5PXwSjdfK9RFKjxYbc": {
+    "dishName": "Bangalore Mutton Donne Biryani",
+    "imagePath": "/images/ai-menu/155-bangalore-mutton-donne-biryani.webp",
+    "sourceFilename": "155-bangalore-mutton-donne-biryani.webp",
+    "category": "biryani",
+    "status": "MATCHED"
+  },
+  "lGVf8BCQSgHjoLsjcSCg": {
+    "dishName": "Chef Special Chicken 65 Biryani",
+    "imagePath": "/images/ai-menu/154-chef-special-chicken-65-biryani.webp",
+    "sourceFilename": "154-chef-special-chicken-65-biryani.webp",
+    "category": "biryani",
+    "status": "MATCHED"
+  },
   "yHB2tdZlQuUjoeIcStB7": {
     "dishName": "Veg Biryani",
     "imagePath": "/images/ai-menu/053-veg-biryani.webp",
@@ -6,10 +83,24 @@
     "category": "biryani",
     "status": "MATCHED"
   },
+  "5tJmPsCi14v2pqe0Lm0K": {
+    "dishName": "Butter Roti",
+    "imagePath": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp",
+    "sourceFilename": "5tJmPsCi14v2pqe0Lm0K-1200.webp",
+    "category": "breads",
+    "status": "MATCHED"
+  },
   "oGpve56LpHbwLHk8hnHy": {
     "dishName": "Cheese Naan",
     "imagePath": "/images/ai-menu/074-cheese-naan.webp",
     "sourceFilename": "074-cheese-naan.webp",
+    "category": "breads",
+    "status": "MATCHED"
+  },
+  "iGyzBxk4OqiKyj9o0LHb": {
+    "dishName": "Garlic Chilli Naan",
+    "imagePath": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp",
+    "sourceFilename": "iGyzBxk4OqiKyj9o0LHb-1200.webp",
     "category": "breads",
     "status": "MATCHED"
   },
@@ -25,6 +116,76 @@
     "imagePath": "/images/ai-menu/075-lachha-paratha.webp",
     "sourceFilename": "075-lachha-paratha.webp",
     "category": "breads",
+    "status": "MATCHED"
+  },
+  "TAT7TqWSUC6h0agDBySS": {
+    "dishName": "Gajar Halwa",
+    "imagePath": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp",
+    "sourceFilename": "TAT7TqWSUC6h0agDBySS-1200.webp",
+    "category": "dessert",
+    "status": "MATCHED"
+  },
+  "NMw5M8DmYtlfez5hZP89": {
+    "dishName": "Payasa",
+    "imagePath": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp",
+    "sourceFilename": "NMw5M8DmYtlfez5hZP89-1200.webp",
+    "category": "dessert",
+    "status": "MATCHED"
+  },
+  "nCZw72stSsjaxobtTDfK": {
+    "dishName": "Benne Masala Dosa",
+    "imagePath": "/images/ai-menu/116-benne-masala-dosa.webp",
+    "sourceFilename": "116-benne-masala-dosa.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "kmIr6RSg0TBlOv27Hf5Q": {
+    "dishName": "Ghee Open Masala Dosa",
+    "imagePath": "/images/ai-menu/117-ghee-open-masala-dosa.webp",
+    "sourceFilename": "117-ghee-open-masala-dosa.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "IM2paxMBXt7gBIXwLMKn": {
+    "dishName": "Masala Dosa",
+    "imagePath": "/images/ai-menu/115-masala-dosa.webp",
+    "sourceFilename": "115-masala-dosa.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "uZW2gSYdkCgNEdEKLqGM": {
+    "dishName": "Mysore Masala Dosa",
+    "imagePath": "/images/ai-menu/118-mysore-masala-dosa.webp",
+    "sourceFilename": "118-mysore-masala-dosa.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "7KXApIewkNt9NXnPv0rN": {
+    "dishName": "Onion Mysore Masala Dosa",
+    "imagePath": "/images/ai-menu/119-onion-mysore-masala-dosa.webp",
+    "sourceFilename": "119-onion-mysore-masala-dosa.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "qSeTghIDhtYCEUsgwAJO": {
+    "dishName": "Plain Dosa",
+    "imagePath": "/images/ai-menu/114-plain-dosa.webp",
+    "sourceFilename": "114-plain-dosa.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "L1ETh9rDngSzv1eKiqWM": {
+    "dishName": "Set Dosa with Chicken Gravy",
+    "imagePath": "/images/ai-menu/120-set-dosa-with-chicken-gravy.webp",
+    "sourceFilename": "120-set-dosa-with-chicken-gravy.webp",
+    "category": "dosa-specials",
+    "status": "MATCHED"
+  },
+  "R6eEMDljDUZ2xUfgmcEu": {
+    "dishName": "Set Dosa with Mutton Gravy",
+    "imagePath": "/images/ai-menu/121-set-dosa-with-mutton-gravy.webp",
+    "sourceFilename": "121-set-dosa-with-mutton-gravy.webp",
+    "category": "dosa-specials",
     "status": "MATCHED"
   },
   "wxP3E3HwHvSDXnJREP6y": {
@@ -46,6 +207,83 @@
     "imagePath": "/images/ai-menu/023-tandoori-chicken-half.webp",
     "sourceFilename": "023-tandoori-chicken-half.webp",
     "category": "grill-specials",
+    "status": "MATCHED"
+  },
+  "7qp0wQu8o46cAS1CF4Mh": {
+    "dishName": "Idli",
+    "imagePath": "/images/ai-menu/132-idli.webp",
+    "sourceFilename": "132-idli.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "ZkF9ZSg3F3lxtok3c5tS": {
+    "dishName": "Idli in Sambar",
+    "imagePath": "/images/ai-menu/133-idli-in-sambar.webp",
+    "sourceFilename": "133-idli-in-sambar.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "9rN8CLdAk8UQyiWH9Ip6": {
+    "dishName": "Idli with Chicken Gravy",
+    "imagePath": "/images/ai-menu/138-idli-with-chicken-gravy.webp",
+    "sourceFilename": "138-idli-with-chicken-gravy.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "twITFIn5Sk0gglIXlkiL": {
+    "dishName": "Idli with Mutton Gravy",
+    "imagePath": "/images/ai-menu/139-idli-with-mutton-gravy.webp",
+    "sourceFilename": "139-idli-with-mutton-gravy.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "vPn8qJwDJdQ71LRE2wLr": {
+    "dishName": "Idli/Vada Combo",
+    "imagePath": "/images/ai-menu/136-idli-vada-combo.webp",
+    "sourceFilename": "136-idli-vada-combo.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "dAUKfUgqvyXJqJUUVI46": {
+    "dishName": "Medu Vada",
+    "imagePath": "/images/ai-menu/134-medu-vada.webp",
+    "sourceFilename": "134-medu-vada.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "opBEgUMKLYx6fCiiXmOw": {
+    "dishName": "Thatte Idli with Ghee Pudi",
+    "imagePath": "/images/ai-menu/137-thatte-idli-with-ghee-pudi.webp",
+    "sourceFilename": "137-thatte-idli-with-ghee-pudi.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "GvqF4CS7s2GlL0zmrzdp": {
+    "dishName": "Vada in Sambar",
+    "imagePath": "/images/ai-menu/135-vada-in-sambar.webp",
+    "sourceFilename": "135-vada-in-sambar.webp",
+    "category": "idli-vada",
+    "status": "MATCHED"
+  },
+  "EiuGblmc6B10wrBipmn2": {
+    "dishName": "Chicken Manchurian Gravy",
+    "imagePath": "/images/ai-menu/146-chicken-manchurian-gravy.webp",
+    "sourceFilename": "146-chicken-manchurian-gravy.webp",
+    "category": "indo-chinese-non-veg-gravy",
+    "status": "MATCHED"
+  },
+  "4S1Qdw5ufIPIr5Z2fMXU": {
+    "dishName": "Chili Paneer Gravy",
+    "imagePath": "/images/ai-menu/145-chili-paneer-gravy.webp",
+    "sourceFilename": "145-chili-paneer-gravy.webp",
+    "category": "indo-chinese-veg-gravy",
+    "status": "MATCHED"
+  },
+  "QftQKkaC2waQb9GYsWqo": {
+    "dishName": "Gobi Manchurian Gravy",
+    "imagePath": "/images/ai-menu/144-gobi-manchurian-gravy.webp",
+    "sourceFilename": "144-gobi-manchurian-gravy.webp",
+    "category": "indo-chinese-veg-gravy",
     "status": "MATCHED"
   },
   "pYskmHafpd5ORca2eWwX": {
@@ -127,8 +365,8 @@
   },
   "CZ79qUpFJSfgun0oHA2J": {
     "dishName": "Navaratan Vegetable Korma",
-    "imagePath": "/images/ai-menu/031-navratan-veg-korma.webp",
-    "sourceFilename": "031-navratan-veg-korma.webp",
+    "imagePath": "/images/ai-menu/153-navaratan-vegetable-korma.webp",
+    "sourceFilename": "153-navaratan-vegetable-korma.webp",
     "category": "main-course-veg",
     "status": "MATCHED"
   },
@@ -153,6 +391,20 @@
     "category": "main-course-veg",
     "status": "MATCHED"
   },
+  "q3rkl2BP1D7E7HR10gmL": {
+    "dishName": "Tiffin 1 - Mini Masala Dosa, Idli & Vada",
+    "imagePath": "/images/ai-menu/140-tiffin-1-mini-masala-dosa-idli-vada.webp",
+    "sourceFilename": "140-tiffin-1-mini-masala-dosa-idli-vada.webp",
+    "category": "mini-tiffin",
+    "status": "MATCHED"
+  },
+  "5fZ8PDTDjbVpsHrubMPp": {
+    "dishName": "Tiffin 2 - Mini Masala Dosa, Idli, Vada, Upma & Kesaribath",
+    "imagePath": "/images/ai-menu/141-tiffin-2-mini-masala-dosa-idli-vada-upma-kesaribath.webp",
+    "sourceFilename": "141-tiffin-2-mini-masala-dosa-idli-vada-upma-kesaribath.webp",
+    "category": "mini-tiffin",
+    "status": "MATCHED"
+  },
   "XNFiArpMqrBhFvy9TVIr": {
     "dishName": "Chicken 65",
     "imagePath": "/images/ai-menu/013-chicken-65.webp",
@@ -171,6 +423,13 @@
     "dishName": "Chicken Momos",
     "imagePath": "/images/ai-menu/010-Chiken-momos.webp",
     "sourceFilename": "010-Chiken-momos.webp",
+    "category": "non-veg-appetizers",
+    "status": "MATCHED"
+  },
+  "ok9iB1RCqdEV9HJ8K7Sy": {
+    "dishName": "Chilli Chicken",
+    "imagePath": "/images/ai-menu/142-chilli-chicken.webp",
+    "sourceFilename": "142-chilli-chicken.webp",
     "category": "non-veg-appetizers",
     "status": "MATCHED"
   },
@@ -202,11 +461,88 @@
     "category": "non-veg-noodles-rice",
     "status": "MATCHED"
   },
+  "yTrg7l7jtLSPrK0HEYkM": {
+    "dishName": "Chicken Hakka Noodles",
+    "imagePath": "/images/ai-menu/152-chicken-hakka-noodles.webp",
+    "sourceFilename": "152-chicken-hakka-noodles.webp",
+    "category": "non-veg-noodles-rice",
+    "status": "MATCHED"
+  },
+  "sSZ3O7meEVDadPfQjsT6": {
+    "dishName": "Chicken Schezwan Noodles",
+    "imagePath": "/images/ai-menu/151-chicken-schezwan-noodles.webp",
+    "sourceFilename": "151-chicken-schezwan-noodles.webp",
+    "category": "non-veg-noodles-rice",
+    "status": "MATCHED"
+  },
+  "yP9nly009nj8OAmJ2sHx": {
+    "dishName": "Chicken Schezwan Rice",
+    "imagePath": "/images/ai-menu/150-chicken-schezwan-rice.webp",
+    "sourceFilename": "150-chicken-schezwan-rice.webp",
+    "category": "non-veg-noodles-rice",
+    "status": "MATCHED"
+  },
+  "HS3G82KIBhYxKfr08Dxy": {
+    "dishName": "Onion Rava Dosa",
+    "imagePath": "/images/ai-menu/130-onion-rava-dosa.webp",
+    "sourceFilename": "130-onion-rava-dosa.webp",
+    "category": "rava-dosa-specials",
+    "status": "MATCHED"
+  },
+  "6XuLxzM52RrJ74401OAk": {
+    "dishName": "Onion Rava Masala Dosa",
+    "imagePath": "/images/ai-menu/131-onion-rava-masala-dosa.webp",
+    "sourceFilename": "131-onion-rava-masala-dosa.webp",
+    "category": "rava-dosa-specials",
+    "status": "MATCHED"
+  },
+  "7OubKUDzdo4tqvMTlSzy": {
+    "dishName": "Plain Rava Dosa",
+    "imagePath": "/images/ai-menu/129-plain-rava-dosa.webp",
+    "sourceFilename": "129-plain-rava-dosa.webp",
+    "category": "rava-dosa-specials",
+    "status": "MATCHED"
+  },
+  "972vyJ3ZgBmFigXydWDj": {
+    "dishName": "Bisibele Bath",
+    "imagePath": "/images/ai-menu/157-bisibele-bath.webp",
+    "sourceFilename": "157-bisibele-bath.webp",
+    "category": "rice",
+    "status": "MATCHED"
+  },
   "3DrdN5zSlfwwbRvpO3J3": {
     "dishName": "Jeera Rice",
     "imagePath": "/images/ai-menu/063-jeera-rice.webp",
     "sourceFilename": "063-jeera-rice.webp",
     "category": "rice",
+    "status": "MATCHED"
+  },
+  "zOdmJ4Vf5KI9OBEJXHsN": {
+    "dishName": "Steamed Rice",
+    "imagePath": "/images/ai-menu/156-steamed-rice.webp",
+    "sourceFilename": "156-steamed-rice.webp",
+    "category": "rice",
+    "status": "MATCHED"
+  },
+  "ai01oRqNSqNrGAumcqxz": {
+    "dishName": "Mild Gujrati Thali",
+    "imagePath": "/images/ai-menu/mild-gujrati-thali-1200.webp",
+    "sourceFilename": "mild-gujrati-thali-1200.webp",
+    "category": "S7QLqDKtIwo3puYtRLdG",
+    "status": "MATCHED"
+  },
+  "UoLwnm2y1Vpq8ZylsKvs": {
+    "dishName": "Punjabi Thali",
+    "imagePath": "/images/ai-menu/punjabi-thali-1200.webp",
+    "sourceFilename": "punjabi-thali-1200.webp",
+    "category": "S7QLqDKtIwo3puYtRLdG",
+    "status": "MATCHED"
+  },
+  "aggcGSq4LoqAf1GDHbmi": {
+    "dishName": "Chicken Hot and Sour Soup",
+    "imagePath": "/images/ai-menu/143-chicken-hot-and-sour-soup.webp",
+    "sourceFilename": "143-chicken-hot-and-sour-soup.webp",
+    "category": "soups",
     "status": "MATCHED"
   },
   "5UINe5gtkdwwL1ZTn1L4": {
@@ -237,6 +573,62 @@
     "category": "soups",
     "status": "MATCHED"
   },
+  "qRqJbslPhA9xWRHi40y6": {
+    "dishName": "Dosa Sambar",
+    "imagePath": "/images/ai-menu/dosa-sambar-1200.webp",
+    "sourceFilename": "dosa-sambar-1200.webp",
+    "category": "south-indian",
+    "status": "MATCHED"
+  },
+  "S8R45GozAASza4OPWwGU": {
+    "dishName": "Cheese Dosa",
+    "imagePath": "/images/ai-menu/122-cheese-dosa.webp",
+    "sourceFilename": "122-cheese-dosa.webp",
+    "category": "specialty-dosa",
+    "status": "MATCHED"
+  },
+  "Lq4HBRyxA96Crk9qVHTK": {
+    "dishName": "Cheese Mysore Masala Dosa",
+    "imagePath": "/images/ai-menu/123-cheese-mysore-masala-dosa.webp",
+    "sourceFilename": "123-cheese-mysore-masala-dosa.webp",
+    "category": "specialty-dosa",
+    "status": "MATCHED"
+  },
+  "Uphu1DINO1GzKob75yGs": {
+    "dishName": "Chocolate Dosa",
+    "imagePath": "/images/ai-menu/125-chocolate-dosa.webp",
+    "sourceFilename": "125-chocolate-dosa.webp",
+    "category": "specialty-dosa",
+    "status": "MATCHED"
+  },
+  "qpj1sTedu8WySFmsBOMv": {
+    "dishName": "Paneer Mysore Masala Dosa",
+    "imagePath": "/images/ai-menu/124-paneer-mysore-masala-dosa.webp",
+    "sourceFilename": "124-paneer-mysore-masala-dosa.webp",
+    "category": "specialty-dosa",
+    "status": "MATCHED"
+  },
+  "siYr9EbGHZxjn0iYGLVN": {
+    "dishName": "Onion Chilli Uttapam",
+    "imagePath": "/images/ai-menu/126-onion-chilli-uttapam.webp",
+    "sourceFilename": "126-onion-chilli-uttapam.webp",
+    "category": "uttapam-special",
+    "status": "MATCHED"
+  },
+  "56juMrRTVcsGAEgm11zF": {
+    "dishName": "Tomato Onion Chilli Uttapam",
+    "imagePath": "/images/ai-menu/128-tomato-onion-chilli-uttapam.webp",
+    "sourceFilename": "128-tomato-onion-chilli-uttapam.webp",
+    "category": "uttapam-special",
+    "status": "MATCHED"
+  },
+  "MYUzyQPuCQSIVNUg7qMN": {
+    "dishName": "Tomato Onion Uttapam",
+    "imagePath": "/images/ai-menu/127-tomato-onion-uttapam.webp",
+    "sourceFilename": "127-tomato-onion-uttapam.webp",
+    "category": "uttapam-special",
+    "status": "MATCHED"
+  },
   "PoffPrdRprkR4Y3yBpqh": {
     "dishName": "Chilli Paneer",
     "imagePath": "/images/ai-menu/005-chilli-paneer.webp",
@@ -255,6 +647,13 @@
     "dishName": "Gobi Manchurian",
     "imagePath": "/images/ai-menu/004-gobi-manchurian.webp",
     "sourceFilename": "004-gobi-manchurian.webp",
+    "category": "veg-appetizers",
+    "status": "MATCHED"
+  },
+  "uHiE3WG5B8HoAIx4bYpY": {
+    "dishName": "Masala Papad",
+    "imagePath": "/images/ai-menu/001-masala-papad.webp",
+    "sourceFilename": "001-masala-papad.webp",
     "category": "veg-appetizers",
     "status": "MATCHED"
   },
@@ -281,8 +680,8 @@
   },
   "uAYvYFs6waTSfTKygdC2": {
     "dishName": "Palak Chaat",
-    "imagePath": "/images/ai-menu/012-palak-chatt.webp",
-    "sourceFilename": "012-palak-chatt.webp",
+    "imagePath": "/images/ai-menu/113-palak-chaat.webp",
+    "sourceFilename": "113-palak-chaat.webp",
     "category": "veg-appetizers",
     "status": "MATCHED"
   },
@@ -307,305 +706,67 @@
     "category": "veg-noodles-rice",
     "status": "MATCHED"
   },
-  "uHiE3WG5B8HoAIx4bYpY": {
-    "dishName": "Masala Papad",
-    "imagePath": "/images/ai-menu/001-masala-papad.webp",
-    "sourceFilename": "001-masala-papad.webp",
-    "category": "veg-appetizers",
-    "status": "MATCHED"
-  },
-  "ok9iB1RCqdEV9HJ8K7Sy": {
-    "dishName": "Chilli Chicken",
-    "imagePath": "/images/ai-menu/011-chicken-chilli.webp",
-    "sourceFilename": "011-chicken-chilli.webp",
-    "category": "non-veg-appetizers",
-    "status": "MATCHED"
-  },
-  "nCZw72stSsjaxobtTDfK": {
-    "dishName": "Benne Masala Dosa",
-    "imagePath": "/images/ai-menu/benne-masala-dosa.webp",
-    "sourceFilename": "benne-masala-dosa-1200.webp",
-    "category": "dosa-specials",
-    "status": "MATCHED"
-  },
-  "S8R45GozAASza4OPWwGU": {
-    "dishName": "Cheese Dosa",
-    "imagePath": "/images/ai-menu/cheese-dosa.webp",
-    "sourceFilename": "cheese-dosa-1200.webp",
-    "category": "specialty-dosa",
-    "status": "MATCHED"
-  },
-  "Lq4HBRyxA96Crk9qVHTK": {
-    "dishName": "Cheese Mysore Masala Dosa",
-    "imagePath": "/images/ai-menu/cheese-mysore-masala-dosa.webp",
-    "sourceFilename": "cheese-mysore-masala-dosa-1200.webp",
-    "category": "specialty-dosa",
-    "status": "MATCHED"
-  },
-  "IM2paxMBXt7gBIXwLMKn": {
-    "dishName": "Masala Dosa",
-    "imagePath": "/images/ai-menu/masala-dosa.webp",
-    "sourceFilename": "masala-dosa-1200.webp",
-    "category": "dosa-specials",
-    "status": "MATCHED"
-  },
-  "HS3G82KIBhYxKfr08Dxy": {
-    "dishName": "Onion Rava Dosa",
-    "imagePath": "/images/ai-menu/onion-rava-dosa.webp",
-    "sourceFilename": "onion-rava-dosa-1200.webp",
-    "category": "rava-dosa-specials",
-    "status": "MATCHED"
-  },
-  "6XuLxzM52RrJ74401OAk": {
-    "dishName": "Onion Rava Masala Dosa",
-    "imagePath": "/images/ai-menu/onion-rava-masala-dosa.webp",
-    "sourceFilename": "onion-rava-masala-dosa-1200.webp",
-    "category": "rava-dosa-specials",
-    "status": "MATCHED"
-  },
-  "7OubKUDzdo4tqvMTlSzy": {
-    "dishName": "Plain Rava Dosa",
-    "imagePath": "/images/ai-menu/plain-rava-dosa.webp",
-    "sourceFilename": "plain-rava-dosa-1200.webp",
-    "category": "rava-dosa-specials",
-    "status": "MATCHED"
-  },
-  "L1ETh9rDngSzv1eKiqWM": {
-    "dishName": "Set Dosa with Chicken Gravy",
-    "imagePath": "/images/ai-menu/set-dosa-with-chicken-gravy.webp",
-    "sourceFilename": "set-dosa-with-chicken-gravy-1200.webp",
-    "category": "dosa-specials",
-    "status": "MATCHED"
-  },
-  "7qp0wQu8o46cAS1CF4Mh": {
-    "dishName": "Idli",
-    "imagePath": "/images/ai-menu/idli.webp",
-    "sourceFilename": "idli-1200.webp",
-    "category": "idli-vada",
-    "status": "MATCHED"
-  },
-  "vPn8qJwDJdQ71LRE2wLr": {
-    "dishName": "Idli/Vada Combo",
-    "imagePath": "/images/ai-menu/idli-vada-combo.webp",
-    "sourceFilename": "idli-vada-combo-1200.webp",
-    "category": "idli-vada",
-    "status": "MATCHED"
-  },
-  "9rN8CLdAk8UQyiWH9Ip6": {
-    "dishName": "Idli with Chicken Gravy",
-    "imagePath": "/images/ai-menu/idli-with-chicken-gravy.webp",
-    "sourceFilename": "idli-with-chicken-gravy-1200.webp",
-    "category": "idli-vada",
-    "status": "MATCHED"
-  },
-  "twITFIn5Sk0gglIXlkiL": {
-    "dishName": "Idli with Mutton Gravy",
-    "imagePath": "/images/ai-menu/idli-with-mutton-gravy.webp",
-    "sourceFilename": "idli-with-mutton-gravy-1200.webp",
-    "category": "idli-vada",
-    "status": "MATCHED"
-  },
-  "dAUKfUgqvyXJqJUUVI46": {
-    "dishName": "Medu Vada",
-    "imagePath": "/images/ai-menu/medu-vada.webp",
-    "sourceFilename": "medu-vada-1200.webp",
-    "category": "idli-vada",
-    "status": "MATCHED"
-  },
-  "972vyJ3ZgBmFigXydWDj": {
-    "dishName": "Bisibele Bath",
-    "imagePath": "/images/ai-menu/bisibele-bath.webp",
-    "sourceFilename": "bisibele-bath-1200.webp",
-    "category": "rice",
-    "status": "MATCHED"
-  },
-  "aggcGSq4LoqAf1GDHbmi": {
-    "dishName": "Chicken Hot and Sour Soup",
-    "imagePath": "/images/ai-menu/chicken-hot-and-sour-soup.webp",
-    "sourceFilename": "chicken-hot-and-sour-soup-1200.webp",
-    "category": "soups",
-    "status": "MATCHED"
-  },
-  "EiuGblmc6B10wrBipmn2": {
-    "dishName": "Chicken Manchurian Gravy",
-    "imagePath": "/images/ai-menu/chicken-manchurian-gravy.webp",
-    "sourceFilename": "chicken-manchurian-gravy-1200.webp",
-    "category": "indo-chinese-non-veg-gravy",
-    "status": "MATCHED"
-  },
-  "4S1Qdw5ufIPIr5Z2fMXU": {
-    "dishName": "Chili Paneer Gravy",
-    "imagePath": "/images/ai-menu/chili-paneer-gravy.webp",
-    "sourceFilename": "chili-paneer-gravy-1200.webp",
-    "category": "indo-chinese-veg-gravy",
-    "status": "MATCHED"
-  },
-  "siYr9EbGHZxjn0iYGLVN": {
-    "dishName": "Onion Chilli Uttapam",
-    "imagePath": "/images/ai-menu/onion-chilli-uttapam.webp",
-    "sourceFilename": "onion-chilli-uttapam-1200.webp",
-    "category": "uttapam-special",
-    "status": "MATCHED"
-  },
-  "56juMrRTVcsGAEgm11zF": {
-    "dishName": "Tomato Onion Chilli Uttapam",
-    "imagePath": "/images/ai-menu/tomato-onion-chilli-uttapam.webp",
-    "sourceFilename": "tomato-onion-chilli-uttapam-1200.webp",
-    "category": "uttapam-special",
-    "status": "MATCHED"
-  },
-  "q3rkl2BP1D7E7HR10gmL": {
-    "dishName": "Tiffin 1 - Mini Masala Dosa, Idli & Vada",
-    "imagePath": "/images/ai-menu/tiffin-1-mini-masala-dosa-idli-vada.webp",
-    "sourceFilename": "tiffin-1-mini-masala-dosa-idli-vada-1200.webp",
-    "category": "mini-tiffin",
+  "AKvxhGIKqdyiynGrtH9g": {
+    "dishName": "Veg Hakka Noodles",
+    "imagePath": "/images/ai-menu/149-veg-hakka-noodles.webp",
+    "sourceFilename": "149-veg-hakka-noodles.webp",
+    "category": "veg-noodles-rice",
     "status": "MATCHED"
   },
   "01oAN9PRmdO8tDWwopVn": {
     "dishName": "Veg Schezuan Noodles",
-    "imagePath": "/images/ai-menu/veg-schezuan-noodles.webp",
-    "sourceFilename": "veg-schezuan-noodles-1200.webp",
+    "imagePath": "/images/ai-menu/148-veg-schezuan-noodles.webp",
+    "sourceFilename": "148-veg-schezuan-noodles.webp",
     "category": "veg-noodles-rice",
     "status": "MATCHED"
   },
-  "qRqJbslPhA9xWRHi40y6": {
-    "dishName": "Dosa Sambar",
-    "imagePath": "/images/ai-menu/dosa-sambar.webp",
-    "sourceFilename": "dosa-sambar-1200.webp",
-    "category": "south-indian",
-    "status": "MATCHED"
-  },
-  "ai01oRqNSqNrGAumcqxz": {
-    "dishName": "Mild Gujrati Thali",
-    "imagePath": "/images/ai-menu/mild-gujrati-thali.webp",
-    "sourceFilename": "mild-gujrati-thali-1200.webp",
-    "category": "S7QLqDKtIwo3puYtRLdG",
-    "status": "MATCHED"
-  },
-  "UoLwnm2y1Vpq8ZylsKvs": {
-    "dishName": "Punjabi Thali",
-    "imagePath": "/images/ai-menu/punjabi-thali.webp",
-    "sourceFilename": "punjabi-thali-1200.webp",
-    "category": "S7QLqDKtIwo3puYtRLdG",
+  "m3Gq6M0cdUqVQFzxJnuh": {
+    "dishName": "Veg Schezuan Rice",
+    "imagePath": "/images/ai-menu/147-veg-schezuan-rice.webp",
+    "sourceFilename": "147-veg-schezuan-rice.webp",
+    "category": "veg-noodles-rice",
     "status": "MATCHED"
   },
   "tistQUZYN2oqvCjmapKx": {
     "dishName": "7 Family Combo Meals ",
     "imagePath": "/images/ai-menu/7-family-combo-meals.webp",
-    "sourceFilename": "7-family-combo-meals-1200.webp",
+    "sourceFilename": "7-family-combo-meals.webp",
     "category": "ZdEJN8qfHD1skLooJsQZ",
     "status": "MATCHED"
   },
-  "qpj1sTedu8WySFmsBOMv": {
-    "dishName": "Paneer Mysore Masala Dosa",
-    "imagePath": "/images/ai-menu/paneer-mysore-masala-dosa.webp",
-    "sourceFilename": "paneer-mysore-masala-dosa-1200.webp",
-    "category": "specialty-dosa",
-    "status": "MATCHED"
-  },
-  "eDha0k5qxkGCULVgfaWQ": {
-    "dishName": "Badam Milk",
-    "imagePath": "/images/ai-menu/eDha0k5qxkGCULVgfaWQ-1200.webp",
-    "sourceFilename": "eDha0k5qxkGCULVgfaWQ-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "ElMkubNXJ2hLhHTFxfXh": {
-    "dishName": "Bottled Water",
-    "imagePath": "/images/ai-menu/ElMkubNXJ2hLhHTFxfXh-1200.webp",
-    "sourceFilename": "ElMkubNXJ2hLhHTFxfXh-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "uNMecqv1K6Rf9hzh22jy": {
-    "dishName": "Buttermilk",
-    "imagePath": "/images/ai-menu/uNMecqv1K6Rf9hzh22jy-1200.webp",
-    "sourceFilename": "uNMecqv1K6Rf9hzh22jy-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "te04ILCNfyoBgA72t0wg": {
-    "dishName": "Filter Coffee",
-    "imagePath": "/images/ai-menu/te04ILCNfyoBgA72t0wg-1200.webp",
-    "sourceFilename": "te04ILCNfyoBgA72t0wg-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "Bl4xoDsHHCgHCDKCXo5e": {
-    "dishName": "Mango Lassi",
-    "imagePath": "/images/ai-menu/Bl4xoDsHHCgHCDKCXo5e-1200.webp",
-    "sourceFilename": "Bl4xoDsHHCgHCDKCXo5e-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "ijig94ebeR0yLJ8bKGTS": {
-    "dishName": "Masala Chai",
-    "imagePath": "/images/ai-menu/ijig94ebeR0yLJ8bKGTS-1200.webp",
-    "sourceFilename": "ijig94ebeR0yLJ8bKGTS-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "YirhCMv2HqJufSZKukld": {
-    "dishName": "Rose Milk",
-    "imagePath": "/images/ai-menu/YirhCMv2HqJufSZKukld-1200.webp",
-    "sourceFilename": "YirhCMv2HqJufSZKukld-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "CSIAK3Dz5zj2WVtOZkqD": {
-    "dishName": "Soda",
-    "imagePath": "/images/ai-menu/CSIAK3Dz5zj2WVtOZkqD-1200.webp",
-    "sourceFilename": "CSIAK3Dz5zj2WVtOZkqD-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "B2R9mAuZOV4m6Ac5XGW9": {
-    "dishName": "Sparkling Water",
-    "imagePath": "/images/ai-menu/B2R9mAuZOV4m6Ac5XGW9-1200.webp",
-    "sourceFilename": "B2R9mAuZOV4m6Ac5XGW9-1200.webp",
-    "category": "beverages",
-    "status": "MATCHED"
-  },
-  "AZ5PXwSjdfK9RFKjxYbc": {
-    "dishName": "Bangalore Mutton Donne Biryani",
-    "imagePath": "/images/ai-menu/AZ5PXwSjdfK9RFKjxYbc-1200.webp",
-    "sourceFilename": "AZ5PXwSjdfK9RFKjxYbc-1200.webp",
-    "category": "biryani",
-    "status": "MATCHED"
-  },
-  "lGVf8BCQSgHjoLsjcSCg": {
-    "dishName": "Chef Special Chicken 65 Biryani",
-    "imagePath": "/images/ai-menu/lGVf8BCQSgHjoLsjcSCg-1200.webp",
-    "sourceFilename": "lGVf8BCQSgHjoLsjcSCg-1200.webp",
-    "category": "biryani",
-    "status": "MATCHED"
-  },
-  "5tJmPsCi14v2pqe0Lm0K": {
-    "dishName": "Butter Roti",
-    "imagePath": "/images/ai-menu/5tJmPsCi14v2pqe0Lm0K-1200.webp",
-    "sourceFilename": "5tJmPsCi14v2pqe0Lm0K-1200.webp",
-    "category": "breads",
-    "status": "MATCHED"
-  },
-  "iGyzBxk4OqiKyj9o0LHb": {
-    "dishName": "Garlic Chilli Naan",
-    "imagePath": "/images/ai-menu/iGyzBxk4OqiKyj9o0LHb-1200.webp",
-    "sourceFilename": "iGyzBxk4OqiKyj9o0LHb-1200.webp",
-    "category": "breads",
-    "status": "MATCHED"
-  },
-  "TAT7TqWSUC6h0agDBySS": {
-    "dishName": "Gajar Halwa",
-    "imagePath": "/images/ai-menu/TAT7TqWSUC6h0agDBySS-1200.webp",
-    "sourceFilename": "TAT7TqWSUC6h0agDBySS-1200.webp",
+  "t8cr8fo3WojchkBu5fpO": {
+    "dishName": "Gulab Jamun",
+    "imagePath": "/images/ai-menu/158-gulab-jamun.webp",
+    "sourceFilename": "158-gulab-jamun.webp",
     "category": "dessert",
     "status": "MATCHED"
   },
-  "NMw5M8DmYtlfez5hZP89": {
-    "dishName": "Payasa",
-    "imagePath": "/images/ai-menu/NMw5M8DmYtlfez5hZP89-1200.webp",
-    "sourceFilename": "NMw5M8DmYtlfez5hZP89-1200.webp",
+  "Rk3oa2NTDW2n4jFmdHff": {
+    "dishName": "Ice Cream",
+    "imagePath": "/images/ai-menu/159-ice-cream.webp",
+    "sourceFilename": "159-ice-cream.webp",
     "category": "dessert",
+    "status": "MATCHED"
+  },
+  "NkV23dZrg33OZeEeupfA": {
+    "dishName": "Rasmalai",
+    "imagePath": "/images/ai-menu/160-rasmalai.webp",
+    "sourceFilename": "160-rasmalai.webp",
+    "category": "dessert",
+    "status": "MATCHED"
+  },
+  "J0e6lAz4Alc80g0wr8ME": {
+    "dishName": "Moong Dal Halwa",
+    "imagePath": "/images/ai-menu/161-moong-dal-halwa.webp",
+    "sourceFilename": "161-moong-dal-halwa.webp",
+    "category": "dessert",
+    "status": "MATCHED"
+  },
+  "5hVoHVfTXsRrQkF8rp5K": {
+    "dishName": "Chapati",
+    "imagePath": "/images/ai-menu/162-chapati.webp",
+    "sourceFilename": "162-chapati.webp",
+    "category": "breads",
     "status": "MATCHED"
   }
 }

@@ -70,7 +70,7 @@ export const AI_DISH_STATUS_BY_ID: Record<string, { status: string; approved: bo
 });
 
 // Cache-busting version token for verified AI menu assets
-export const AI_MENU_ASSET_VERSION = 'ai-v3-rematch';
+export const AI_MENU_ASSET_VERSION = 'ai-v4-complete';
 
 export function getApprovedAiImageUrl(dishId?: string, dishName?: string): string | null {
   if (dishId) {
