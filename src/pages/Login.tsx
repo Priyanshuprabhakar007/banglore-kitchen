@@ -1,14 +1,16 @@
 /// <reference types="vite/client" />
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { db, handleFirestoreError, OperationType } from '../lib/firebase';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { db, auth, handleFirestoreError, OperationType } from '../lib/firebase';
 import { useAuth } from '../lib/auth';
 import { User, Shield, Lock, Mail, Phone } from 'lucide-react';
 
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export function Login() {
+  const shouldReduceMotion = useReducedMotion();
   const { user, isAdmin, staffData, loading: authLoading, login, guestLogin, staffLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,10 +25,31 @@ export function Login() {
   
   const isSuperAdminMode = window.location.pathname.includes('admin');
 
-  // API Base URL Configuration
-  // Use VITE_API_BASE_URL from env if available, otherwise relative for dev, or the production URL for build.
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
-    (import.meta.env.DEV ? '' : 'https://basant-vegetarian-platform-721591309491.asia-east1.run.app');
+  // 3D Tilt response to pointer on desktop (subtle 2.5 degrees)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { stiffness: 140, damping: 22 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], shouldReduceMotion ? ['0deg', '0deg'] : ['2.5deg', '-2.5deg']);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], shouldReduceMotion ? ['0deg', '0deg'] : ['-2.5deg', '2.5deg']);
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion || e.pointerType === 'touch') return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+  };
+
+  const handlePointerLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  // API Base URL Configuration: uses relative origin by default (works on both local dev and Vercel)
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
   console.log('API Configuration:', {
     effectiveBaseUrl: API_BASE_URL || '(current origin)',
@@ -183,8 +206,6 @@ export function Login() {
     ) {
       sessionStorage.setItem('adminAuth', 'true');
       try {
-        const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import('firebase/auth');
-        const { auth } = await import('../lib/firebase');
         const targetEmail = 'admin@bangalorekitchen.com';
         try {
           await signInWithEmailAndPassword(auth, targetEmail, 'admin123');
@@ -205,8 +226,6 @@ export function Login() {
 
     // Standard Firebase Auth login
     try {
-      const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import('firebase/auth');
-      const { auth } = await import('../lib/firebase');
       if (emailTrimmed === 'admin' || !emailTrimmed.includes('@')) {
         emailTrimmed = 'admin@bangalorekitchen.com';
       }
@@ -392,57 +411,133 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-bangalore-ivory relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-bangalore-accent/10 blur-[120px]"></div>
-        <div className="absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-bangalore-primary/10 blur-[100px]"></div>
+    <div 
+      onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-8 select-none [perspective:1200px]"
+    >
+      {/* Full-Page Background: Authentic Bangalore Kitchen Dining Room */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <motion.img
+          initial={{ scale: 1.04, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          src="/images/restaurant/login-bg.webp"
+          alt="The Bangalore Kitchen Ambiance"
+          className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.08] saturate-[1.12]"
+        />
+        {/* Subtle cinematic gradient: dark perimeter / vignette, bright warm center */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-stone-950/60" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(10,10,12,0.7)_100%)]" />
+        <div className="absolute inset-0 bg-amber-950/5 mix-blend-color-burn" />
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="w-full max-w-md p-8 glass rounded-2xl shadow-xl relative z-10 border border-white/40 text-center"
-      >
-        {showAccessDenied && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-center flex flex-col items-center">
-            <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-3">
-              <span className="text-2xl">⚠️</span>
-            </div>
-            <h2 className="font-bold mb-1">Access Denied</h2>
-            <p className="text-sm">You do not have administrative privileges. Please log in with an admin account.</p>
-          </div>
-        )}
-          <div className="text-center mb-8">
-              <div className="w-20 h-20 mx-auto bg-bangalore-primary rounded-full flex items-center justify-center mb-6 shadow-lg overflow-hidden">
-                {branding?.websiteLogo ? (
-                  <img src={branding.websiteLogo} alt="Logo" className="w-full h-full object-contain p-2" />
-                ) : (
-                  <span className="font-serif font-bold text-bangalore-accent text-4xl">
-                    {branding?.restaurantName?.charAt(0) || 'B'}
-                  </span>
-                )}
-              </div>
-              <h1 className="font-serif text-3xl font-bold text-bangalore-primary mb-2">
-                {isSuperAdminMode 
-                  ? `${branding?.restaurantName || 'The Bangalore Kitchen'} Admin Login`
-                  : isStaffMode 
-                  ? `${branding?.restaurantName || 'The Bangalore Kitchen'} Staff Login`
-                  : isPhoneMode
-                  ? 'Login with Mobile OTP'
-                  : branding?.restaurantName || 'The Bangalore Kitchen'}
-              </h1>
-              <p className="text-gray-500">
-                {!isStaffMode && !isSuperAdminMode && !isPhoneMode ? 'Premium Dining Experience' : 'Welcome back'}
-              </p>
-            </div>
+      {/* Moving warm caustic ambient backlighting behind the glass card */}
+      <motion.div
+        animate={shouldReduceMotion ? {} : {
+          scale: [1, 1.08, 1],
+          opacity: [0.35, 0.55, 0.35],
+          x: [-8, 8, -8],
+          y: [-8, 8, -8],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -inset-6 rounded-full bg-gradient-to-tr from-amber-500/25 via-amber-300/15 to-orange-400/20 blur-3xl pointer-events-none -z-10"
+      />
 
-            {error && (
-              <div className="mb-6 p-3 bg-red-50 border border-red-100 text-red-600 text-sm rounded-lg text-center">
-                {error}
-              </div>
-            )}
+      {/* Floating Liquid Glass Login Card */}
+      <motion.div 
+        initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+        animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.48) 0%, rgba(255, 255, 255, 0.24) 45%, rgba(255, 255, 255, 0.18) 65%, rgba(255, 255, 255, 0.36) 100%)',
+          backdropFilter: 'blur(28px) saturate(190%) contrast(102%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(190%) contrast(102%)',
+          border: '1px solid rgba(255, 255, 255, 0.55)',
+          boxShadow: '0 30px 80px -10px rgba(0, 0, 0, 0.42), 0 12px 30px -5px rgba(0, 0, 0, 0.25), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.85), inset 0 -1px 2px rgba(255, 255, 255, 0.2), inset 0 0 24px rgba(255, 240, 200, 0.1)',
+          borderRadius: '28px',
+          rotateX,
+          rotateY,
+          transformStyle: 'preserve-3d',
+        }}
+        className="w-[calc(100%-2rem)] max-w-md p-8 sm:p-10 relative z-10 text-center supports-[not(backdrop-filter:blur(1px))]:bg-white/95 overflow-hidden transition-[border-color,box-shadow] duration-500 hover:border-white/60 hover:shadow-[0_35px_90px_-10px_rgba(0,0,0,0.45),0_15px_35px_rgba(0,0,0,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.95),inset_0_-1px_2px_rgba(255,255,255,0.25)]"
+      >
+        {/* Animated Glass Specular Reflection on Entrance (1000–1500ms) */}
+        <motion.div
+          initial={{ x: '-150%', opacity: 0 }}
+          animate={shouldReduceMotion ? { opacity: 0 } : { x: '250%', opacity: [0, 0.35, 0.7, 0.35, 0] }}
+          transition={{ delay: 1.0, duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute -inset-y-12 w-[60%] -skew-x-25 bg-gradient-to-r from-transparent via-white/45 to-transparent pointer-events-none z-30"
+        />
+
+        {showAccessDenied && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 p-4 bg-red-50/90 border border-red-200/90 text-red-700 rounded-2xl text-center flex flex-col items-center backdrop-blur-xs shadow-xs"
+          >
+            <div className="w-11 h-11 bg-red-100/90 rounded-full flex items-center justify-center mb-2.5 shadow-2xs">
+              <span className="text-xl">⚠️</span>
+            </div>
+            <h2 className="font-bold text-sm mb-1 text-red-900">Access Denied</h2>
+            <p className="text-xs text-red-700/90">You do not have administrative privileges. Please log in with an admin account.</p>
+          </motion.div>
+        )}
+
+        {/* Brand Header */}
+        <div className="text-center mb-7 relative z-10">
+          {/* Polished Circular Glass Medallion */}
+          <motion.div 
+            initial={shouldReduceMotion ? { opacity: 0 } : { scale: 0.8, opacity: 0 }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { scale: 1, opacity: 1 }}
+            transition={{ delay: 0.45, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="w-20 h-20 mx-auto rounded-full p-2 mb-5 relative flex items-center justify-center bg-gradient-to-b from-white/40 via-white/15 to-white/20 backdrop-blur-xl border border-white/60 shadow-[0_15px_30px_rgba(0,0,0,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.9),inset_0_-1px_1.5px_rgba(255,255,255,0.2)] ring-1 ring-amber-400/30 group"
+          >
+            <div className="w-14 h-14 rounded-full bg-white/95 shadow-inner flex items-center justify-center p-2 overflow-hidden ring-1 ring-stone-200/50">
+              {branding?.websiteLogo ? (
+                <img src={branding.websiteLogo} alt="Logo" className="w-full h-full object-contain" />
+              ) : (
+                <span className="font-['Bodoni_Moda',serif] font-bold text-amber-700 text-2xl tracking-wider">
+                  {branding?.restaurantName?.charAt(0) || 'B'}
+                </span>
+              )}
+            </div>
+          </motion.div>
+
+          <motion.h1 
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55, duration: 0.4 }}
+            className="font-['Bodoni_Moda',serif] text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight mb-2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.85)]"
+          >
+            {isSuperAdminMode 
+              ? `${branding?.restaurantName || 'The Bangalore Kitchen'} Admin Login`
+              : isStaffMode 
+              ? `${branding?.restaurantName || 'The Bangalore Kitchen'} Staff Login`
+              : isPhoneMode
+              ? 'Login with Mobile OTP'
+              : branding?.restaurantName || 'The Bangalore Kitchen'}
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.35 }}
+            className="font-['DM_Sans',sans-serif] text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-amber-950/80 drop-shadow-[0_1px_1px_rgba(255,255,255,0.7)]"
+          >
+            {!isStaffMode && !isSuperAdminMode && !isPhoneMode ? 'Premium Dining Experience' : 'Welcome back'}
+          </motion.p>
+        </div>
+
+        {error && (
+          <motion.div 
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-5 p-3.5 bg-red-50/95 border border-red-200/80 text-red-700 text-xs sm:text-sm rounded-xl text-center shadow-xs backdrop-blur-xs"
+          >
+            {error}
+          </motion.div>
+        )}
 
         <AnimatePresence mode="wait">
           {isSuperAdminMode ? (
@@ -453,50 +548,50 @@ export function Login() {
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.2 }}
               onSubmit={handleAdminEmailLogin}
-              className="space-y-4"
+              className="space-y-4 relative z-10"
             >
               <div>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" size={18} />
                   <input
                     type="email"
                     required
                     value={adminEmail}
                     onChange={(e) => setAdminEmail(e.target.value)}
                     placeholder="Admin Email / Username"
-                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-bangalore-primary/20 focus:border-bangalore-primary outline-none transition-all"
+                    className="w-full pl-11 pr-4 py-3 bg-white/45 hover:bg-white/60 focus:bg-white/75 border border-white/60 focus:border-amber-500/70 rounded-xl outline-none transition-all text-stone-900 placeholder:text-stone-500 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] backdrop-blur-md"
                   />
                 </div>
               </div>
               <div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" size={18} />
                   <input
                     type="password"
                     required
                     value={adminPassword}
                     onChange={(e) => setAdminPassword(e.target.value)}
                     placeholder="Password"
-                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-bangalore-primary/20 focus:border-bangalore-primary outline-none transition-all"
+                    className="w-full pl-11 pr-4 py-3 bg-white/45 hover:bg-white/60 focus:bg-white/75 border border-white/60 focus:border-amber-500/70 rounded-xl outline-none transition-all text-stone-900 placeholder:text-stone-500 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] backdrop-blur-md"
                   />
                 </div>
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-3 bg-bangalore-primary text-white font-medium py-3 px-4 rounded-xl hover:bg-bangalore-primary hover:shadow-md transition-all duration-200"
+                className="w-full min-h-[48px] flex items-center justify-center gap-3 bg-gradient-to-b from-stone-900/90 via-stone-950/88 to-black/92 hover:from-stone-850 hover:to-stone-950 backdrop-blur-md border border-amber-400/25 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1.5px_rgba(255,255,255,0.25)] text-amber-50 font-medium py-3.5 px-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-amber-300/30 border-t-amber-400 rounded-full animate-spin"></div>
                 ) : 'Login as Admin'}
               </button>
               
               <div className="relative py-2">
                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t border-gray-200"></span>
+                    <span className="w-full border-t border-white/30"></span>
                  </div>
                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white px-2 text-gray-500">Or</span>
+                    <span className="bg-white/50 backdrop-blur-xs px-2.5 py-0.5 rounded-full text-stone-600 font-medium border border-white/50">Or</span>
                  </div>
               </div>
 
@@ -504,7 +599,7 @@ export function Login() {
                 type="button"
                 onClick={handleLogin}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl hover:bg-gray-50 hover:shadow-md transition-all duration-200"
+                className="w-full min-h-[48px] flex items-center justify-center gap-3 bg-white/45 hover:bg-white/65 active:bg-white/50 backdrop-blur-md border border-white/70 shadow-[0_4px_16px_rgba(0,0,0,0.06),inset_0_1px_1.5px_rgba(255,255,255,0.9)] text-stone-900 font-medium py-3.5 px-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
                 Sign in with Google
@@ -517,38 +612,38 @@ export function Login() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
-              className="space-y-4"
+              className="space-y-4 relative z-10"
             >
               {otpStep === 'phone' ? (
                 <form onSubmit={handleSendOtp} className="space-y-4">
                   <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                    <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" size={18} />
                     <input
                       type="tel"
                       required
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       placeholder="Mobile Number (e.g. +91...)"
-                      className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-bangalore-primary/20 focus:border-bangalore-primary outline-none transition-all"
+                      className="w-full pl-11 pr-4 py-3 bg-white/45 hover:bg-white/60 focus:bg-white/75 border border-white/60 focus:border-amber-500/70 rounded-xl outline-none transition-all text-stone-900 placeholder:text-stone-500 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] backdrop-blur-md"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full flex items-center justify-center gap-3 bg-bangalore-primary text-white font-medium py-3 px-4 rounded-xl hover:bg-bangalore-primary transition-all duration-200"
+                    className="w-full min-h-[48px] flex items-center justify-center gap-3 bg-gradient-to-b from-stone-900/90 via-stone-950/88 to-black/92 hover:from-stone-850 hover:to-stone-950 backdrop-blur-md border border-amber-400/25 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1.5px_rgba(255,255,255,0.25)] text-amber-50 font-medium py-3.5 px-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
                     {isLoading ? (
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-amber-300/30 border-t-amber-400 rounded-full animate-spin"></div>
                     ) : 'Send OTP'}
                   </button>
                 </form>
               ) : (
                 <form onSubmit={handleVerifyOtp} className="space-y-4">
-                   <div className="text-sm text-gray-600 mb-2">
-                    Enter the 6-digit code sent to {phoneNumber}
+                   <div className="text-xs sm:text-sm text-stone-800 drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)] mb-2 font-['DM_Sans',sans-serif]">
+                    Enter the 6-digit code sent to <span className="font-semibold text-stone-950">{phoneNumber}</span>
                   </div>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" size={18} />
                     <input
                       type="text"
                       required
@@ -556,22 +651,22 @@ export function Login() {
                       value={otpCode}
                       onChange={(e) => setOtpCode(e.target.value)}
                       placeholder="Enter OTP"
-                      className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-bangalore-primary/20 focus:border-bangalore-primary outline-none transition-all tracking-widest text-center font-bold"
+                      className="w-full pl-11 pr-4 py-3 bg-white/45 hover:bg-white/60 focus:bg-white/75 border border-white/60 focus:border-amber-500/70 rounded-xl outline-none transition-all tracking-widest text-center font-bold text-stone-900 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] backdrop-blur-md"
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full flex items-center justify-center gap-3 bg-bangalore-primary text-white font-medium py-3 px-4 rounded-xl hover:bg-bangalore-primary transition-all duration-200"
+                    className="w-full min-h-[48px] flex items-center justify-center gap-3 bg-gradient-to-b from-stone-900/90 via-stone-950/88 to-black/92 hover:from-stone-850 hover:to-stone-950 backdrop-blur-md border border-amber-400/25 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1.5px_rgba(255,255,255,0.25)] text-amber-50 font-medium py-3.5 px-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   >
                     {isLoading ? (
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-amber-300/30 border-t-amber-400 rounded-full animate-spin"></div>
                     ) : 'Verify & Login'}
                   </button>
                   <button
                     type="button"
                     onClick={() => setOtpStep('phone')}
-                    className="w-full text-sm text-bangalore-primary hover:underline"
+                    className="w-full text-xs sm:text-sm font-semibold text-amber-950 hover:underline cursor-pointer"
                   >
                     Change phone number
                   </button>
@@ -583,7 +678,7 @@ export function Login() {
                   setIsPhoneMode(false);
                   setError('');
                 }}
-                className="w-full text-sm text-gray-500 hover:underline"
+                className="w-full text-xs sm:text-sm font-semibold text-stone-700 hover:text-stone-950 hover:underline cursor-pointer"
               >
                 Back to other options
               </button>
@@ -595,34 +690,43 @@ export function Login() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.2 }}
-              className="space-y-4"
+              className="space-y-4 relative z-10"
             >
-              <button
+              {/* Frosted White-Glass Google Button */}
+              <motion.button
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                transition={{ delay: 0.65, duration: 0.45 }}
                 onClick={handleLogin}
                 disabled={isLoading || isGuestLoading}
-                className="w-full flex items-center justify-center gap-3 bg-white border border-gray-200 text-gray-700 font-medium py-3 px-4 rounded-xl hover:bg-gray-50 hover:shadow-md transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full min-h-[48px] flex items-center justify-center gap-3 bg-white/80 hover:bg-white active:bg-white/90 backdrop-blur-md border border-white/90 shadow-[0_4px_20px_rgba(0,0,0,0.1),inset_0_1px_1.5px_rgba(255,255,255,1)] text-stone-900 font-semibold py-3.5 px-5 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.16),inset_0_1.5px_2px_rgba(255,255,255,1)] disabled:opacity-70 disabled:cursor-not-allowed group cursor-pointer"
               >
                 {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-gray-300 border-t-gray-600 rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-stone-400 border-t-stone-800 rounded-full animate-spin"></div>
                 ) : (
-                  <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
+                  <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
                 )}
-                {isLoading ? 'Signing in...' : 'Sign in with Google'}
-              </button>
+                <span className="font-['DM_Sans',sans-serif] tracking-tight">{isLoading ? 'Signing in...' : 'Sign in with Google'}</span>
+              </motion.button>
 
+              {/* Premium Dark Smoked-Glass Guest Button */}
               {!isSuperAdminMode && (
-                <button
+                <motion.button
+                  initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+                  animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                  transition={{ delay: 0.75, duration: 0.45 }}
                   onClick={handleGuestLogin}
                   disabled={isLoading || isGuestLoading}
-                  className="w-full flex items-center justify-center gap-3 bg-bangalore-primary text-white font-medium py-3 px-4 rounded-xl hover:bg-bangalore-primary hover:shadow-md transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full min-h-[48px] relative overflow-hidden flex items-center justify-center gap-3 bg-gradient-to-b from-stone-900/90 via-stone-950/88 to-black/92 hover:from-stone-850 hover:to-stone-950 backdrop-blur-md border border-amber-400/25 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1.5px_rgba(255,255,255,0.25),inset_0_-1px_2px_rgba(0,0,0,0.5)] text-amber-50 font-medium py-3.5 px-5 rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-400/45 hover:shadow-[0_15px_35px_rgba(0,0,0,0.5),inset_0_1.5px_2px_rgba(255,255,255,0.35)] disabled:opacity-70 disabled:cursor-not-allowed group cursor-pointer"
                 >
+                  <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/15 to-transparent pointer-events-none" />
                   {isGuestLoading ? (
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-amber-300/30 border-t-amber-400 rounded-full animate-spin relative z-10"></div>
                   ) : (
-                    <User className="w-5 h-5" />
+                    <User className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform duration-200 relative z-10" />
                   )}
-                  {isGuestLoading ? 'Entering as Guest...' : 'Continue as Guest'}
-                </button>
+                  <span className="font-['DM_Sans',sans-serif] tracking-tight relative z-10">{isGuestLoading ? 'Entering as Guest...' : 'Continue as Guest'}</span>
+                </motion.button>
               )}
             </motion.div>
           ) : (
@@ -633,43 +737,43 @@ export function Login() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.2 }}
               onSubmit={handleStaffLogin}
-              className="space-y-4"
+              className="space-y-4 relative z-10"
             >
               <div>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" size={18} />
                   <input
                     type="text"
                     required
                     value={staffEmail}
                     onChange={(e) => setStaffEmail(e.target.value)}
                     placeholder="Email or Mobile Number"
-                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-bangalore-primary/20 focus:border-bangalore-primary outline-none transition-all"
+                    className="w-full pl-11 pr-4 py-3 bg-white/45 hover:bg-white/60 focus:bg-white/75 border border-white/60 focus:border-amber-500/70 rounded-xl outline-none transition-all text-stone-900 placeholder:text-stone-500 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] backdrop-blur-md"
                   />
                 </div>
               </div>
               <div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-500" size={18} />
                   <input
                     type="password"
                     required
                     value={staffPin}
                     onChange={(e) => setStaffPin(e.target.value)}
                     placeholder="Password / PIN"
-                    className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-bangalore-primary/20 focus:border-bangalore-primary outline-none transition-all"
+                    className="w-full pl-11 pr-4 py-3 bg-white/45 hover:bg-white/60 focus:bg-white/75 border border-white/60 focus:border-amber-500/70 rounded-xl outline-none transition-all text-stone-900 placeholder:text-stone-500 shadow-[inset_0_1px_2px_rgba(0,0,0,0.06)] backdrop-blur-md"
                   />
                 </div>
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-3 bg-bangalore-primary text-white font-medium py-3 px-4 rounded-xl hover:bg-bangalore-primary hover:shadow-md transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full min-h-[48px] flex items-center justify-center gap-3 bg-gradient-to-b from-stone-900/90 via-stone-950/88 to-black/92 hover:from-stone-850 hover:to-stone-950 backdrop-blur-md border border-amber-400/25 shadow-[0_10px_30px_rgba(0,0,0,0.4),inset_0_1px_1.5px_rgba(255,255,255,0.25)] text-amber-50 font-medium py-3.5 px-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-amber-300/30 border-t-amber-400 rounded-full animate-spin"></div>
                 ) : (
-                  <Shield className="w-5 h-5" />
+                  <Shield className="w-5 h-5 text-amber-400" />
                 )}
                 {isLoading ? 'Authenticating...' : 'Secure Staff Login'}
               </button>
@@ -678,7 +782,12 @@ export function Login() {
         </AnimatePresence>
 
         {(!isSuperAdminMode && !window.location.pathname.includes('staff') && !window.location.pathname.includes('cook') && !window.location.pathname.includes('rider')) && (
-          <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-4">
+          <motion.div 
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0 }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1 }}
+            transition={{ delay: 0.85, duration: 0.45 }}
+            className="mt-8 pt-6 border-t border-white/40 flex flex-col gap-3 relative z-10"
+          >
             {!isPhoneMode && (
               <button 
                 type="button"
@@ -687,9 +796,10 @@ export function Login() {
                   setError('');
                   setOtpStep('phone');
                 }}
-                className="text-sm font-medium text-bangalore-primary hover:text-bangalore-primary hover:underline flex items-center justify-center gap-1 transition-colors"
+                className="min-h-[44px] text-xs sm:text-sm font-semibold font-['DM_Sans',sans-serif] text-stone-900 hover:text-amber-950 flex items-center justify-center gap-2 transition-all cursor-pointer group bg-white/35 hover:bg-white/55 backdrop-blur-xs py-2.5 px-4 rounded-xl border border-white/50 shadow-xs focus:outline-none focus:ring-2 focus:ring-amber-500/40"
               >
-                <Phone size={14} /> Login with Mobile OTP
+                <Phone size={15} className="text-amber-800 group-hover:scale-110 transition-transform" /> 
+                <span className="group-hover:underline underline-offset-4">Login with Mobile OTP</span>
               </button>
             )}
             
@@ -700,15 +810,18 @@ export function Login() {
                 setIsPhoneMode(false);
                 setError('');
               }}
-              className="text-sm font-medium text-bangalore-primary hover:text-bangalore-primary hover:underline flex items-center justify-center gap-1 transition-colors"
+              className="min-h-[44px] text-xs sm:text-sm font-semibold font-['DM_Sans',sans-serif] text-stone-800 hover:text-stone-950 flex items-center justify-center gap-2 transition-all cursor-pointer group bg-white/20 hover:bg-white/40 backdrop-blur-xs py-2.5 px-4 rounded-xl border border-white/40 shadow-xs focus:outline-none focus:ring-2 focus:ring-stone-500/40"
             >
               {isStaffMode ? (
-                <>Customer / Admin Login</>
+                <span className="group-hover:underline underline-offset-4">Customer / Admin Login</span>
               ) : (
-                <><Shield size={14} /> Staff Member Login</>
+                <>
+                  <Shield size={15} className="text-stone-700 group-hover:scale-110 transition-transform" /> 
+                  <span className="group-hover:underline underline-offset-4">Staff Member Login</span>
+                </>
               )}
             </button>
-          </div>
+          </motion.div>
         )}
       </motion.div>
     </div>

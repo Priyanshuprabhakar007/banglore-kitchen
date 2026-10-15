@@ -57,20 +57,28 @@ export class StorageService {
         }
       }
 
-      if (r2Config) {
-        // Use Pre-signed URL for Cloudflare R2
-        console.log(`Getting presigned URL for Cloudflare R2: ${fullPath}`);
+      // Try R2 Pre-signed URL upload (works with server env vars or Firestore settings)
+      try {
+        console.log(`Checking presigned URL for Cloudflare R2: ${fullPath}`);
         if (onProgress) onProgress(30);
 
         const presignReqHeaders: Record<string, string> = {
           "Content-Type": "application/json",
-          "x-r2-account-id": r2Config.cloudflareR2AccountId,
-          "x-r2-access-key-id": r2Config.cloudflareR2AccessKeyId,
-          "x-r2-secret-access-key": r2Config.cloudflareR2SecretAccessKey,
-          "x-r2-bucket-name": r2Config.cloudflareR2BucketName,
         };
-        if (r2Config.cloudflareR2PublicDomain) {
-          presignReqHeaders["x-r2-public-domain"] = r2Config.cloudflareR2PublicDomain;
+
+        if (auth.currentUser) {
+          const token = await auth.currentUser.getIdToken();
+          presignReqHeaders["Authorization"] = `Bearer ${token}`;
+        }
+
+        if (r2Config) {
+          presignReqHeaders["x-r2-account-id"] = r2Config.cloudflareR2AccountId;
+          presignReqHeaders["x-r2-access-key-id"] = r2Config.cloudflareR2AccessKeyId;
+          presignReqHeaders["x-r2-secret-access-key"] = r2Config.cloudflareR2SecretAccessKey;
+          presignReqHeaders["x-r2-bucket-name"] = r2Config.cloudflareR2BucketName;
+          if (r2Config.cloudflareR2PublicDomain) {
+            presignReqHeaders["x-r2-public-domain"] = r2Config.cloudflareR2PublicDomain;
+          }
         }
 
         const presignRes = await fetch("/api/storage/presign", {
@@ -82,33 +90,29 @@ export class StorageService {
           }),
         });
 
-        if (!presignRes.ok) {
-          throw new Error("Failed to get presigned URL from backend.");
+        if (presignRes.ok) {
+          const presignData = await presignRes.json();
+          if (presignData.success && presignData.presignedUrl) {
+            if (onProgress) onProgress(60);
+
+            // Upload directly to Cloudflare R2 using the presigned URL
+            const uploadRes = await fetch(presignData.presignedUrl, {
+              method: "PUT",
+              headers: {
+                "Content-Type": file.type || "application/octet-stream",
+              },
+              body: file,
+            });
+
+            if (uploadRes.ok) {
+              if (onProgress) onProgress(100);
+              console.log(`Upload successful via Presigned URL: ${presignData.url}`);
+              return presignData.url;
+            }
+          }
         }
-        
-        const presignData = await presignRes.json();
-        if (!presignData.success) {
-          throw new Error(presignData.error || "Failed to generate R2 upload URL.");
-        }
-
-        if (onProgress) onProgress(60);
-
-        // Upload directly to Cloudflare R2 using the presigned URL
-        const uploadRes = await fetch(presignData.presignedUrl, {
-          method: "PUT",
-          headers: {
-            "Content-Type": file.type || "application/octet-stream",
-          },
-          body: file,
-        });
-
-        if (!uploadRes.ok) {
-          throw new Error(`Failed to upload file to R2: ${await uploadRes.text()}`);
-        }
-
-        if (onProgress) onProgress(100);
-        console.log(`Upload successful via Presigned URL... ${presignData.url}`);
-        return presignData.url;
+      } catch (r2Err) {
+        console.warn("R2 presigned upload bypassed or failed, proceeding to proxy fallback:", r2Err);
       }
 
       // Fallback to Firebase Storage Proxy
