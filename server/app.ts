@@ -69,6 +69,53 @@ app.use((req, _res, next) => {
   next();
 });
 
+// Rate Limiting Store
+interface RateLimitRecord {
+  count: number;
+  resetAt: number;
+}
+const rateLimitStore = new Map<string, RateLimitRecord>();
+
+export function getClientIp(req: express.Request): string {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (typeof forwarded === "string") {
+    return forwarded.split(",")[0].trim();
+  }
+  return req.socket.remoteAddress || "127.0.0.1";
+}
+
+export function checkRateLimit(
+  key: string,
+  maxRequests: number,
+  windowMs: number
+): { allowed: boolean; retryAfterSeconds: number } {
+  const now = Date.now();
+  const record = rateLimitStore.get(key);
+
+  if (!record || now > record.resetAt) {
+    rateLimitStore.set(key, { count: 1, resetAt: now + windowMs });
+    return { allowed: true, retryAfterSeconds: 0 };
+  }
+
+  if (record.count >= maxRequests) {
+    const retryAfterSeconds = Math.ceil((record.resetAt - now) / 1000);
+    return { allowed: false, retryAfterSeconds };
+  }
+
+  record.count += 1;
+  return { allowed: true, retryAfterSeconds: 0 };
+}
+
+export const ALLOWED_UPLOAD_EXTENSIONS = new Set([
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".gif",
+  ".svg",
+  ".pdf",
+]);
+
 // Define core API Router
 const apiRouter = express.Router();
 
@@ -112,6 +159,25 @@ apiRouter.post("/admin/menu/find-image", async (req, res) => {
 // -------------------------------------------------------------
 apiRouter.post("/storage/presign", async (req, res) => {
   try {
+    // Require authentication token for storage operations
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        success: false,
+        error: "Authentication required for storage operations.",
+      });
+    }
+
+    // Rate limit: 20 requests per 10 minutes per IP
+    const clientIp = getClientIp(req);
+    const limitCheck = checkRateLimit(`storage-presign:${clientIp}`, 20, 10 * 60 * 1000);
+    if (!limitCheck.allowed) {
+      return res.status(429).json({
+        success: false,
+        error: `Too many upload requests. Please wait ${limitCheck.retryAfterSeconds} seconds before trying again.`,
+      });
+    }
+
     const { path: rawPath, contentType = "application/octet-stream" } = req.body || {};
 
     if (!rawPath || typeof rawPath !== "string") {
@@ -124,32 +190,21 @@ apiRouter.post("/storage/presign", async (req, res) => {
       .replace(/^(\.\.\/)+/, "")
       .replace(/^\/+/, "");
 
-    // Prioritize server-side environment variables for R2 credentials
-    const r2AccountId = (
-      process.env.CLOUDFLARE_R2_ACCOUNT_ID ||
-      (req.headers["x-r2-account-id"] as string) ||
-      ""
-    ).trim();
-    const r2AccessKeyId = (
-      process.env.CLOUDFLARE_R2_ACCESS_KEY_ID ||
-      (req.headers["x-r2-access-key-id"] as string) ||
-      ""
-    ).trim();
-    const r2SecretAccessKey = (
-      process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ||
-      (req.headers["x-r2-secret-access-key"] as string) ||
-      ""
-    ).trim();
-    const r2BucketName = (
-      process.env.CLOUDFLARE_R2_BUCKET_NAME ||
-      (req.headers["x-r2-bucket-name"] as string) ||
-      ""
-    ).trim();
-    const r2PublicDomain = (
-      process.env.CLOUDFLARE_R2_PUBLIC_DOMAIN ||
-      (req.headers["x-r2-public-domain"] as string) ||
-      ""
-    ).trim();
+    // Validate file extension against allowed whitelist
+    const ext = path.extname(uploadPath).toLowerCase();
+    if (ext && !ALLOWED_UPLOAD_EXTENSIONS.has(ext)) {
+      return res.status(400).json({
+        success: false,
+        error: `Unsupported file extension: ${ext}. Allowed extensions: ${Array.from(ALLOWED_UPLOAD_EXTENSIONS).join(", ")}`,
+      });
+    }
+
+    // Strictly server-side environment variables for Cloudflare R2 (never client headers)
+    const r2AccountId = (process.env.CLOUDFLARE_R2_ACCOUNT_ID || "").trim();
+    const r2AccessKeyId = (process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || "").trim();
+    const r2SecretAccessKey = (process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY || "").trim();
+    const r2BucketName = (process.env.CLOUDFLARE_R2_BUCKET_NAME || "").trim();
+    const r2PublicDomain = (process.env.CLOUDFLARE_R2_PUBLIC_DOMAIN || "").trim();
 
     if (r2AccountId && r2AccessKeyId && r2SecretAccessKey && r2BucketName) {
       const s3Client = new S3Client({
@@ -198,6 +253,25 @@ apiRouter.post(
   }),
   async (req, res) => {
     try {
+      // Require authentication token for storage operations
+      const authHeader = req.headers.authorization;
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({
+          success: false,
+          error: "Authentication required for storage operations.",
+        });
+      }
+
+      // Rate limit: 20 requests per 10 minutes per IP
+      const clientIp = getClientIp(req);
+      const limitCheck = checkRateLimit(`storage-upload:${clientIp}`, 20, 10 * 60 * 1000);
+      if (!limitCheck.allowed) {
+        return res.status(429).json({
+          success: false,
+          error: `Too many upload requests. Please wait ${limitCheck.retryAfterSeconds} seconds before trying again.`,
+        });
+      }
+
       const bucket = req.query.bucket as string;
       const rawPath = req.query.path as string;
       const contentType = (req.headers["content-type"] as string) || "image/jpeg";
@@ -210,6 +284,15 @@ apiRouter.post(
         .replace(/\\/g, "/")
         .replace(/^(\.\.\/)+/, "")
         .replace(/^\/+/, "");
+
+      // Validate file extension against allowed whitelist
+      const ext = path.extname(uploadPath).toLowerCase();
+      if (ext && !ALLOWED_UPLOAD_EXTENSIONS.has(ext)) {
+        return res.status(400).json({
+          success: false,
+          error: `Unsupported file extension: ${ext}. Allowed extensions: ${Array.from(ALLOWED_UPLOAD_EXTENSIONS).join(", ")}`,
+        });
+      }
 
       // Normalize file buffer
       let fileBuffer: Buffer | null = null;
@@ -228,32 +311,12 @@ apiRouter.post(
         });
       }
 
-      // Check for Cloudflare R2 configuration (prioritizing environment variables)
-      const r2AccountId = (
-        process.env.CLOUDFLARE_R2_ACCOUNT_ID ||
-        (req.headers["x-r2-account-id"] as string) ||
-        ""
-      ).trim();
-      const r2AccessKeyId = (
-        process.env.CLOUDFLARE_R2_ACCESS_KEY_ID ||
-        (req.headers["x-r2-access-key-id"] as string) ||
-        ""
-      ).trim();
-      const r2SecretAccessKey = (
-        process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ||
-        (req.headers["x-r2-secret-access-key"] as string) ||
-        ""
-      ).trim();
-      const r2BucketName = (
-        process.env.CLOUDFLARE_R2_BUCKET_NAME ||
-        (req.headers["x-r2-bucket-name"] as string) ||
-        ""
-      ).trim();
-      const r2PublicDomain = (
-        process.env.CLOUDFLARE_R2_PUBLIC_DOMAIN ||
-        (req.headers["x-r2-public-domain"] as string) ||
-        ""
-      ).trim();
+      // Strictly server-side environment variables for Cloudflare R2 (never client headers)
+      const r2AccountId = (process.env.CLOUDFLARE_R2_ACCOUNT_ID || "").trim();
+      const r2AccessKeyId = (process.env.CLOUDFLARE_R2_ACCESS_KEY_ID || "").trim();
+      const r2SecretAccessKey = (process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY || "").trim();
+      const r2BucketName = (process.env.CLOUDFLARE_R2_BUCKET_NAME || "").trim();
+      const r2PublicDomain = (process.env.CLOUDFLARE_R2_PUBLIC_DOMAIN || "").trim();
 
       if (r2AccountId && r2AccessKeyId && r2SecretAccessKey && r2BucketName) {
         try {
@@ -372,8 +435,23 @@ apiRouter.post("/auth/send-otp", async (req, res) => {
     }
 
     const cleanPhone = phoneNumber.trim();
-    if (cleanPhone.length < 8) {
-      return res.status(400).json({ success: false, error: "Valid phone number is required." });
+    // Validate international E.164 phone number format (+ followed by 7-15 digits)
+    const e164Regex = /^\+[1-9]\d{7,14}$/;
+    if (!e164Regex.test(cleanPhone)) {
+      return res.status(400).json({
+        success: false,
+        error: "Valid phone number in international format (+[country code][number]) is required.",
+      });
+    }
+
+    // Rate limiting: maximum 5 OTP requests per 10 minutes per IP/phone
+    const clientIp = getClientIp(req);
+    const rateLimit = checkRateLimit(`send-otp:${clientIp}:${cleanPhone}`, 5, 10 * 60 * 1000);
+    if (!rateLimit.allowed) {
+      return res.status(429).json({
+        success: false,
+        error: `Too many OTP requests. Please wait ${rateLimit.retryAfterSeconds} seconds before requesting again.`,
+      });
     }
 
     if (!accountSid || !authToken || !serviceSid) {
@@ -415,6 +493,33 @@ apiRouter.post("/auth/verify-otp", async (req, res) => {
 
     const cleanPhone = String(phoneNumber).trim();
     const cleanCode = String(code).trim();
+
+    // Validate international E.164 phone format
+    const e164Regex = /^\+[1-9]\d{7,14}$/;
+    if (!e164Regex.test(cleanPhone)) {
+      return res.status(400).json({
+        success: false,
+        error: "Valid phone number in international format (+[country code][number]) is required.",
+      });
+    }
+
+    // Validate 4 to 8 digit verification code
+    if (!/^\d{4,8}$/.test(cleanCode)) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid verification code format. Must be 4 to 8 digits.",
+      });
+    }
+
+    // Rate limiting: maximum 5 verification attempts per 10 minutes per IP/phone
+    const clientIp = getClientIp(req);
+    const rateLimit = checkRateLimit(`verify-otp:${clientIp}:${cleanPhone}`, 5, 10 * 60 * 1000);
+    if (!rateLimit.allowed) {
+      return res.status(429).json({
+        success: false,
+        error: `Too many verification attempts. Please wait ${rateLimit.retryAfterSeconds} seconds before trying again.`,
+      });
+    }
 
     if (!serviceSid) {
       return res.status(500).json({

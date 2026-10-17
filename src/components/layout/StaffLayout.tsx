@@ -12,6 +12,7 @@ import { useAuth } from '../../lib/auth';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { cn } from '../../lib/utils';
+import { Logo } from '../ui/Logo';
 
 // Using same exact IDs to match permissions
 const navItems = [
@@ -154,17 +155,15 @@ export function StaffLayout() {
     <div className="min-h-screen bg-gray-50 flex flex-col md:flex-row overflow-hidden font-sans">
       {/* Mobile Header for Staff */}
       <div className="md:hidden flex items-center justify-between p-4 bg-white border-b border-gray-200">
-        <div className="flex items-center gap-2">
-            {branding?.websiteLogo ? (
-              <img src={branding.websiteLogo} alt="Logo" className="w-8 h-8 object-contain shrink-0" />
-            ) : (
-              <div className="w-8 h-8 rounded-full bg-bangalore-primary flex items-center justify-center shrink-0">
-                <span className="font-serif font-bold text-white text-sm">
-                  {branding?.restaurantName?.charAt(0) || 'B'}
-                </span>
-              </div>
-            )}
-           <span className="font-semibold text-gray-900">Staff Portal</span>
+        <div className="flex items-center gap-3">
+          <Logo
+            variant="light-bg"
+            logoUrl={branding?.websiteLogo}
+            width={125}
+            className="h-auto select-none"
+            containerClassName="py-1 px-2.5"
+          />
+          <span className="text-xs font-bold uppercase tracking-wider text-stone-500 bg-stone-100 px-2 py-0.5 rounded">Staff Portal</span>
         </div>
         <button onClick={() => setMobileMenuOpen(true)}>
           <Menu size={24} className="text-gray-600" />

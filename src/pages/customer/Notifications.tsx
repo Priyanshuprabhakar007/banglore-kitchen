@@ -62,7 +62,27 @@ export function Notifications() {
                     </div>
                     <div className="flex items-center gap-1 text-xs text-gray-400 mb-2">
                        <Clock size={12} />
-                       {new Date(notif.createdAt).toLocaleDateString()}
+                       {(() => {
+                         if (!notif.createdAt) return 'Recent';
+                         try {
+                           if (typeof notif.createdAt?.toDate === 'function') {
+                             return notif.createdAt.toDate().toLocaleDateString('en-US', {
+                               month: 'short',
+                               day: 'numeric',
+                               year: 'numeric'
+                             });
+                           }
+                           const d = new Date(notif.createdAt);
+                           if (!isNaN(d.getTime())) {
+                             return d.toLocaleDateString('en-US', {
+                               month: 'short',
+                               day: 'numeric',
+                               year: 'numeric'
+                             });
+                           }
+                         } catch {}
+                         return 'Recent';
+                       })()}
                     </div>
                     <p className="text-gray-600 leading-relaxed">{notif.message}</p>
                     <div className="mt-4 flex justify-end">

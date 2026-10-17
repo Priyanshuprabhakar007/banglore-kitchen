@@ -9,6 +9,7 @@ import {
   Save,
   Image as ImageIcon,
 } from "lucide-react";
+import { OFFICIAL_LOGO_PATH, getCleanLogoUrl } from "../components/ui/Logo";
 
 export function SettingsManagement() {
   const [loading, setLoading] = useState(true);
@@ -17,9 +18,9 @@ export function SettingsManagement() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
-    appName: "Bangalore",
-    appSubtitle: "Vegetarian",
-    logoUrl: "",
+    appName: "The Bangalore Kitchen",
+    appSubtitle: "South Indian Bar & Restaurant",
+    logoUrl: OFFICIAL_LOGO_PATH,
     primaryColor: "#800000",
     cloudflareR2AccountId: "",
     cloudflareR2AccessKeyId: "",
@@ -34,7 +35,12 @@ export function SettingsManagement() {
         const docRef = doc(db, "settings", "global");
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setFormData((prev) => ({ ...prev, ...docSnap.data() }));
+          const data = docSnap.data();
+          setFormData((prev) => ({
+            ...prev,
+            ...data,
+            logoUrl: getCleanLogoUrl(data.logoUrl),
+          }));
         }
       } catch (error) {
         console.error("Error fetching settings:", error);
@@ -178,15 +184,15 @@ export function SettingsManagement() {
                 </p>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-24 h-24 rounded-xl bg-gray-100 border border-gray-200 overflow-hidden flex items-center justify-center shrink-0">
+                  <div className="w-48 h-20 rounded-xl bg-[#1c221e] border border-stone-700/60 p-2 overflow-hidden flex items-center justify-center shrink-0">
                     {formData.logoUrl ? (
                       <img
                         src={formData.logoUrl}
                         alt="App Logo"
-                        className="w-full h-full object-contain bg-white"
+                        className="max-w-full max-h-full object-contain"
                       />
                     ) : (
-                      <ImageIcon size={32} className="text-gray-400" />
+                      <ImageIcon size={32} className="text-gray-500" />
                     )}
                   </div>
 

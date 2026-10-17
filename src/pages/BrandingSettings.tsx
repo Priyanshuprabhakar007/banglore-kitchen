@@ -4,16 +4,17 @@ import { doc, onSnapshot, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { Upload, Loader2, Save, Globe, Smartphone, Image as ImageIcon, Settings } from 'lucide-react';
 import { StorageService } from '../services/storageService';
+import { OFFICIAL_LOGO_PATH, OFFICIAL_SYMBOL_PATH, getCleanLogoUrl } from '../components/ui/Logo';
 
 export function BrandingSettings() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState<string | null>(null);
   const [settings, setSettings] = useState({
-    websiteLogo: '',
-    appLogo: '',
-    favicon: '',
-    appIcon: '',
+    websiteLogo: OFFICIAL_LOGO_PATH,
+    appLogo: OFFICIAL_LOGO_PATH,
+    favicon: '/favicon-32x32.png',
+    appIcon: OFFICIAL_SYMBOL_PATH,
     restaurantName: 'The Bangalore Kitchen',
     primaryColor: '#800000',
     secondaryColor: '#FFD700'
@@ -30,7 +31,15 @@ export function BrandingSettings() {
   useEffect(() => {
     const unsubscribe = onSnapshot(doc(db, 'settings', 'branding'), (docSnap) => {
       if (docSnap.exists()) {
-        setSettings(prev => ({ ...prev, ...docSnap.data() }));
+        const data = docSnap.data();
+        setSettings(prev => ({
+          ...prev,
+          ...data,
+          websiteLogo: getCleanLogoUrl(data.websiteLogo),
+          appLogo: getCleanLogoUrl(data.appLogo),
+          favicon: data.favicon && !data.favicon.includes('basant') && !data.favicon.startsWith('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOE') ? data.favicon : '/favicon-32x32.png',
+          appIcon: data.appIcon && !data.appIcon.includes('basant') && !data.appIcon.startsWith('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOE') ? data.appIcon : OFFICIAL_SYMBOL_PATH,
+        }));
       }
       setLoading(false);
     });
@@ -118,11 +127,11 @@ export function BrandingSettings() {
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">Website Logo</label>
               <div className="flex items-center gap-4">
-                <div className="w-24 h-24 rounded-xl bg-gray-50 border border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+                <div className="w-48 h-20 rounded-xl bg-[#1c221e] border border-stone-700/60 p-2 flex items-center justify-center overflow-hidden shrink-0">
                   {settings.websiteLogo ? (
                     <img src={settings.websiteLogo} alt="Website Logo" className="max-w-full max-h-full object-contain" />
                   ) : (
-                    <ImageIcon className="text-gray-300" size={32} />
+                    <ImageIcon className="text-gray-500" size={32} />
                   )}
                 </div>
                 <div className="flex-1">
@@ -207,11 +216,11 @@ export function BrandingSettings() {
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">App Logo (Splash Screen)</label>
               <div className="flex items-center gap-4">
-                <div className="w-24 h-24 rounded-xl bg-gray-50 border border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+                <div className="w-48 h-20 rounded-xl bg-[#1c221e] border border-stone-700/60 p-2 flex items-center justify-center overflow-hidden shrink-0">
                   {settings.appLogo ? (
                     <img src={settings.appLogo} alt="App Logo" className="max-w-full max-h-full object-contain" />
                   ) : (
-                    <ImageIcon className="text-gray-300" size={32} />
+                    <ImageIcon className="text-gray-500" size={32} />
                   )}
                 </div>
                 <div className="flex-1">

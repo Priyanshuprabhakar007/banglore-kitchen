@@ -5,6 +5,7 @@ import { db } from '../lib/firebase';
 import { QueueToken, QueueSettings } from '../types/queue';
 import { Clock } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Logo } from '../components/ui/Logo';
 
 export function QueueDisplay() {
   const { branchId } = useParams();
@@ -57,19 +58,16 @@ export function QueueDisplay() {
   return (
     <div className="min-h-screen bg-bangalore-ivory text-black flex flex-col overflow-hidden font-sans">
       <header className="bg-bangalore-primary text-white p-6 md:p-8 flex items-center justify-between shadow-md">
-        <div className="flex items-center gap-4">
-          {branding?.websiteLogo ? (
-             <img src={branding.websiteLogo} alt="Logo" className="h-12 w-auto object-contain bg-white rounded p-1" />
-          ) : (
-             <div className="w-12 h-12 rounded bg-bangalore-accent flex items-center justify-center">
-               <span className="font-serif font-bold text-bangalore-primary text-2xl">
-                 {branding?.restaurantName?.charAt(0) || 'B'}
-               </span>
-             </div>
-          )}
-          <div>
-            <h1 className="text-3xl font-serif font-bold tracking-tight">{branding?.restaurantName || 'The Bangalore Kitchen'}</h1>
-            <p className="text-bangalore-accent opacity-90 tracking-widest text-sm uppercase">Queue Display</p>
+        <div className="flex items-center gap-6">
+          <Logo
+            variant="dark-bg"
+            logoUrl={branding?.websiteLogo}
+            width={210}
+            className="h-auto select-none"
+          />
+          <div className="h-10 w-px bg-white/20 hidden sm:block" />
+          <div className="bg-white/10 px-3.5 py-1.5 rounded-full border border-white/15">
+            <p className="text-bangalore-accent tracking-widest text-xs font-bold uppercase">Queue Display</p>
           </div>
         </div>
         <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-xl backdrop-blur-md">

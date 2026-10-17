@@ -1,15 +1,19 @@
 import app from "../server/app";
 
-// Disable Vercel's default body parsing so that Express raw and json parsers work uniformly
-export const config = {
-  api: {
-    bodyParser: false,
-    externalResolver: true,
-  },
-};
-
+// Export the Express app handler for Vercel Serverless Function runtime.
+// Ensures that Express handles the complete request/response lifecycle without premature termination.
 export default function handler(req: any, res: any) {
-  return app(req, res);
+  if (res.writableEnded) return;
+
+  return new Promise<void>((resolve, reject) => {
+    res.on("finish", () => resolve());
+    res.on("close", () => resolve());
+    res.on("error", (err: any) => reject(err));
+    app(req, res, (err: any) => {
+      if (err) return reject(err);
+      resolve();
+    });
+  });
 }
 
 export { app };

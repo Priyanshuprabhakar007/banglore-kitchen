@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../lib/auth';
 import { cn } from '../../lib/utils';
+import { Logo } from '../ui/Logo';
 
 const navItems = [
   { name: 'Dashboard', sectionId: 'dashboard', path: '', icon: LayoutDashboard },
@@ -127,23 +128,21 @@ export function AdminLayout() {
         )}
       >
         <div className="h-20 flex items-center justify-between px-6 border-b border-white/10 shrink-0">
-          <div className="flex items-center gap-3 overflow-hidden whitespace-nowrap">
-            {branding?.websiteLogo ? (
-              <img src={branding.websiteLogo} alt="Logo" className="w-10 h-10 object-contain shrink-0" />
+          <div className="flex items-center overflow-hidden whitespace-nowrap">
+            {sidebarOpen ? (
+              <Logo
+                variant="dark-bg"
+                logoUrl={branding?.websiteLogo}
+                width={165}
+                className="h-auto select-none"
+              />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-bangalore-accent flex items-center justify-center shrink-0">
-                <span className="font-serif font-bold text-bangalore-primary text-xl">
-                  {branding?.restaurantName?.charAt(0) || 'B'}
-                </span>
-              </div>
-            )}
-            {sidebarOpen && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col">
-                <span className="font-serif font-bold text-lg leading-tight truncate max-w-[160px]">
-                  {branding?.restaurantName || 'Bangalore'}
-                </span>
-                <span className="text-xs text-bangalore-accent uppercase tracking-widest">Vegetarian</span>
-              </motion.div>
+              <Logo
+                variant="icon-only"
+                logoUrl={branding?.websiteLogo}
+                width={36}
+                className="h-9 w-9 select-none"
+              />
             )}
           </div>
           <button onClick={() => setMobileMenuOpen(false)} className="lg:hidden text-white/70 hover:text-white">

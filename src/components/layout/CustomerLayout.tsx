@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingBag, User, MapPin, Phone, Bell, ArrowRight, Home, UtensilsCrossed, Tag, CalendarDays } from 'lucide-react';
-import { doc, onSnapshot, collection, query, orderBy, limit, where } from 'firebase/firestore';
+import { doc, onSnapshot, collection, query, orderBy, limit, where, Timestamp } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useAuth } from '../../lib/auth';
 import { cn } from '../../lib/utils';
@@ -10,6 +10,7 @@ import { useCart } from '../../lib/CartContext';
 import { AnnouncementBanner } from '../AnnouncementBanner';
 import { NotificationToast } from '../NotificationToast';
 import { Footer } from './Footer';
+import { Logo } from '../ui/Logo';
 
 export function CustomerLayout() {
   const { user, isAdmin, staffData, loading } = useAuth();
@@ -55,15 +56,22 @@ export function CustomerLayout() {
     const oneDayAgo = new Date();
     oneDayAgo.setDate(oneDayAgo.getDate() - 1);
     
+    // Query using Firestore Timestamp for type compatibility with serverTimestamp()
     const q = query(
       collection(db, 'notifications'), 
-      where('createdAt', '>=', oneDayAgo.toISOString()),
+      where('createdAt', '>=', Timestamp.fromDate(oneDayAgo)),
       limit(10)
     );
     
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      setUnreadNotifications(snapshot.size);
-    });
+    const unsubscribe = onSnapshot(
+      q, 
+      (snapshot) => {
+        setUnreadNotifications(snapshot.size);
+      },
+      (err) => {
+        console.warn('Notifications count listener error:', err);
+      }
+    );
     return () => unsubscribe();
   }, []);
 
@@ -127,29 +135,15 @@ export function CustomerLayout() {
               : "0 10px 32px rgba(0, 0, 0, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.45)",
           }}
         >
-          {/* SECTION 1: LEFT — Branding & Logo (Substantial & Luxurious) */}
-          <Link to="/" className="flex items-center gap-3.5 group focus:outline-none shrink-0">
-            {branding?.websiteLogo ? (
-              <img
-                src={branding.websiteLogo}
-                alt="Logo"
-                className="w-11 h-11 sm:w-12 sm:h-12 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
-              />
-            ) : (
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#252D28] flex items-center justify-center shrink-0 shadow-md transition-transform duration-300 group-hover:scale-105">
-                <span className="font-serif font-bold text-[#C5A46B] text-xl sm:text-2xl">
-                  {branding?.restaurantName?.charAt(0) || 'B'}
-                </span>
-              </div>
-            )}
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-xl sm:text-2xl leading-tight text-[#252D28] tracking-tight">
-                {branding?.restaurantName || 'The Bangalore Kitchen'}
-              </span>
-              <span className="text-[10px] sm:text-[10.5px] text-[#C5A46B] uppercase tracking-[0.18em] font-bold mt-0.5">
-                South Indian Bar & Restaurant
-              </span>
-            </div>
+          {/* SECTION 1: LEFT — Branding & Official Bangalore Kitchen Logo */}
+          <Link to="/" className="flex items-center group focus:outline-none shrink-0" aria-label="The Bangalore Kitchen Home">
+            <Logo
+              variant="light-bg"
+              logoUrl={branding?.websiteLogo}
+              width={180}
+              className="transition-transform duration-300 group-hover:scale-[1.02]"
+              containerClassName="hover:shadow-[0_6px_20px_rgba(0,0,0,0.25)]"
+            />
           </Link>
 
           {/* SECTION 2: CENTER — Larger Floating Capsule Navigation with Sliding Indicator */}
@@ -313,50 +307,18 @@ export function CustomerLayout() {
               : "0 10px 34px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.40)",
           }}
         >
-          {/* Mobile LEFT: Branding & Logo */}
-          <Link to="/" className="flex items-center gap-2 group focus:outline-none shrink-0 min-w-0">
-            {branding?.websiteLogo ? (
-              <img
-                src={branding.websiteLogo}
-                alt="Logo"
-                className="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0 transition-transform duration-200 active:scale-95"
-              />
-            ) : (
-              <div
-                className={cn(
-                  "w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform duration-200 active:scale-95",
-                  isScrolled
-                    ? "bg-[#252D28] text-[#C5A46B]"
-                    : "bg-white/20 text-white border border-white/30 backdrop-blur-md"
-                )}
-              >
-                <span className="font-serif font-bold text-sm sm:text-base">
-                  {branding?.restaurantName?.charAt(0) || 'B'}
-                </span>
-              </div>
-            )}
-            <div className="flex flex-col min-w-0">
-              <span
-                className={cn(
-                  "font-serif font-bold text-[14.5px] sm:text-[16px] leading-tight tracking-tight truncate transition-colors duration-300",
-                  isScrolled
-                    ? "text-[#252D28]"
-                    : "text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]"
-                )}
-              >
-                {branding?.restaurantName || 'The Bangalore Kitchen'}
-              </span>
-              <span
-                className={cn(
-                  "text-[8px] sm:text-[9px] uppercase tracking-[0.14em] font-semibold transition-colors duration-300",
-                  isScrolled
-                    ? "text-[#C5A46B]"
-                    : "text-amber-200/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]"
-                )}
-              >
-                South Indian Bar & Restaurant
-              </span>
-            </div>
+          {/* Mobile LEFT: Branding & Official Bangalore Kitchen Logo */}
+          <Link to="/" className="flex items-center group focus:outline-none shrink-0 min-w-0" aria-label="The Bangalore Kitchen Home">
+            <Logo
+              variant="light-bg"
+              logoUrl={branding?.websiteLogo}
+              width={138}
+              className="transition-transform duration-200 active:scale-95"
+              containerClassName={cn(
+                "py-1 px-2.5 shadow-sm transition-all duration-300",
+                isScrolled ? "bg-[#1c221e]/95" : "bg-[#1c221e]/85"
+              )}
+            />
           </Link>
 
           {/* Mobile RIGHT: Action Controls (Cart + Account/Sign-In) */}

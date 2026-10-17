@@ -32,9 +32,7 @@ service cloud.firestore {
     function isSuperAdmin() {
       return isSignedIn() && (
         request.auth.token.email == "dilseinvite@gmail.com" || 
-        request.auth.token.email == "caffy@gmail.com" || 
-        request.auth.token.email == "admin@basant.com" ||
-        request.auth.token.email == "admin@gmail.com" ||
+        request.auth.token.email == "admin@bangalorekitchen.com" ||
         (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
          get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'super_admin')
       );
@@ -105,11 +103,12 @@ service cloud.firestore {
       allow write: if isAdminOrStaff();
     }
 
-    // User data
+    // User data - Customers cannot elevate their own role
     match /users/{userId} {
       allow read: if isOwner(userId) || isAdminOrStaff();
-      allow create: if isSignedIn() && isOwner(userId);
-      allow update: if isOwner(userId) || isAdminOrStaff();
+      allow create: if isSignedIn() && isOwner(userId) && (!('role' in incoming()) || incoming().role == 'customer');
+      allow update: if isSuperAdmin() || (isOwner(userId) && (!('role' in incoming()) || incoming().role == existing().role));
+      allow delete: if isSuperAdmin();
     }
 
     // Orders
@@ -136,7 +135,10 @@ service cloud.firestore {
     }
 
     // Restricted Collections
-    match /staffMembers/{id} { allow read, write: if isSuperAdmin(); }
+    match /staffMembers/{id} { 
+      allow read: if isSuperAdmin() || (isSignedIn() && request.auth.uid == id); 
+      allow write: if isSuperAdmin(); 
+    }
     match /payments/{id} { allow read, write: if isSuperAdmin(); }
     match /reports/{id} { allow read, write: if isSuperAdmin(); }
     match /staff/{id} { allow read, write: if isSuperAdmin(); }

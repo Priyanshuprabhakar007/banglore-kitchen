@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, ArrowRight, Check, Instagram, Facebook, Youtube, ChevronRight } from 'lucide-react';
+import { Logo } from '../ui/Logo';
 
 interface FooterProps {
   branding?: {
@@ -122,31 +123,13 @@ export function Footer({ branding }: FooterProps) {
           
           {/* COLUMN 1 — BRAND (span 4) */}
           <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-6">
-            <Link to="/" className="flex items-center gap-3 mb-5 group">
-              {branding?.websiteLogo ? (
-                <img
-                  src={branding.websiteLogo}
-                  alt="The Bangalore Kitchen"
-                  className="w-10 h-10 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
-                />
-              ) : (
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#C5A46B] to-[#997C47] text-[#0C1115] flex items-center justify-center shrink-0 shadow-md transition-transform duration-300 group-hover:scale-105">
-                  <span className="font-serif font-bold text-lg">
-                    {branding?.restaurantName?.charAt(0) || 'B'}
-                  </span>
-                </div>
-              )}
-              <div className="flex flex-col">
-                <span
-                  className="font-serif font-normal text-[20px] leading-tight text-white tracking-tight"
-                  style={{ fontFamily: "'Bodoni Moda', serif" }}
-                >
-                  {branding?.restaurantName || 'The Bangalore Kitchen'}
-                </span>
-                <span className="text-[9.5px] text-[#C5A46B] uppercase tracking-[0.24em] font-bold">
-                  South Indian Bar & Restaurant
-                </span>
-              </div>
+            <Link to="/" className="inline-block mb-6 group focus:outline-none" aria-label="The Bangalore Kitchen Home">
+              <Logo
+                variant="dark-bg"
+                logoUrl={branding?.websiteLogo}
+                width={205}
+                className="transition-transform duration-300 group-hover:scale-[1.02]"
+              />
             </Link>
 
             <p className="text-[13.5px] leading-relaxed text-stone-400 mb-6 font-sans">

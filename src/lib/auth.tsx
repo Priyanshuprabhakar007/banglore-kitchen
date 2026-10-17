@@ -47,9 +47,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const userEmail = currentUser.email?.trim().toLowerCase() || '';
           const superAdminEnv = (import.meta as any).env?.VITE_SUPER_ADMIN_EMAIL?.trim().toLowerCase();
           
-          // Super Admin override check
-          const superAdminEmails = [superAdminEnv, 'dilseinvite@gmail.com', 'caffy@gmail.com', 'admin@basant.com', 'admin@gmail.com', 'admin@bangalorekitchen.com'];
-          if (superAdminEmails.includes(userEmail) || userEmail.startsWith('admin@') || userEmail === 'admin') {
+          // Super Admin authorized emails
+          const authorizedAdminEmails = [
+            superAdminEnv,
+            'admin@bangalorekitchen.com',
+            'dilseinvite@gmail.com'
+          ].filter(Boolean);
+          
+          if (userEmail && authorizedAdminEmails.includes(userEmail)) {
             const userRef = doc(db, 'users', currentUser.uid);
             const userSnap = await getDocWithRetry(userRef);
             

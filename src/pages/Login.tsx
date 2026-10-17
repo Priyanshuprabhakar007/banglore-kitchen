@@ -6,8 +6,8 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'fire
 import { db, auth, handleFirestoreError, OperationType } from '../lib/firebase';
 import { useAuth } from '../lib/auth';
 import { User, Shield, Lock, Mail, Phone } from 'lucide-react';
-
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Logo } from '../components/ui/Logo';
 
 export function Login() {
   const shouldReduceMotion = useReducedMotion();
@@ -59,8 +59,8 @@ export function Login() {
 
   const [staffEmail, setStaffEmail] = useState('');
   const [staffPin, setStaffPin] = useState('');
-  const [adminEmail, setAdminEmail] = useState('admin');
-  const [adminPassword, setAdminPassword] = useState('admin123');
+  const [adminEmail, setAdminEmail] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otpCode, setOtpCode] = useState('');
   const [otpStep, setOtpStep] = useState<'phone' | 'code'>('phone');
@@ -189,7 +189,7 @@ export function Login() {
   const handleAdminEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!adminEmail || !adminPassword) {
-      setError('Please enter Admin Username and Password.');
+      setError('Please enter Admin Email and Password.');
       return;
     }
     
@@ -199,58 +199,24 @@ export function Login() {
     let emailTrimmed = adminEmail.trim().toLowerCase();
     let pass = adminPassword.trim();
 
-    // Direct Login for admin / admin123
-    if (
-      (emailTrimmed === 'admin' || emailTrimmed === 'admin@bangalorekitchen.com' || emailTrimmed === 'admin@basant.com') && 
-      (pass === 'admin123' || pass === 'admin')
-    ) {
-      sessionStorage.setItem('adminAuth', 'true');
-      try {
-        const targetEmail = 'admin@bangalorekitchen.com';
-        try {
-          await signInWithEmailAndPassword(auth, targetEmail, 'admin123');
-        } catch (err: any) {
-          try {
-            await createUserWithEmailAndPassword(auth, targetEmail, 'admin123');
-          } catch (createErr: any) {
-            // Already created
-          }
-        }
-      } catch (fErr) {
-        console.log("Local admin session active");
-      }
-      setIsLoading(false);
-      navigate('/admin');
-      return;
+    if (!emailTrimmed.includes('@')) {
+      emailTrimmed = `${emailTrimmed}@bangalorekitchen.com`;
     }
 
-    // Standard Firebase Auth login
     try {
-      if (emailTrimmed === 'admin' || !emailTrimmed.includes('@')) {
-        emailTrimmed = 'admin@bangalorekitchen.com';
-      }
-
-      try {
-        await signInWithEmailAndPassword(auth, emailTrimmed, pass);
-        sessionStorage.setItem('adminAuth', 'true');
-        navigate('/admin');
-      } catch (signInErr: any) {
-        if (pass === 'admin123') {
-          try {
-            await createUserWithEmailAndPassword(auth, emailTrimmed, pass);
-            sessionStorage.setItem('adminAuth', 'true');
-            navigate('/admin');
-          } catch (createErr: any) {
-            sessionStorage.setItem('adminAuth', 'true');
-            navigate('/admin');
-          }
-        } else {
-          throw new Error('Invalid admin credentials.');
-        }
-      }
+      await signInWithEmailAndPassword(auth, emailTrimmed, pass);
+      // Navigation is handled after role verification in the auth effect
     } catch (err: any) {
-      console.error('Login error:', err);
-      setError(err.message || 'Invalid admin credentials.');
+      console.error('Admin login error:', err);
+      let message = 'Invalid admin credentials.';
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+        message = 'Invalid email or password.';
+      } else if (err.code === 'auth/too-many-requests') {
+        message = 'Too many failed login attempts. Please try again later.';
+      } else if (err.message) {
+        message = err.message;
+      }
+      setError(message);
     } finally {
       setIsLoading(false);
     }
@@ -292,8 +258,10 @@ export function Login() {
            navigate('/staff');
         }
       } else {
-        // Logged in but not an admin
-        if (location.pathname === '/login') {
+        // Logged in but not an admin or staff member
+        if (location.pathname === '/admin-login' || location.pathname === '/staff-login') {
+          setError('Access Denied: You do not have administrative or staff privileges.');
+        } else if (location.pathname === '/login') {
            navigate('/');
         }
       }
@@ -357,44 +325,7 @@ export function Login() {
     setIsLoading(true);
     setError('');
     try {
-      const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import('firebase/auth');
-      const { auth, db } = await import('../lib/firebase');
-      const { setDoc, doc, serverTimestamp } = await import('firebase/firestore');
-
-      try {
-        await staffLogin(emailToUse, staffPin);
-      } catch (staffAuthErr: any) {
-        // Special mapping for 'caffy' as requested
-        if (emailToUse === 'caffy@gmail.com' && staffPin === '1234') {
-          try {
-            console.log('Creating staff account for caffy...');
-            const userCred = await createUserWithEmailAndPassword(auth, emailToUse, staffPin);
-            // Create staff record in Firestore so AuthProvider recognizes it
-            await setDoc(doc(db, 'staffMembers', userCred.user.uid), {
-              id: userCred.user.uid,
-              name: 'Caffy Staff',
-              email: emailToUse,
-              role: 'staff',
-              roleName: 'Staff Member',
-              status: 'active',
-              createdAt: serverTimestamp(),
-              permissions: {
-                allowedSections: ['orders', 'menu', 'inventory', 'tables']
-              }
-            });
-            console.log('Staff account created successfully');
-          } catch (createErr: any) {
-            if (createErr.code === 'auth/email-already-in-use') {
-              // If email exists but login failed, it means wrong PIN for existing account
-              throw new Error('Invalid PIN for this staff account.');
-            }
-            throw createErr;
-          }
-        } else {
-          throw staffAuthErr;
-        }
-      }
-
+      await staffLogin(emailToUse, staffPin);
       sessionStorage.setItem('staffAuth', 'true');
       if (location.pathname === '/admin-login') {
          sessionStorage.setItem('adminAuth', 'true');
@@ -404,7 +335,15 @@ export function Login() {
       }
     } catch (err: any) {
       console.error('Staff login error:', err);
-      setError(err.message || 'Invalid credentials or staff member not found.');
+      let message = 'Invalid credentials or staff member not found.';
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
+        message = 'Invalid staff email/mobile or PIN.';
+      } else if (err.code === 'auth/too-many-requests') {
+        message = 'Too many failed login attempts. Please try again later.';
+      } else if (err.message) {
+        message = err.message;
+      }
+      setError(message);
     } finally {
       setIsLoading(false);
     }
@@ -485,23 +424,20 @@ export function Login() {
         )}
 
         {/* Brand Header */}
-        <div className="text-center mb-7 relative z-10">
-          {/* Polished Circular Glass Medallion */}
+        <div className="text-center mb-7 relative z-10 flex flex-col items-center">
+          {/* Adapted Horizontal Glass Container for Bangalore Kitchen Logo */}
           <motion.div 
-            initial={shouldReduceMotion ? { opacity: 0 } : { scale: 0.8, opacity: 0 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { scale: 0.9, opacity: 0 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { scale: 1, opacity: 1 }}
             transition={{ delay: 0.45, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="w-20 h-20 mx-auto rounded-full p-2 mb-5 relative flex items-center justify-center bg-gradient-to-b from-white/40 via-white/15 to-white/20 backdrop-blur-xl border border-white/60 shadow-[0_15px_30px_rgba(0,0,0,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.9),inset_0_-1px_1.5px_rgba(255,255,255,0.2)] ring-1 ring-amber-400/30 group"
+            className="inline-flex items-center justify-center px-5 py-3 mb-4 rounded-2xl bg-gradient-to-b from-[#1c221e]/90 to-[#121614]/95 backdrop-blur-xl border border-white/20 shadow-[0_12px_28px_rgba(0,0,0,0.30),inset_0_1.5px_2px_rgba(255,255,255,0.25)] ring-1 ring-amber-400/25 group transition-transform hover:scale-[1.02]"
           >
-            <div className="w-14 h-14 rounded-full bg-white/95 shadow-inner flex items-center justify-center p-2 overflow-hidden ring-1 ring-stone-200/50">
-              {branding?.websiteLogo ? (
-                <img src={branding.websiteLogo} alt="Logo" className="w-full h-full object-contain" />
-              ) : (
-                <span className="font-['Bodoni_Moda',serif] font-bold text-amber-700 text-2xl tracking-wider">
-                  {branding?.restaurantName?.charAt(0) || 'B'}
-                </span>
-              )}
-            </div>
+            <Logo
+              variant="dark-bg"
+              logoUrl={branding?.websiteLogo}
+              width={200}
+              className="h-auto select-none"
+            />
           </motion.div>
 
           <motion.h1 
@@ -511,12 +447,12 @@ export function Login() {
             className="font-['Bodoni_Moda',serif] text-2xl sm:text-3xl font-bold text-stone-900 tracking-tight mb-2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.85)]"
           >
             {isSuperAdminMode 
-              ? `${branding?.restaurantName || 'The Bangalore Kitchen'} Admin Login`
+              ? 'Admin Portal Login'
               : isStaffMode 
-              ? `${branding?.restaurantName || 'The Bangalore Kitchen'} Staff Login`
+              ? 'Staff Portal Login'
               : isPhoneMode
               ? 'Login with Mobile OTP'
-              : branding?.restaurantName || 'The Bangalore Kitchen'}
+              : 'Sign In to Your Account'}
           </motion.h1>
 
           <motion.p 

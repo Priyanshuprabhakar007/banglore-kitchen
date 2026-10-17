@@ -41,23 +41,7 @@ export class StorageService {
         console.warn("Direct Firebase upload bypassed/failed, trying backend proxy:", fbErr);
       }
 
-      const settingsRef = doc(db, "settings", "global");
-      const settingsDoc = await getDoc(settingsRef);
-      let r2Config = null;
-
-      if (settingsDoc.exists()) {
-        const data = settingsDoc.data();
-        if (
-          data.cloudflareR2AccountId &&
-          data.cloudflareR2AccessKeyId &&
-          data.cloudflareR2SecretAccessKey &&
-          data.cloudflareR2BucketName
-        ) {
-          r2Config = data;
-        }
-      }
-
-      // Try R2 Pre-signed URL upload (works with server env vars or Firestore settings)
+      // Try R2 Pre-signed URL upload (uses server-side configured R2 environment credentials)
       try {
         console.log(`Checking presigned URL for Cloudflare R2: ${fullPath}`);
         if (onProgress) onProgress(30);
@@ -69,16 +53,6 @@ export class StorageService {
         if (auth.currentUser) {
           const token = await auth.currentUser.getIdToken();
           presignReqHeaders["Authorization"] = `Bearer ${token}`;
-        }
-
-        if (r2Config) {
-          presignReqHeaders["x-r2-account-id"] = r2Config.cloudflareR2AccountId;
-          presignReqHeaders["x-r2-access-key-id"] = r2Config.cloudflareR2AccessKeyId;
-          presignReqHeaders["x-r2-secret-access-key"] = r2Config.cloudflareR2SecretAccessKey;
-          presignReqHeaders["x-r2-bucket-name"] = r2Config.cloudflareR2BucketName;
-          if (r2Config.cloudflareR2PublicDomain) {
-            presignReqHeaders["x-r2-public-domain"] = r2Config.cloudflareR2PublicDomain;
-          }
         }
 
         const presignRes = await fetch("/api/storage/presign", {

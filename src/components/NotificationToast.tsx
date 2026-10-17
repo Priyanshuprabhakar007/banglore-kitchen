@@ -152,7 +152,7 @@ export function NotificationToast() {
               : { opacity: 0, x: 30, transition: { duration: 0.25, ease: 'easeOut' } }
           }
           transition={{ duration: 0.25 }}
-          className="fixed bottom-6 right-4 sm:right-6 z-[100] w-[calc(100vw-2rem)] sm:w-full sm:max-w-sm"
+          className="fixed bottom-[calc(84px+env(safe-area-inset-bottom,0px))] sm:bottom-6 right-4 sm:right-6 z-[100] w-[calc(100vw-2rem)] sm:w-full sm:max-w-sm"
         >
           <div
             onClick={handleCardClick}
