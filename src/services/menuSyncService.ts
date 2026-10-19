@@ -69,30 +69,60 @@ export const AI_DISH_STATUS_BY_ID: Record<string, { status: string; approved: bo
   }
 });
 
+// Pre-indexed AI Menu mapping by normalized name for instant O(1) lookups
+const AI_IMAGE_BY_CLEAN_NAME: Record<string, string> = {};
+
+Object.values(aiMenuManifestById).forEach((entry) => {
+  if (entry.dishName && entry.imagePath) {
+    const clean = entry.dishName.replace(/^authentic\s+/gi, '').trim().toLowerCase();
+    AI_IMAGE_BY_CLEAN_NAME[clean] = entry.imagePath;
+  }
+});
+
+(aiManifest as any[]).forEach((item) => {
+  if (item.dishName && item.approvalStatus === 'APPROVED' && item.assetPath) {
+    const clean = item.dishName.replace(/^authentic\s+/gi, '').trim().toLowerCase();
+    if (!AI_IMAGE_BY_CLEAN_NAME[clean]) {
+      AI_IMAGE_BY_CLEAN_NAME[clean] = item.assetPath;
+    }
+  }
+});
+
 // Cache-busting version token for verified AI menu assets
 export const AI_MENU_ASSET_VERSION = 'ai-v4-complete';
 
+// In-memory storage cache to eliminate repeated synchronous localStorage reads
+let cachedApprovals: Record<string, boolean> | null = null;
+let cachedDecisions: Record<string, string> | null = null;
+let storageInitialized = false;
+
+function getStorageData() {
+  if (!storageInitialized && typeof window !== 'undefined' && window.localStorage) {
+    try {
+      const stored = localStorage.getItem('tbk_ai_menu_approvals');
+      if (stored) cachedApprovals = JSON.parse(stored);
+      const decisions = localStorage.getItem('tbk_audit_review_decisions');
+      if (decisions) cachedDecisions = JSON.parse(decisions);
+    } catch {}
+    storageInitialized = true;
+  }
+  return { approvals: cachedApprovals, decisions: cachedDecisions };
+}
+
+export function invalidateAuditStorageCache() {
+  storageInitialized = false;
+  RESOLVED_DISH_URL_CACHE.clear();
+}
+
 export function getApprovedAiImageUrl(dishId?: string, dishName?: string): string | null {
   if (dishId) {
-    // Check localStorage overrides if explicitly rejected in Audit Gallery
-    try {
-      if (typeof window !== 'undefined' && window.localStorage) {
-        const stored = localStorage.getItem('tbk_ai_menu_approvals');
-        if (stored) {
-          const overrides = JSON.parse(stored);
-          if (overrides[dishId] === false) return null; // explicitly rejected
-        }
-
-        // Check if an uncertain match was explicitly approved in Audit Gallery
-        const reviewDecisions = localStorage.getItem('tbk_audit_review_decisions');
-        if (reviewDecisions) {
-          const decisions = JSON.parse(reviewDecisions);
-          if (decisions[dishId]) {
-            return `${decisions[dishId]}?v=${AI_MENU_ASSET_VERSION}`;
-          }
-        }
-      }
-    } catch {}
+    const { approvals, decisions } = getStorageData();
+    if (approvals && approvals[dishId] === false) {
+      return null; // explicitly rejected
+    }
+    if (decisions && decisions[dishId]) {
+      return `${decisions[dishId]}?v=${AI_MENU_ASSET_VERSION}`;
+    }
 
     // Priority 1: Newly imported local AI image strictly matched by Firebase Document ID
     const directLocalMatch = aiMenuManifestById[dishId];
@@ -108,21 +138,20 @@ export function getApprovedAiImageUrl(dishId?: string, dishName?: string): strin
 
   if (dishName) {
     const clean = dishName.replace(/^authentic\s+/gi, '').trim().toLowerCase();
-    // Check manifest by normalized dish name
-    for (const entry of Object.values(aiMenuManifestById)) {
-      if (entry.dishName.trim().toLowerCase() === clean && entry.imagePath) {
-        return `${entry.imagePath}?v=${AI_MENU_ASSET_VERSION}`;
-      }
+    const matchedPath = AI_IMAGE_BY_CLEAN_NAME[clean];
+    if (matchedPath) {
+      return `${matchedPath}?v=${AI_MENU_ASSET_VERSION}`;
     }
-
-    const item = (aiManifest as any[]).find(
-      m => m.dishName.toLowerCase().trim() === clean && m.approvalStatus === 'APPROVED' && m.assetPath
-    );
-    if (item?.assetPath) return `${item.assetPath}?v=${AI_MENU_ASSET_VERSION}`;
   }
 
   return null;
 }
+
+// Global resolution cache for instantaneous O(1) returns on subsequent renders
+const RESOLVED_DISH_URL_CACHE = new Map<string, {
+  url: string | null;
+  source: 'AI_APPROVED' | 'CUSTOM_UPLOAD' | 'NEUTRAL_PLACEHOLDER';
+}>();
 
 /**
  * Authoritative 3-tier image resolution priority:
@@ -136,10 +165,16 @@ export function getDishResolvedUrl(dishId?: string, dishName?: string, currentIm
   url: string | null;
   source: 'AI_APPROVED' | 'CUSTOM_UPLOAD' | 'NEUTRAL_PLACEHOLDER';
 } {
+  const cacheKey = `${dishId || ''}::${dishName || ''}::${currentImageUrl || ''}`;
+  const cached = RESOLVED_DISH_URL_CACHE.get(cacheKey);
+  if (cached) return cached;
+
   // 1. Approved local AI image for the exact Firebase dish ID
   const approvedAi = getApprovedAiImageUrl(dishId, dishName);
   if (approvedAi) {
-    return { url: approvedAi, source: 'AI_APPROVED' };
+    const res = { url: approvedAi, source: 'AI_APPROVED' as const };
+    RESOLVED_DISH_URL_CACHE.set(cacheKey, res);
+    return res;
   }
 
   // 2. Verified AI image selected in admin and stored in Firebase
@@ -153,17 +188,23 @@ export function getDishResolvedUrl(dishId?: string, dishName?: string, currentIm
         target.includes('firebasestorage.googleapis.com')
       );
       if (isCustomUpload) {
-        return { url: target, source: 'CUSTOM_UPLOAD' };
+        const res = { url: target, source: 'CUSTOM_UPLOAD' as const };
+        RESOLVED_DISH_URL_CACHE.set(cacheKey, res);
+        return res;
       }
 
       if (target.startsWith('/images/ai-menu/')) {
-        return { url: `${target}${target.includes('?') ? '' : `?v=${AI_MENU_ASSET_VERSION}`}`, source: 'AI_APPROVED' };
+        const res = { url: `${target}${target.includes('?') ? '' : `?v=${AI_MENU_ASSET_VERSION}`}`, source: 'AI_APPROVED' as const };
+        RESOLVED_DISH_URL_CACHE.set(cacheKey, res);
+        return res;
       }
     }
   }
 
   // 3. Neutral missing-image placeholder (null triggers graceful ProductImage placeholder)
-  return { url: null, source: 'NEUTRAL_PLACEHOLDER' };
+  const fallbackRes = { url: null, source: 'NEUTRAL_PLACEHOLDER' as const };
+  RESOLVED_DISH_URL_CACHE.set(cacheKey, fallbackRes);
+  return fallbackRes;
 }
 
 export const REFERENCE_CATEGORIES = [

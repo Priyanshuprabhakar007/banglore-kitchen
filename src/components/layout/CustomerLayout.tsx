@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { NavLink, Outlet, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingBag, User, MapPin, Phone, Bell, ArrowRight, Home, UtensilsCrossed, Tag, CalendarDays } from 'lucide-react';
@@ -11,6 +11,7 @@ import { AnnouncementBanner } from '../AnnouncementBanner';
 import { NotificationToast } from '../NotificationToast';
 import { Footer } from './Footer';
 import { Logo } from '../ui/Logo';
+import { preloadMenuData } from '../../services/menuDataService';
 
 export function CustomerLayout() {
   const { user, isAdmin, staffData, loading } = useAuth();
@@ -18,10 +19,22 @@ export function CustomerLayout() {
   const [branding, setBranding] = useState<any>(null);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [hoveredPath, setHoveredPath] = useState<string | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   const location = useLocation();
+
+  // Desktop Navigation Pill Geometry State & Container/Tab Refs
+  const navContainerRef = useRef<HTMLElement | null>(null);
+  const tabRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const [pillStyle, setPillStyle] = useState<{
+    x: number;
+    width: number;
+    opacity: number;
+  }>({ x: 0, width: 0, opacity: 0 });
+
+  // Flags to prevent initial fly-in or animation on mount
+  const hasInitialized = useRef(false);
+  const prevActivePathRef = useRef<string | null>(null);
 
   // Reduced motion preference
   useEffect(() => {
@@ -39,6 +52,26 @@ export function CustomerLayout() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Immediate route change synchronization: update isScrolled
+  useLayoutEffect(() => {
+    setIsScrolled(window.scrollY > 20);
+  }, [location.pathname]);
+
+  // Pre-warm menu data during browser idle so clicking Menu has zero network wait
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      const handle = (window as any).requestIdleCallback(() => {
+        preloadMenuData();
+      });
+      return () => (window as any).cancelIdleCallback(handle);
+    } else if (typeof window !== 'undefined') {
+      const timer = setTimeout(() => {
+        preloadMenuData();
+      }, 400);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Listen to branding settings
@@ -93,17 +126,98 @@ export function CustomerLayout() {
 
   // Determine active route based on React Router location
   const getActiveLinkPath = () => {
-    const current = location.pathname;
-    if (current === '/') return '/';
-    if (current.startsWith('/menu')) return '/menu';
-    if (current.startsWith('/offers')) return '/offers';
-    if (current.startsWith('/notifications')) return '/notifications';
-    if (current.startsWith('/reserve')) return '/reserve';
+    const current = location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
+    if (current === '/' || current === '/home') return '/';
+    if (current === '/menu' || current.startsWith('/menu/')) return '/menu';
+    if (current === '/offers' || current.startsWith('/offers/')) return '/offers';
+    if (current === '/notifications' || current.startsWith('/notifications/')) return '/notifications';
+    if (current === '/reserve' || current.startsWith('/reserve/')) return '/reserve';
     return null;
   };
 
   const activePath = getActiveLinkPath();
-  const highlightedPath = hoveredPath !== null ? hoveredPath : activePath;
+
+  // Measure active tab relative to the navigation container (immune to viewport scroll/Y position)
+  const measurePill = () => {
+    const container = navContainerRef.current;
+    if (!container || !activePath) {
+      setPillStyle((prev) => (prev.opacity === 0 ? prev : { ...prev, opacity: 0 }));
+      return;
+    }
+
+    const activeTab = tabRefs.current.get(activePath);
+    if (!activeTab) {
+      setPillStyle((prev) => (prev.opacity === 0 ? prev : { ...prev, opacity: 0 }));
+      return;
+    }
+
+    // Measure strictly within local container space
+    let activeX = activeTab.offsetLeft;
+    let activeWidth = activeTab.offsetWidth;
+
+    // Fallback if offsetParent is not the container in non-standard layout contexts
+    if (activeTab.offsetParent !== container) {
+      const containerRect = container.getBoundingClientRect();
+      const tabRect = activeTab.getBoundingClientRect();
+      activeX = tabRect.left - containerRect.left;
+      activeWidth = tabRect.width;
+    }
+
+    if (activeWidth > 0) {
+      setPillStyle({
+        x: activeX,
+        width: activeWidth,
+        opacity: 1,
+      });
+    }
+  };
+
+  // Synchronous measurement on route change
+  useLayoutEffect(() => {
+    measurePill();
+
+    if (!hasInitialized.current && activePath) {
+      const activeTab = tabRefs.current.get(activePath);
+      if (activeTab && activeTab.offsetWidth > 0) {
+        requestAnimationFrame(() => {
+          hasInitialized.current = true;
+        });
+      }
+    }
+
+    prevActivePathRef.current = activePath;
+  }, [activePath]);
+
+  // Recalculate when custom web fonts finish rendering
+  useEffect(() => {
+    if (typeof document !== 'undefined' && 'fonts' in document) {
+      document.fonts.ready.then(() => {
+        measurePill();
+      });
+    }
+  }, [activePath]);
+
+  // Recalculate when navbar dimensions change or on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      measurePill();
+    };
+
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && navContainerRef.current) {
+      ro = new ResizeObserver(() => {
+        measurePill();
+      });
+      ro.observe(navContainerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (ro) ro.disconnect();
+    };
+  }, [activePath]);
 
   return (
     <div className="min-h-screen bg-bangalore-ivory flex flex-col font-sans">
@@ -148,41 +262,67 @@ export function CustomerLayout() {
 
           {/* SECTION 2: CENTER — Larger Floating Capsule Navigation with Sliding Indicator */}
           <nav
+            ref={navContainerRef}
             aria-label="Main Navigation"
-            onMouseLeave={() => setHoveredPath(null)}
-            className="flex items-center bg-[#F4F1EC]/90 p-1.5 rounded-full border border-stone-200/70 shadow-inner"
+            className="relative flex items-center bg-[#F4F1EC]/90 p-1.5 rounded-full border border-stone-200/70 shadow-inner"
           >
+            {/* Persistent single sliding active indicator: strictly horizontal X and width */}
+            <motion.div
+              aria-hidden="true"
+              className="absolute left-0 top-1.5 bottom-1.5 rounded-full bg-[#252D28] shadow-sm pointer-events-none z-0"
+              initial={false}
+              animate={{
+                x: pillStyle.x,
+                width: pillStyle.width,
+                opacity: pillStyle.opacity,
+              }}
+              transition={
+                !hasInitialized.current || prefersReducedMotion || prevActivePathRef.current === null
+                  ? { duration: 0 }
+                  : {
+                      type: "spring",
+                      stiffness: 420,
+                      damping: 38,
+                      mass: 0.75,
+                    }
+              }
+            />
+
             {navLinks.map((link) => {
-              const isHighlighted = highlightedPath === link.path;
               const isActive = activePath === link.path;
 
               return (
                 <Link
                   key={link.path}
+                  ref={(el) => {
+                    if (el) {
+                      tabRefs.current.set(link.path, el);
+                    } else {
+                      tabRefs.current.delete(link.path);
+                    }
+                  }}
                   to={link.path}
-                  onMouseEnter={() => setHoveredPath(link.path)}
-                  onFocus={() => setHoveredPath(link.path)}
-                  onBlur={() => setHoveredPath(null)}
+                  onMouseEnter={() => {
+                    if (link.path === '/menu') preloadMenuData();
+                  }}
+                  onFocus={() => {
+                    if (link.path === '/menu') preloadMenuData();
+                  }}
+                  onTouchStart={() => {
+                    if (link.path === '/menu') preloadMenuData();
+                  }}
+                  onClick={() => {
+                    if (isActive) {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
                   className={cn(
-                    "relative px-5 sm:px-6 py-2.5 text-xs sm:text-[13px] font-semibold rounded-full transition-colors duration-200 z-10 focus:outline-none select-none tracking-wide",
-                    isHighlighted ? "text-white" : "text-[#464642] hover:text-[#111827]"
+                    "relative px-5 sm:px-6 py-2.5 text-xs sm:text-[13px] font-semibold rounded-full z-10 focus:outline-none select-none tracking-wide transition-colors duration-200",
+                    isActive
+                      ? "text-white"
+                      : "text-[#464642] hover:text-[#111827] hover:bg-stone-200/60"
                   )}
                 >
-                  {isHighlighted && (
-                    <motion.div
-                      layoutId="navbar-large-pill"
-                      className="absolute inset-0 bg-[#252D28] rounded-full -z-10 shadow-sm"
-                      transition={
-                        prefersReducedMotion
-                          ? { duration: 0 }
-                          : {
-                              type: "spring",
-                              stiffness: 350,
-                              damping: 30,
-                            }
-                      }
-                    />
-                  )}
                   <span className="relative z-10 whitespace-nowrap">
                     {link.name}
                   </span>
@@ -432,6 +572,14 @@ export function CustomerLayout() {
                 to={item.path}
                 aria-label={item.name}
                 aria-current={isActive ? 'page' : undefined}
+                onTouchStart={() => {
+                  if (item.path === '/menu') preloadMenuData();
+                }}
+                onClick={() => {
+                  if (isActive) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
                 className={cn(
                   "relative flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-full text-center transition-colors duration-200 focus:outline-none select-none group min-w-0",
                   isActive
@@ -498,7 +646,7 @@ export function CustomerLayout() {
       <main
         className={cn(
           "flex-1 flex flex-col pb-24 lg:pb-0",
-          location.pathname !== '/' && location.pathname !== '/menu' && "pt-24 sm:pt-28 md:pt-32"
+          location.pathname !== '/' && location.pathname !== '/home' && !location.pathname.startsWith('/menu') && "pt-24 sm:pt-28 md:pt-32"
         )}
       >
         <Outlet />

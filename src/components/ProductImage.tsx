@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Utensils } from 'lucide-react';
 import { getDishResolvedUrl } from '../services/menuSyncService';
 
@@ -8,39 +8,25 @@ interface ProductImageProps {
   alt?: string;
   className?: string;
   fallbackIconSize?: number;
+  priority?: boolean;
 }
 
-export function ProductImage({
+export const ProductImage = React.memo(function ProductImage({
   id,
   src,
   alt = 'Food Item',
   className = 'w-full h-full object-cover',
-  fallbackIconSize = 28
+  fallbackIconSize = 28,
+  priority = false,
 }: ProductImageProps) {
-  const [currentSrc, setCurrentSrc] = useState<string>('');
+  // Synchronous resolution on initial render: 0 delay, eliminates the useEffect cascade & re-render
+  const resolved = useMemo(() => getDishResolvedUrl(id, alt, src), [id, alt, src]);
   const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    const { url } = getDishResolvedUrl(id, alt, src);
-    if (url) {
-      setCurrentSrc(url);
-      setHasError(false);
-      setIsLoading(true);
-    } else {
-      setCurrentSrc('');
-      setHasError(true);
-      setIsLoading(false);
-    }
-  }, [id, src, alt]);
+  const initialUrl = !hasError && resolved.url ? resolved.url : null;
 
-  const handleImageError = () => {
-    // Graceful error fallback directly to neutral branded placeholder
-    setHasError(true);
-    setIsLoading(false);
-  };
-
-  if (hasError || !currentSrc) {
+  if (hasError || !initialUrl) {
     return (
       <div 
         role="img"
@@ -62,20 +48,21 @@ export function ProductImage({
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-      {isLoading && (
-        <div className="absolute inset-0 bg-amber-50/50 animate-pulse flex items-center justify-center">
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-stone-100 animate-pulse flex items-center justify-center">
           <Utensils size={fallbackIconSize} className="text-amber-300 animate-pulse" />
         </div>
       )}
       <img
-        src={currentSrc}
+        src={initialUrl}
         alt={alt}
-        className={`${className} transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-        loading="lazy"
+        className={`${className} transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        loading={priority ? 'eager' : 'lazy'}
         decoding="async"
-        onLoad={() => setIsLoading(false)}
-        onError={handleImageError}
+        fetchPriority={priority ? 'high' : 'auto'}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => setHasError(true)}
       />
     </div>
   );
-}
+});

@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from './lib/auth';
 import { CartProvider } from './lib/CartContext';
 import { AdminLayout } from './components/layout/AdminLayout';
 import { StaffLayout } from './components/layout/StaffLayout';
+import { ScrollRestoration } from './components/common/ScrollRestoration';
 import { CustomerLayout } from './components/layout/CustomerLayout';
 import { Login } from './pages/Login';
 import { Home } from './pages/customer/Home';
@@ -199,6 +200,7 @@ export default function App() {
       <AuthProvider>
         <CartProvider>
           <BrowserRouter>
+            <ScrollRestoration />
             <AppRoutes />
           </BrowserRouter>
         </CartProvider>

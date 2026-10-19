@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
-import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import { 
+  subscribeMenuData, 
+  getMenuSnapshot, 
+  Category, 
+  DEFAULT_SHOWCASE_CATEGORIES 
+} from '../../services/menuDataService';
 import { 
   Search, 
   ShoppingBag, 
@@ -239,6 +243,126 @@ const SHOWCASE_CATEGORY_GROUPS: Record<string, { name: string; match: (item: any
   },
 };
 
+interface DishCardProps {
+  item: any;
+  qtyInCart: number;
+  onAddToCart: (item: any) => void;
+  onUpdateQuantity: (id: string, qty: number) => void;
+  isPriority: boolean;
+}
+
+const DishCard = React.memo(function DishCard({
+  item,
+  qtyInCart,
+  onAddToCart,
+  onUpdateQuantity,
+  isPriority,
+}: DishCardProps) {
+  const isBestseller = item.isBestseller === true;
+  const isChefSpecial = item.isChefsSpecial === true;
+
+  return (
+    <div 
+      className="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col border border-stone-200/70 hover:-translate-y-1.5"
+    >
+      {/* Food Image Area (4:3 ratio) */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
+        <ProductImage 
+          id={item.id}
+          src={item.imageUrl} 
+          alt={item.name} 
+          priority={isPriority}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+
+        {/* Veg / Non-Veg Indicator Top-Left */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+          {item.isVegetarian ? (
+            <div className="bg-white/90 backdrop-blur-md p-1 rounded-md shadow-xs border border-stone-200/50">
+              <div className="w-4 h-4 border-2 border-green-600 flex items-center justify-center rounded-2xs">
+                <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white/90 backdrop-blur-md p-1 rounded-md shadow-xs border border-stone-200/50">
+              <div className="w-4 h-4 border-2 border-red-600 flex items-center justify-center rounded-2xs">
+                <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+              </div>
+            </div>
+          )}
+          {item.isJain && (
+            <span className="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-1 rounded shadow-xs tracking-wider">
+              JAIN
+            </span>
+          )}
+        </div>
+
+        {/* Optional Gold Badges Top-Right */}
+        <div className="absolute top-3 right-3 flex flex-col items-end gap-1">
+          {isChefSpecial && (
+            <span className="bg-[#0B1120] text-amber-400 border border-amber-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-md tracking-wider uppercase backdrop-blur-md">
+              CHEF'S SPECIAL
+            </span>
+          )}
+          {isBestseller && (
+            <span className="bg-amber-400 text-stone-950 font-bold text-[10px] px-2.5 py-1 rounded-full shadow-md tracking-wider uppercase">
+              BESTSELLER
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="p-5 flex flex-col flex-1 justify-between">
+        <div>
+          <div className="flex justify-between items-start mb-2 gap-2">
+            <h3 className="font-serif font-bold text-lg text-stone-900 line-clamp-1 leading-snug group-hover:text-amber-700 transition-colors">
+              {item.name}
+            </h3>
+            <span className="font-bold text-[#0B1120] text-lg shrink-0">
+              ${Number(item.price).toFixed(2)}
+            </span>
+          </div>
+          <p className="text-stone-500 text-xs leading-relaxed line-clamp-2 mb-4">
+            {item.description || `Authentic ${item.name} prepared fresh with traditional herbs and spices.`}
+          </p>
+        </div>
+
+        {/* Add to Cart / Quantity Stepper Button */}
+        <div className="pt-2">
+          {qtyInCart > 0 ? (
+            <div className="flex items-center justify-between bg-[#0B1120] text-white rounded-xl p-1 shadow-md">
+              <button
+                onClick={() => onUpdateQuantity(item.id, qtyInCart - 1)}
+                className="w-8 h-8 rounded-lg bg-stone-800 text-amber-400 flex items-center justify-center hover:bg-stone-700 transition-colors cursor-pointer"
+              >
+                <Minus size={16} />
+              </button>
+              <span className="font-bold text-amber-400 text-sm px-3">
+                {qtyInCart}
+              </span>
+              <button
+                onClick={() => onAddToCart(item)}
+                className="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center hover:bg-amber-400 transition-colors cursor-pointer"
+              >
+                <Plus size={16} />
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={() => onAddToCart(item)}
+              className="w-full py-2.5 rounded-xl border border-stone-900 bg-white text-stone-900 font-bold hover:bg-[#0B1120] hover:text-white hover:border-[#0B1120] transition-all duration-200 flex items-center justify-center gap-2 group/btn text-sm shadow-xs cursor-pointer"
+            >
+              <ShoppingBag size={16} className="text-amber-600 group-hover/btn:text-amber-400 transition-colors" />
+              Add to Cart
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+});
+
 export function CustomerMenu() {
   const [searchParams, setSearchParams] = useSearchParams();
   const rawCategoryParam = searchParams.get('category');
@@ -249,9 +373,11 @@ export function CustomerMenu() {
     return normalizedParam || 'all';
   });
 
-  const [items, setItems] = useState<any[]>([]);
-  const [categories, setCategories] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Client-side cache-backed initial state for instant zero-latency page transitions
+  const initialSnapshot = getMenuSnapshot();
+  const [items, setItems] = useState<any[]>(() => initialSnapshot.items);
+  const [categories, setCategories] = useState<Category[]>(() => initialSnapshot.categories);
+  const [loading, setLoading] = useState<boolean>(() => !initialSnapshot.isReady);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'veg' | 'non-veg' | 'spicy' | 'price-low' | 'price-high'>('all');
@@ -274,14 +400,20 @@ export function CustomerMenu() {
     return map;
   }, [cartItems]);
 
+  const handleAddToCart = useCallback((item: any) => {
+    addToCart(item);
+  }, [addToCart]);
+
+  const handleUpdateQuantity = useCallback((id: string, qty: number) => {
+    updateQuantity(id, qty);
+  }, [updateQuantity]);
+
   // Synchronize URL search params with active category state
   useEffect(() => {
     if (normalizedParam) {
-      // Validate that requested category exists
       if (SHOWCASE_CATEGORY_GROUPS[normalizedParam] || categories.some(c => c.id === normalizedParam)) {
         setActiveCategory(normalizedParam);
       } else if (categories.length > 0) {
-        // Fallback gracefully to 'all' if category is invalid
         setActiveCategory('all');
       }
     } else {
@@ -332,48 +464,18 @@ export function CustomerMenu() {
     };
   }, []);
 
-  // Real-time Firestore sync for menu items & categories
+  // Real-time Firestore sync with shared memory cache
   useEffect(() => {
-    setLoading(true);
-    const qItems = query(collection(db, 'menuItems'), where('isAvailable', '==', true));
-    const unsubscribeItems = onSnapshot(qItems, (snapshot) => {
-      const menuData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setItems(menuData);
-      setLoading(false);
-    }, (error) => {
-      console.error("Error fetching menu items:", error);
-      setLoading(false);
-    });
-
-    const qCats = query(collection(db, 'categories'), orderBy('order', 'asc'));
-    const unsubscribeCats = onSnapshot(qCats, (snapshot) => {
-      const catData = snapshot.docs
-        .map(doc => ({ id: doc.id, ...doc.data() }))
-        .filter((c: any) => c.isActive !== false);
-
-      const showcaseCategories = [
-        { id: 'south-indian', name: 'South Indian' },
-        { id: 'indian-veg', name: 'Indian Veg' },
-        { id: 'indian-non-veg', name: 'Indian Non-Veg' },
-        { id: 'indo-chinese', name: 'Indo-Chinese' },
-        { id: 'biryani', name: 'Biryani' },
-        { id: 'desserts-beverages', name: 'Desserts & Beverages' },
-      ];
-
-      setCategories([
-        { id: 'all', name: 'All Items' },
-        ...showcaseCategories,
-        { id: 'bestseller', name: 'Bestsellers' },
-        { id: 'chefs', name: "Chef's Specials" },
-        ...catData.filter((c: any) => !['biryani', 'dessert', 'beverages', 'south-indian'].includes(c.id))
-      ]);
-    }, (error) => {
-      console.error("Error fetching categories:", error);
+    const unsubscribe = subscribeMenuData(({ items: updatedItems, categories: updatedCategories, isReady }) => {
+      setItems(updatedItems);
+      setCategories(updatedCategories);
+      if (isReady) {
+        setLoading(false);
+      }
     });
 
     return () => {
-      unsubscribeItems();
-      unsubscribeCats();
+      unsubscribe();
     };
   }, []);
 
@@ -496,6 +598,28 @@ export function CustomerMenu() {
 
     return result;
   }, [items, activeCategory, searchTerm, selectedFilter]);
+
+  // Progressive rendering batching to keep initial navigation under 16ms
+  const INITIAL_BATCH = 24;
+  const BATCH_SIZE = 24;
+  const [visibleCount, setVisibleCount] = useState<number>(INITIAL_BATCH);
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_BATCH);
+  }, [activeCategory, searchTerm, selectedFilter]);
+
+  useEffect(() => {
+    if (visibleCount < filteredItems.length) {
+      const timer = setTimeout(() => {
+        setVisibleCount(prev => Math.min(prev + BATCH_SIZE, filteredItems.length));
+      }, 25);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleCount, filteredItems.length]);
+
+  const displayedItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
 
   return (
     <div className="min-h-screen bg-[#FBF9F5] text-stone-900 pb-36 sm:pb-32">
@@ -711,115 +835,16 @@ export function CustomerMenu() {
         ) : (
           /* Dish Cards Grid (4 per row on Desktop) */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map((item, idx) => {
-              const qtyInCart = cartQuantityMap[item.id] || 0;
-              const isBestseller = item.isBestseller === true;
-              const isChefSpecial = item.isChefsSpecial === true;
-
-              return (
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: Math.min(idx * 0.03, 0.3) }}
-                  key={item.id} 
-                  className="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 group flex flex-col border border-stone-200/70 hover:-translate-y-1.5"
-                >
-                  {/* Food Image Area (4:3 ratio) */}
-                  <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
-                    <ProductImage 
-                      id={item.id}
-                      src={item.imageUrl} 
-                      alt={item.name} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-
-                    {/* Veg / Non-Veg Indicator Top-Left */}
-                    <div className="absolute top-3 left-3 flex items-center gap-1.5">
-                      {item.isVegetarian ? (
-                        <div className="bg-white/90 backdrop-blur-md p-1 rounded-md shadow-xs border border-stone-200/50">
-                          <div className="w-4 h-4 border-2 border-green-600 flex items-center justify-center rounded-2xs">
-                            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="bg-white/90 backdrop-blur-md p-1 rounded-md shadow-xs border border-stone-200/50">
-                          <div className="w-4 h-4 border-2 border-red-600 flex items-center justify-center rounded-2xs">
-                            <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                          </div>
-                        </div>
-                      )}
-                      {item.isJain && (
-                        <span className="bg-amber-100 text-amber-900 text-[10px] font-bold px-2 py-1 rounded shadow-xs tracking-wider">
-                          JAIN
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Optional Gold Badges Top-Right */}
-                    <div className="absolute top-3 right-3 flex flex-col items-end gap-1">
-                      {isChefSpecial && (
-                        <span className="bg-[#0B1120] text-amber-400 border border-amber-400/40 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-md tracking-wider uppercase backdrop-blur-md">
-                          CHEF'S SPECIAL
-                        </span>
-                      )}
-                      {isBestseller && (
-                        <span className="bg-amber-400 text-stone-950 font-bold text-[10px] px-2.5 py-1 rounded-full shadow-md tracking-wider uppercase">
-                          BESTSELLER
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-5 flex flex-col flex-1 justify-between">
-                    <div>
-                      <div className="flex justify-between items-start mb-2 gap-2">
-                        <h3 className="font-serif font-bold text-lg text-stone-900 line-clamp-1 leading-snug group-hover:text-amber-700 transition-colors">
-                          {item.name}
-                        </h3>
-                        <span className="font-bold text-[#0B1120] text-lg shrink-0">
-                          ${Number(item.price).toFixed(2)}
-                        </span>
-                      </div>
-                      <p className="text-stone-500 text-xs leading-relaxed line-clamp-2 mb-4">
-                        {item.description || `Authentic ${item.name} prepared fresh with traditional herbs and spices.`}
-                      </p>
-                    </div>
-
-                    {/* Add to Cart / Quantity Stepper Button */}
-                    <div className="pt-2">
-                      {qtyInCart > 0 ? (
-                        <div className="flex items-center justify-between bg-[#0B1120] text-white rounded-xl p-1 shadow-md">
-                          <button
-                            onClick={() => updateQuantity(item.id, qtyInCart - 1)}
-                            className="w-8 h-8 rounded-lg bg-stone-800 text-amber-400 flex items-center justify-center hover:bg-stone-700 transition-colors cursor-pointer"
-                          >
-                            <Minus size={16} />
-                          </button>
-                          <span className="font-bold text-amber-400 text-sm px-3">
-                            {qtyInCart}
-                          </span>
-                          <button
-                            onClick={() => addToCart(item)}
-                            className="w-8 h-8 rounded-lg bg-amber-500 text-stone-950 flex items-center justify-center hover:bg-amber-400 transition-colors cursor-pointer"
-                          >
-                            <Plus size={16} />
-                          </button>
-                        </div>
-                      ) : (
-                        <button 
-                          onClick={() => addToCart(item)}
-                          className="w-full py-2.5 rounded-xl border border-stone-900 bg-white text-stone-900 font-bold hover:bg-[#0B1120] hover:text-white hover:border-[#0B1120] transition-all duration-200 flex items-center justify-center gap-2 group/btn text-sm shadow-xs cursor-pointer"
-                        >
-                          <ShoppingBag size={16} className="text-amber-600 group-hover/btn:text-amber-400 transition-colors" />
-                          Add to Cart
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {displayedItems.map((item, idx) => (
+              <DishCard
+                key={item.id}
+                item={item}
+                qtyInCart={cartQuantityMap[item.id] || 0}
+                onAddToCart={handleAddToCart}
+                onUpdateQuantity={handleUpdateQuantity}
+                isPriority={idx < 8}
+              />
+            ))}
           </div>
         )}
       </div>
