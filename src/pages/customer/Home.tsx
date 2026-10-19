@@ -11,6 +11,8 @@ import { CulinaryHeritage } from '../../components/home/CulinaryHeritage';
 import { PopularDishes } from '../../components/home/PopularDishes';
 import { ChefStory } from '../../components/home/ChefStory';
 import { NamaskarExperience } from '../../components/home/NamaskarExperience';
+import { CraftedInvitation } from '../../components/home/CraftedInvitation';
+import { OurLocation } from '../../components/home/OurLocation';
 
 export function Home() {
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -120,21 +122,10 @@ export function Home() {
       )}
 
       {/* Menu Invitation CTA */}
-      <section className="py-20 bg-bangalore-ivory text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-4">Crafted With Authenticity & Passion</h2>
-          <p className="text-gray-600 max-w-xl mx-auto mb-8 font-sans">
-            Every dish is prepared using time-honored recipes, freshly ground spices, and the finest ingredients.
-          </p>
-          <Link
-            to="/menu"
-            className="inline-flex items-center gap-2.5 px-8 py-3.5 bg-[#252D28] hover:bg-[#343D37] text-white rounded-full font-medium text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
-          >
-            <span>Explore Full Menu</span>
-            <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
+      <CraftedInvitation />
+
+      {/* Premium Our Location Section */}
+      <OurLocation />
     </div>
   );
 }
