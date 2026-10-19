@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider, useAuth } from './lib/auth';
 import { CartProvider } from './lib/CartContext';
-import { ScrollRestoration } from './components/common/ScrollRestoration';
 import { AdminLayout } from './components/layout/AdminLayout';
 import { StaffLayout } from './components/layout/StaffLayout';
 import { CustomerLayout } from './components/layout/CustomerLayout';
@@ -200,7 +199,6 @@ export default function App() {
       <AuthProvider>
         <CartProvider>
           <BrowserRouter>
-            <ScrollRestoration />
             <AppRoutes />
           </BrowserRouter>
         </CartProvider>

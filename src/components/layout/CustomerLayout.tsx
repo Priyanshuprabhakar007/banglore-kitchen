@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShoppingBag, User, MapPin, Phone, Bell, ArrowRight, Home, UtensilsCrossed, Tag, CalendarDays } from 'lucide-react';
@@ -40,12 +40,6 @@ export function CustomerLayout() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Immediate route change synchronization: update isScrolled and clear stale hover state
-  useLayoutEffect(() => {
-    setIsScrolled(window.scrollY > 20);
-    setHoveredPath(null);
-  }, [location.pathname]);
 
   // Listen to branding settings
   useEffect(() => {
@@ -99,12 +93,12 @@ export function CustomerLayout() {
 
   // Determine active route based on React Router location
   const getActiveLinkPath = () => {
-    const current = location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
-    if (current === '/' || current === '/home') return '/';
-    if (current === '/menu' || current.startsWith('/menu/')) return '/menu';
-    if (current === '/offers' || current.startsWith('/offers/')) return '/offers';
-    if (current === '/notifications' || current.startsWith('/notifications/')) return '/notifications';
-    if (current === '/reserve' || current.startsWith('/reserve/')) return '/reserve';
+    const current = location.pathname;
+    if (current === '/') return '/';
+    if (current.startsWith('/menu')) return '/menu';
+    if (current.startsWith('/offers')) return '/offers';
+    if (current.startsWith('/notifications')) return '/notifications';
+    if (current.startsWith('/reserve')) return '/reserve';
     return null;
   };
 
@@ -166,12 +160,6 @@ export function CustomerLayout() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => {
-                    setHoveredPath(null);
-                    if (activePath === link.path) {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                  }}
                   onMouseEnter={() => setHoveredPath(link.path)}
                   onFocus={() => setHoveredPath(link.path)}
                   onBlur={() => setHoveredPath(null)}
@@ -189,9 +177,8 @@ export function CustomerLayout() {
                           ? { duration: 0 }
                           : {
                               type: "spring",
-                              stiffness: 400,
-                              damping: 32,
-                              mass: 0.8,
+                              stiffness: 350,
+                              damping: 30,
                             }
                       }
                     />
@@ -445,11 +432,6 @@ export function CustomerLayout() {
                 to={item.path}
                 aria-label={item.name}
                 aria-current={isActive ? 'page' : undefined}
-                onClick={() => {
-                  if (activePath === item.path) {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }
-                }}
                 className={cn(
                   "relative flex-1 flex flex-col items-center justify-center py-2 px-1 rounded-full text-center transition-colors duration-200 focus:outline-none select-none group min-w-0",
                   isActive
@@ -516,7 +498,7 @@ export function CustomerLayout() {
       <main
         className={cn(
           "flex-1 flex flex-col pb-24 lg:pb-0",
-          location.pathname !== '/' && location.pathname !== '/home' && !location.pathname.startsWith('/menu') && "pt-24 sm:pt-28 md:pt-32"
+          location.pathname !== '/' && location.pathname !== '/menu' && "pt-24 sm:pt-28 md:pt-32"
         )}
       >
         <Outlet />

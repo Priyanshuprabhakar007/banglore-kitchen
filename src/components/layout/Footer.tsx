@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MapPin, Phone, ArrowRight, Check, Instagram, Facebook, Youtube, ChevronRight } from 'lucide-react';
 import { Logo } from '../ui/Logo';
 
@@ -11,18 +11,9 @@ interface FooterProps {
 }
 
 export function Footer({ branding }: FooterProps) {
-  const location = useLocation();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [agreed, setAgreed] = useState(true);
-
-  const handleNavClick = (path: string) => {
-    const cur = location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
-    const tgt = path.toLowerCase().replace(/\/+$/, '') || '/';
-    if (cur === tgt || (tgt === '/' && cur === '/home')) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -132,7 +123,7 @@ export function Footer({ branding }: FooterProps) {
           
           {/* COLUMN 1 — BRAND (span 4) */}
           <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-6">
-            <Link to="/" onClick={() => handleNavClick('/')} className="inline-block mb-6 group focus:outline-none" aria-label="The Bangalore Kitchen Home">
+            <Link to="/" className="inline-block mb-6 group focus:outline-none" aria-label="The Bangalore Kitchen Home">
               <Logo
                 variant="dark-bg"
                 logoUrl={branding?.websiteLogo}
@@ -201,7 +192,6 @@ export function Footer({ branding }: FooterProps) {
               <li>
                 <Link
                   to="/"
-                  onClick={() => handleNavClick('/')}
                   className="group inline-flex items-center gap-1.5 text-stone-400 hover:text-white transition-all duration-200 hover:translate-x-1"
                 >
                   <ChevronRight size={13} className="text-[#C5A46B] opacity-0 group-hover:opacity-100 transition-opacity -ml-3 group-hover:ml-0" />
@@ -211,7 +201,6 @@ export function Footer({ branding }: FooterProps) {
               <li>
                 <Link
                   to="/menu"
-                  onClick={() => handleNavClick('/menu')}
                   className="group inline-flex items-center gap-1.5 text-stone-400 hover:text-white transition-all duration-200 hover:translate-x-1"
                 >
                   <ChevronRight size={13} className="text-[#C5A46B] opacity-0 group-hover:opacity-100 transition-opacity -ml-3 group-hover:ml-0" />
@@ -221,7 +210,6 @@ export function Footer({ branding }: FooterProps) {
               <li>
                 <Link
                   to="/reserve"
-                  onClick={() => handleNavClick('/reserve')}
                   className="group inline-flex items-center gap-1.5 text-stone-400 hover:text-white transition-all duration-200 hover:translate-x-1"
                 >
                   <ChevronRight size={13} className="text-[#C5A46B] opacity-0 group-hover:opacity-100 transition-opacity -ml-3 group-hover:ml-0" />
@@ -231,7 +219,6 @@ export function Footer({ branding }: FooterProps) {
               <li>
                 <Link
                   to="/offers"
-                  onClick={() => handleNavClick('/offers')}
                   className="group inline-flex items-center gap-1.5 text-stone-400 hover:text-white transition-all duration-200 hover:translate-x-1"
                 >
                   <ChevronRight size={13} className="text-[#C5A46B] opacity-0 group-hover:opacity-100 transition-opacity -ml-3 group-hover:ml-0" />
